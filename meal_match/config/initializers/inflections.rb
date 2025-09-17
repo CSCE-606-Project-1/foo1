@@ -11,6 +11,8 @@
 # end
 
 # These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.acronym "RESTful"
-# end
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  # By default for oauth, rails will want to look based on naming convents
+  # as Oauth, we want it look for OAuth instead of Oauth
+  inflect.acronym "OAuth"
+end

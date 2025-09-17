@@ -11,4 +11,22 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # The as: :something allows developers to write something_path when
+  # the want to refer to this end point
+  get    '/login', to: 'login#new', as: :login
+  delete '/logout', to: 'login#destroy', as: :logout
+
+  # OAuth related route
+  namespace :oauth do
+    namespace :google_oauth2 do
+      # Corresponds to /oauth/google_oauth2/callback which corresponds
+      # maps to the call OAuth::GoogleOauth2#callback which is a controller
+      # class method that we have to define
+      get "callback"
+    end
+  end
+
+  # Dashboard related (after login)
+  get '/dashboard', to: 'dashboard#show', as: :dashboard
 end
