@@ -1,3 +1,5 @@
 # The tmp folder is provided by rails for temporary storage
 # purpose, we are not going to maintain / version control it
 meal_match/tmp/
+meal_match/log/development.log
+meal_match/tmp/cache/bootsnap/load-path-cache
