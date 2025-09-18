@@ -1,4 +1,84 @@
-<h1> Dashboard of <%= current_user.first_name%> <%= current_user.last_name%></h1>
+<h1>Dashboard of <%= current_user.first_name %> <%= current_user.last_name %></h1>
 <h2>(<%= current_user.email %>)</h2>
 
-<button type="button" id="add-ingredients-btn">Add Ingredients +</button>
+<div data-controller="modal">
+  <button
+    type="button"
+    id="add-ingredients-btn"
+    data-action="click->modal#open"
+  >
+    Add Ingredients +
+  </button>
+
+  <!-- Backdrop + modal panel (use native `hidden` so it truly doesn't intercept clicks) -->
+  <div
+    id="ingredients-modal"
+    class="modal-backdrop"
+    hidden
+    data-modal-target="backdrop"
+    data-action="click->modal#backdropClose keydown@window->modal#escClose"
+  >
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="ingredients-title" tabindex="-1">
+      <h3 id="ingredients-title" style="margin-top:0;">Add Ingredients</h3>
+
+      <p>Put your inputs here—we’ll flesh this out later.</p>
+
+      <div style="margin-top:1rem; display:flex; gap:.5rem; justify-content:flex-end;">
+        <button type="button" data-action="modal#close" id="ingredients-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Browser already treats [hidden] as display:none, but belt + suspenders */
+  [hidden] { display: none !important; }
+
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.5);
+    padding: 1rem;
+    z-index: 50;
+  }
+  .modal-panel {
+    background: #fff;
+    width: 100%;
+    max-width: 32rem;
+    border-radius: .75rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+  }
+</style>
+
+<script>
+  // Progressive enhancement fallback:
+  // Works if Stimulus isn't ready yet in headless/system tests.
+  (function attachWhenReady(fn) {
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+    // Also run on Turbo page loads (when Turbo is present)
+    document.addEventListener("turbo:load", fn);
+  })(function () {
+    const btn     = document.getElementById("add-ingredients-btn");
+    const modal   = document.getElementById("ingredients-modal");
+    const panel   = modal && modal.querySelector(".modal-panel");
+    const close   = document.getElementById("ingredients-close-btn");
+
+    if (!btn || !modal || !panel) return;
+
+    // If Stimulus is connected, it will also respond — this just ensures tests
+    // don't flake when Stimulus isn't ready yet.
+    btn.addEventListener("click", () => { modal.hidden = false; panel.focus(); });
+
+    modal.addEventListener("click", (e) => {
+      if (!panel.contains(e.target)) modal.hidden = true;
+    });
+
+    if (close) close.addEventListener("click", () => { modal.hidden = true; });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") modal.hidden = true;
+    });
+  });
+</script>
