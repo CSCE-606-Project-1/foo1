@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   # The as: :something allows developers to write something_path when
   # the want to refer to this end point
-  get    '/login', to: 'login#new', as: :login
-  delete '/logout', to: 'login#destroy', as: :logout
+  get    "/login", to: "login#new", as: :login
+  delete "/logout", to: "login#destroy", as: :logout
 
   # OAuth related route
   namespace :oauth do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   # Dashboard related (after login)
-  get '/dashboard', to: 'dashboard#show', as: :dashboard
+  get "/dashboard", to: "dashboard#show", as: :dashboard
 
   # Redirect the root path to the login page
   root "login#new"

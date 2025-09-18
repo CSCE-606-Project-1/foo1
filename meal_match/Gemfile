@@ -68,5 +68,3 @@ end
 gem "omniauth"
 gem "omniauth-rails_csrf_protection" # Protection against Cross site forgery
 gem "omniauth-google-oauth2" # OAuth specifically for google
-
-
