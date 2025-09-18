@@ -1,0 +1,112 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '**'
+
+# Run all shell steps in the Rails folder
+defaults:
+  run:
+    working-directory: meal_match
+
+jobs:
+  scan_ruby:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          # Reads meal_match/.ruby-version because we point setup-ruby at that dir
+          ruby-version: .ruby-version
+          bundler-cache: true
+          working-directory: meal_match
+      - name: Verify Gemfile present
+        run: ls -la && test -f Gemfile
+      - name: Brakeman
+        run: |
+          if [ -x bin/brakeman ]; then bin/brakeman --no-pager; else bundle exec brakeman --no-pager; fi
+
+  scan_js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          working-directory: meal_match
+      - name: Importmap audit
+        run: |
+          if [ -x bin/importmap ]; then bin/importmap audit; else bundle exec importmap audit; fi
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          working-directory: meal_match
+      - name: Rubocop
+        run: |
+          if [ -x bin/rubocop ]; then bin/rubocop -f github; else bundle exec rubocop -f github; fi
+
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d postgres"
+          --health-interval=10s --health-timeout=5s --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          working-directory: meal_match
+
+      # Headless Chrome for system tests (more reliable than apt-get)
+      - uses: browser-actions/setup-chrome@v1
+
+      - name: Verify Gemfile present
+        run: ls -la && test -f Gemfile
+
+      - name: Prepare DB
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/meal_match_test
+          # If tests need encrypted credentials:
+          # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: bin/rails db:prepare
+
+      - name: Run tests (RSpec if present, else Minitest)
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/meal_match_test
+        run: |
+          if [ -x bin/rspec ] || grep -qi 'rspec' Gemfile; then
+            bundle exec rspec
+          else
+            bin/rails test test:system
+          fi
+
+      - name: Keep screenshots from failed system tests
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: ${{ github.workspace }}/meal_match/tmp/screenshots
+          if-no-files-found: ignore

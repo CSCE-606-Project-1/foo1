@@ -1,0 +1,5 @@
+<h1> Login </h1>
+<%# The turbo: false below is very very important %>
+<%# without it, the request gets sent but it does not redirect to %>
+<%# the google sign in page (Some AJAX request redirect stuff) %>
+<%= button_to "Sign in with Google", "/oauth/google_oauth2", method: :post, data: {turbo: false} %>
