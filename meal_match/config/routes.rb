@@ -38,4 +38,7 @@ Rails.application.routes.draw do
 
   # Routes for saved recipes
   resources :saved_recipes, only: [ :index, :create, :destroy ]
+
+  # Redirect the root path to the login page
+  root "login#new"
 end
