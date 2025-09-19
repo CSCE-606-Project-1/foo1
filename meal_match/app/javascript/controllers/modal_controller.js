@@ -2,11 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // data-controller="modal"
 export default class extends Controller {
-  static targets = ["backdrop"]
+  static targets = ["backdrop", "search"]
 
   connect() {
     this._prevOverflow = ""
-    // Optional: makes it easy to assert the controller is alive
     this.element.dataset.modalConnected = "true"
   }
 
@@ -14,14 +13,14 @@ export default class extends Controller {
     this._prevOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
 
-    // Use native boolean attribute, not a CSS class
     this.backdropTarget.hidden = false
-    this._focusPanel()
+    this._focusFirstField()
   }
 
   close() {
     this.backdropTarget.hidden = true
     document.body.style.overflow = this._prevOverflow || ""
+    this._clearSearch()
   }
 
   // Click outside the modal panel closes it
@@ -35,12 +34,27 @@ export default class extends Controller {
     if (event.key === "Escape") this.close()
   }
 
+  // Prevent form submission reloads (we'll wire actual search later)
+  preventSubmit(event) {
+    event.preventDefault()
+  }
+
   _panel() {
     return this.backdropTarget.querySelector(".modal-panel")
   }
 
-  _focusPanel() {
-    const panel = this._panel()
-    if (panel) panel.focus()
+  _focusFirstField() {
+    // Prefer focusing the search input, else the panel
+    if (this.hasSearchTarget) {
+      this.searchTarget.focus()
+      this.searchTarget.select()
+    } else {
+      const panel = this._panel()
+      if (panel) panel.focus()
+    }
+  }
+
+  _clearSearch() {
+    if (this.hasSearchTarget) this.searchTarget.value = ""
   }
 }
