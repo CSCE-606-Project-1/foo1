@@ -96,11 +96,56 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
+<<<<<<< HEAD
     crass (1.0.6)
+=======
+    crack (1.0.0)
+      bigdecimal
+      rexml
+    crass (1.0.6)
+    csv (3.3.5)
+    cucumber (10.1.0)
+      base64 (~> 0.2)
+      builder (~> 3.2)
+      cucumber-ci-environment (> 9, < 11)
+      cucumber-core (> 15, < 17)
+      cucumber-cucumber-expressions (> 17, < 19)
+      cucumber-html-formatter (> 20.3, < 22)
+      diff-lcs (~> 1.5)
+      logger (~> 1.6)
+      mini_mime (~> 1.1)
+      multi_test (~> 1.1)
+      sys-uname (~> 1.3)
+    cucumber-ci-environment (10.0.1)
+    cucumber-core (15.2.1)
+      cucumber-gherkin (> 27, < 33)
+      cucumber-messages (> 26, < 30)
+      cucumber-tag-expressions (> 5, < 7)
+    cucumber-cucumber-expressions (18.0.1)
+      bigdecimal
+    cucumber-gherkin (32.2.0)
+      cucumber-messages (> 25, < 28)
+    cucumber-html-formatter (21.15.1)
+      cucumber-messages (> 19, < 28)
+    cucumber-messages (27.2.0)
+    cucumber-rails (4.0.0)
+      capybara (>= 3.25, < 4)
+      cucumber (>= 7, < 11)
+      railties (>= 6.1, < 9)
+    cucumber-tag-expressions (6.1.2)
+    database_cleaner-active_record (2.2.2)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0)
+    database_cleaner-core (2.0.1)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     date (3.4.1)
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+<<<<<<< HEAD
+=======
+    diff-lcs (1.6.2)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     dotenv (3.1.8)
     drb (2.2.3)
     ed25519 (1.4.0)
@@ -114,12 +159,31 @@ GEM
       logger
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
+<<<<<<< HEAD
+=======
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-aarch64-linux-musl)
+    ffi (1.17.2-arm-linux-gnu)
+    ffi (1.17.2-arm-linux-musl)
+    ffi (1.17.2-arm64-darwin)
+    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     fugit (1.11.2)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+<<<<<<< HEAD
     hashie (5.0.0)
+=======
+    hashdiff (1.2.1)
+    hashie (5.0.0)
+    httparty (0.23.1)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.2)
@@ -161,9 +225,17 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
+<<<<<<< HEAD
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
+=======
+    memoist3 (1.0.0)
+    mini_mime (1.1.5)
+    minitest (5.25.5)
+    msgpack (1.8.0)
+    multi_test (1.1.0)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
     net-http (0.6.0)
@@ -297,6 +369,26 @@ GEM
     reline (0.6.2)
       io-console (~> 0.5)
     rexml (3.4.4)
+<<<<<<< HEAD
+=======
+    rspec-core (3.13.5)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (8.0.2)
+      actionpack (>= 7.2)
+      activesupport (>= 7.2)
+      railties (>= 7.2)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
+    rspec-support (3.13.6)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -363,6 +455,12 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.7)
+<<<<<<< HEAD
+=======
+    sys-uname (1.4.1)
+      ffi (~> 1.1)
+      memoist3 (~> 1.0.0)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     thor (1.4.0)
     thruster (0.1.15)
     thruster (0.1.15-aarch64-linux)
@@ -385,6 +483,13 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+<<<<<<< HEAD
+=======
+    webmock (3.25.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
     websocket (1.2.11)
     websocket-driver (0.8.0)
       base64
@@ -409,7 +514,14 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
+<<<<<<< HEAD
   debug
+=======
+  cucumber-rails
+  database_cleaner-active_record
+  debug
+  httparty
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
   importmap-rails
   jbuilder
   kamal
@@ -420,6 +532,10 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2, >= 8.0.2.1)
+<<<<<<< HEAD
+=======
+  rspec-rails
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
   rubocop-rails-omakase
   selenium-webdriver
   solid_cable
@@ -430,6 +546,10 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+<<<<<<< HEAD
+=======
+  webmock
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
 
 BUNDLED WITH
    2.6.9
