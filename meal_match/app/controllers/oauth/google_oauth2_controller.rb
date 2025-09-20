@@ -5,11 +5,11 @@ module OAuth
     # about the guy who was authenticated
     def callback
       # authentication payload
-      auth = request.env['omniauth.auth']
+      auth = request.env["omniauth.auth"]
 
       # Origin: The page from which we received this request, in case
       # we want to send the user back
-      origin = request.env['omniauth.origin']
+      origin = request.env["omniauth.origin"]
 
       user = User.find_or_initialize_by(email: auth.info.email)
       user.attributes = {
