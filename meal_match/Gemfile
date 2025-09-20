@@ -85,8 +85,3 @@ end
 gem "omniauth"
 gem "omniauth-rails_csrf_protection" # Protection against Cross site forgery
 gem "omniauth-google-oauth2" # OAuth specifically for google
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
