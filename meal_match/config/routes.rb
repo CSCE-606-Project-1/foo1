@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   # Dashboard related (after login)
   get "/dashboard", to: "dashboard#show", as: :dashboard
+  get "/ingredient_search", to: "dashboard#ingredient_search", as: :ingredient_search
 
   # Redirect the root path to the login page
   root "login#new"

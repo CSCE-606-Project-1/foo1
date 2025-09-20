@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import IngredientSearchController from "./ingredient_search_controller"
+application.register("ingredient-search", IngredientSearchController)
