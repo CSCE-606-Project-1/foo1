@@ -1,0 +1,23 @@
+<h1>Recipe Results</h1>
+
+<p><strong>Searched Ingredients:</strong>
+  <%= @recipe_search.ingredients %>
+</p>
+
+<% @meals_by_ingredient.each do |ingredient, meals| %>
+  <h2><%= ingredient.capitalize %></h2>
+
+  <% if meals.any? %>
+    <ul style="list-style:none;">
+      <% meals.each do |meal| %>
+        <li style="margin-bottom:20px;">
+          <strong><%= meal["strMeal"] %></strong><br>
+          <%= image_tag meal["strMealThumb"], width: 200 %><br>
+          Meal ID: <%= meal["idMeal"] %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No recipes found for this ingredient.</p>
+  <% end %>
+<% end %>

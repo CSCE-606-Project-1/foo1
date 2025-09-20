@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recipe_searches
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -14,8 +15,8 @@ Rails.application.routes.draw do
 
   # The as: :something allows developers to write something_path when
   # the want to refer to this end point
-  get    '/login', to: 'login#new', as: :login
-  delete '/logout', to: 'login#destroy', as: :logout
+  get    "/login", to: "login#new", as: :login
+  delete "/logout", to: "login#destroy", as: :logout
 
   # OAuth related route
   namespace :oauth do
@@ -28,5 +29,5 @@ Rails.application.routes.draw do
   end
 
   # Dashboard related (after login)
-  get '/dashboard', to: 'dashboard#show', as: :dashboard
+  get "/dashboard", to: "dashboard#show", as: :dashboard
 end

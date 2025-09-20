@@ -17,6 +17,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Add HTTP client
+gem "httparty"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -49,6 +52,16 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # RSpec for unit tests
+  gem "rspec-rails"
+
+  # Mock external HTTP requests
+  gem "webmock"
+
+  # Cucumber acceptance tests
+  gem "cucumber-rails", require: false
+  gem "database_cleaner-active_record"
 end
 
 group :development do
@@ -62,9 +75,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-# https://github.com/omniauth/omniauth
+# Omniauth authentication
 gem "omniauth"
 gem "omniauth-rails_csrf_protection" # Protection against Cross site forgery
-gem "omniauth-google-oauth2" # OAuth specifically for google
-
-
+gem "omniauth-google-oauth2" # OAuth specifically for Google

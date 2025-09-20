@@ -1,0 +1,22 @@
+<%= form_with(model: @recipe_search) do |form| %>
+  <% if @recipe_search.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@recipe_search.errors.count, "error") %> prohibited this recipe_search from being saved:</h2>
+      <ul>
+        <% @recipe_search.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :ingredients, "Enter ingredients", style: "display: block" %>
+    <%= form.text_area :ingredients %>
+  </div>
+
+  <div>
+    <%= form.submit "Search" %>
+  </div>
+
+<% end %>
