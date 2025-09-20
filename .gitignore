@@ -1,5 +1,38 @@
+<<<<<<< HEAD
 # The tmp folder is provided by rails for temporary storage
 # purpose, we are not going to maintain / version control it
+=======
+# Rails default
+/log/*
+/tmp/*
+/storage/*
+/public/packs
+/public/packs-test
+/public/assets
+.byebug_history
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.iml
+.idea/
+.vscode/
+
+# Ruby / Bundler
+/.bundle/
+/vendor/bundle/
+/.ruby-version
+/.env
+/.env.*
+
+# Credentials / secrets
+/config/master.key
+/config/credentials.yml.enc
+/config/database.yml
+# Rails tmp subfolders
+>>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
 meal_match/tmp/
 meal_match/log/development.log
 meal_match/tmp/cache/bootsnap/load-path-cache

@@ -1,0 +1,254 @@
+  [1m[36mActiveRecord::InternalMetadata Load (14.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public[0m
+  [1m[35m (171.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "meal_match_test"[0m
+  [1m[35m (668.5ms)[0m  [1m[35mCREATE DATABASE "meal_match_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (36.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog[0m
+  [1m[35m (12.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "ingredient_searches" CASCADE[0m
+  [1m[35m (24.4ms)[0m  [1m[35mCREATE TABLE "ingredient_searches" ("id" bigserial primary key, "ingredients" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "recipe_searches" CASCADE[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "recipe_searches" ("id" bigserial primary key, "ingredients" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "user_accounts" CASCADE[0m
+  [1m[35m (58.6ms)[0m  [1m[35mCREATE TABLE "user_accounts" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "user_id" bigint NOT NULL, "auth_protocol" character varying, "oauth2" character varying, "provider" character varying, "provider_account_id" character varying, "access_token" character varying, "token_type" character varying DEFAULT 'Bearer', "scope" character varying, "refresh_token" character varying, "expires_at" timestamp(6))[0m
+  [1m[35m (17.3ms)[0m  [1m[35mCREATE INDEX "index_user_accounts_on_user_id" ON "user_accounts" ("user_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (15.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "email" character varying, "first_name" character varying, "last_name" character varying)[0m
+  [1m[35m (6.2ms)[0m  [1m[35mALTER TABLE "user_accounts" ADD CONSTRAINT "fk_rails_d64ac9bcc2"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (32.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20250919164545)[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20250917111143),
+(20250917072927),
+(20250917072926);[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (3.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2025-09-19 16:58:57.100524', '2025-09-19 16:58:57.100530') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (3.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '724153922a1115b491b67c3830a95c1263090af1', '2025-09-19 16:58:57.115246', '2025-09-19 16:58:57.115251') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (4.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-19 11:58:58 -0500
+Processing by RecipeSearchesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 51.7ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 87.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 460.1ms | GC: 0.0ms)
+Completed 200 OK in 995ms (Views: 621.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecipeSearch Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+Started POST "/recipe_searches" for 127.0.0.1 at 2025-09-19 11:59:00 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"recipe_search" => {"ingredients" => "chicken_breast"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (1.9ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-19 16:59:00.307734"], ["updated_at", "2025-09-19 16:59:00.307734"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recipe_searches/1
+Completed 302 Found in 35ms (ActiveRecord: 2.4ms (1 query, 0 cached) | GC: 26.7ms)
+  [1m[36mRecipeSearch Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+  [1m[36mRecipeSearch Load (0.9ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" ORDER BY "recipe_searches"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (2.0ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-19 16:59:00.355257"], ["updated_at", "2025-09-19 16:59:00.355257"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/recipe_searches/2" for 127.0.0.1 at 2025-09-19 11:59:00 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "2"}
+  [1m[36mRecipeSearch Load (1.0ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 8.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | GC: 0.0ms)
+Completed 200 OK in 305ms (Views: 14.9ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 10.6ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-19 12:02:07 -0500
+Processing by RecipeSearchesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 37.7ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 118.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 428.7ms | GC: 0.0ms)
+Completed 200 OK in 911ms (Views: 512.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRecipeSearch Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+Started POST "/recipe_searches" for 127.0.0.1 at 2025-09-19 12:02:09 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"recipe_search" => {"ingredients" => "chicken_breast"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (2.6ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-19 17:02:09.148777"], ["updated_at", "2025-09-19 17:02:09.148777"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recipe_searches/3
+Completed 302 Found in 10ms (ActiveRecord: 3.4ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mRecipeSearch Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+  [1m[36mRecipeSearch Load (1.2ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" ORDER BY "recipe_searches"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (2.2ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-19 17:02:09.171029"], ["updated_at", "2025-09-19 17:02:09.171029"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/recipe_searches/4" for 127.0.0.1 at 2025-09-19 12:02:09 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "4"}
+  [1m[36mRecipeSearch Load (1.1ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 11.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.7ms | GC: 0.0ms)
+Completed 200 OK in 157ms (Views: 19.3ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (5.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (11.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (10.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (5.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/recipe_searches" for 127.0.0.1 at 2025-09-19 16:42:46 -0500
+Processing by RecipeSearchesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/index.html.erb within layouts/application
+  Rendered recipe_searches/index.html.erb within layouts/application (Duration: 31.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.7ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1029ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+  [1m[36mActiveRecord::InternalMetadata Load (12.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-19 16:47:33 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 77.0ms | GC: 0.6ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 166.1ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 608.1ms | GC: 2.8ms)
+Completed 200 OK in 1442ms (Views: 704.3ms | ActiveRecord: 22.1ms (0 queries, 0 cached) | GC: 6.2ms)
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (10.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-19 16:53:58 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 36.2ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 76.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 365.5ms | GC: 2.9ms)
+Completed 200 OK in 1128ms (Views: 479.6ms | ActiveRecord: 23.2ms (0 queries, 0 cached) | GC: 6.6ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-19 16:55:34 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 40.5ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 134.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 464.3ms | GC: 2.6ms)
+Completed 200 OK in 1255ms (Views: 559.8ms | ActiveRecord: 10.5ms (0 queries, 0 cached) | GC: 5.6ms)
+Started POST "/recipe_searches" for 127.0.0.1 at 2025-09-19 16:55:35 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"recipe_search" => {"ingredients" => "chicken"}, "commit" => "Search"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (9.4ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["ingredients", "chicken"], ["created_at", "2025-09-19 21:55:35.897559"], ["updated_at", "2025-09-19 21:55:35.897559"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recipe_searches/1
+Completed 302 Found in 18ms (ActiveRecord: 10.3ms (1 query, 0 cached) | GC: 0.0ms)
+Started GET "/recipe_searches/1" for 127.0.0.1 at 2025-09-19 16:55:35 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mRecipeSearch Load (1.4ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 11.0ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.7ms | GC: 0.5ms)
+Completed 200 OK in 805ms (Views: 22.6ms | ActiveRecord: 1.8ms (1 query, 0 cached) | GC: 1.1ms)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-19 16:56:41 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 34.6ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 70.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 365.7ms | GC: 2.2ms)
+Completed 200 OK in 1082ms (Views: 456.5ms | ActiveRecord: 17.3ms (0 queries, 0 cached) | GC: 5.1ms)
+Started POST "/recipe_searches" for 127.0.0.1 at 2025-09-19 16:56:42 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"recipe_search" => {"ingredients" => "chicken"}, "commit" => "Search"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (2.2ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["ingredients", "chicken"], ["created_at", "2025-09-19 21:56:42.412686"], ["updated_at", "2025-09-19 21:56:42.412686"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recipe_searches/2
+Completed 302 Found in 10ms (ActiveRecord: 2.9ms (1 query, 0 cached) | GC: 0.0ms)
+Started GET "/recipe_searches/2" for 127.0.0.1 at 2025-09-19 16:56:42 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "2"}
+  [1m[36mRecipeSearch Load (1.8ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 9.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | GC: 0.5ms)
+Completed 200 OK in 600ms (Views: 16.6ms | ActiveRecord: 2.2ms (1 query, 0 cached) | GC: 0.8ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-19 17:26:51 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 43.3ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 75.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 228.4ms | GC: 1.7ms)
+Completed 200 OK in 734ms (Views: 293.5ms | ActiveRecord: 20.9ms (0 queries, 0 cached) | GC: 5.1ms)
+Started POST "/recipe_searches" for 127.0.0.1 at 2025-09-19 17:26:52 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"recipe_search" => {"ingredients" => "chicken"}, "commit" => "Search"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (3.7ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["ingredients", "chicken"], ["created_at", "2025-09-19 22:26:52.648401"], ["updated_at", "2025-09-19 22:26:52.648401"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recipe_searches/3
+Completed 302 Found in 10ms (ActiveRecord: 4.2ms (1 query, 0 cached) | GC: 0.6ms)
+Started GET "/recipe_searches/3" for 127.0.0.1 at 2025-09-19 17:26:52 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "3"}
+  [1m[36mRecipeSearch Load (1.0ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 28.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 34.7ms | GC: 0.0ms)
+Completed 200 OK in 519ms (Views: 43.3ms | ActiveRecord: 1.2ms (1 query, 0 cached) | GC: 0.5ms)
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[31mROLLBACK[0m
