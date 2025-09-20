@@ -25,7 +25,7 @@ RSpec.describe "Ingredient search endpoint", type: :request do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     # Prepare fake HTTP success response from FDC
-    json = { "foods" => [{ "fdcId" => 1, "description" => "BANANA", "brandOwner" => nil }] }.to_json
+    json = { "foods" => [ { "fdcId" => 1, "description" => "BANANA", "brandOwner" => nil } ] }.to_json
 
     fake = Struct.new(:body) do
       def is_a?(klass)
