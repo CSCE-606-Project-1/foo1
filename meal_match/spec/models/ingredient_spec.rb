@@ -31,7 +31,7 @@ RSpec.describe Ingredient, type: :model do
   end
 
   describe "validations" do
-    REQUIRED_FIELDS = [:provider_name, :provider_id, :title]
+    REQUIRED_FIELDS = [ :provider_name, :provider_id, :title ]
     REQUIRED_FIELDS.each do |field|
       it "is invalid without the #{field}" do
         i = Ingredient.new(valid_attributes.except(field))
