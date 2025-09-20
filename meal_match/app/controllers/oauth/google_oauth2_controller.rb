@@ -5,19 +5,11 @@ module OAuth
     # about the guy who was authenticated
     def callback
       # authentication payload
-<<<<<<< HEAD
-      auth = request.env['omniauth.auth']
-
-      # Origin: The page from which we received this request, in case
-      # we want to send the user back
-      origin = request.env['omniauth.origin']
-=======
       auth = request.env["omniauth.auth"]
 
       # Origin: The page from which we received this request, in case
       # we want to send the user back
       origin = request.env["omniauth.origin"]
->>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
 
       user = User.find_or_initialize_by(email: auth.info.email)
       user.attributes = {

@@ -1,13 +1,10 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-<<<<<<< HEAD
-=======
   # Configure 'rails notes' to inspect Cucumber files
   config.annotations.register_directories("features")
   config.annotations.register_extensions("feature") { |tag| /#\s*(#{tag}):?\s*(.*)$/ }
 
->>>>>>> 3e7438f (one ingredient recipe feature, cucumber testing one scenario for said feature)
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Make code changes take effect immediately without server restart.
