@@ -39,5 +39,35 @@ RSpec.describe Ingredient, type: :model do
         expect(i.errors[field]).to include("can't be blank")
       end
     end
+
+    it "should validate uniqueness of a provider id given a provider name" do
+      # create saves it to database, new just in memory.
+
+      # For a given provider, such as meal db, the id provided to an
+      # ingredient (e.g. 1234) should be unique.
+      i1 = Ingredient.create!(valid_attributes)
+      expect(i1).to be_valid
+
+      # Duplicate provider id given same provider name should not work
+      i2_attr = {
+        provider_name: valid_attributes[:provider_name],
+        provider_id: valid_attributes[:provider_id],
+        title: valid_attributes[:title] + "something more"
+      }
+
+      i2 = Ingredient.new(i2_attr)
+      expect(i2).to be_invalid
+      expect(i2.errors[:provider_id]).to include(" must be unique within provider_name")
+
+      # Same provider id given a different provider name should work
+      i3_attr = {
+        provider_name: valid_attributes[:provider_name] + "extra",
+        provider_id: valid_attributes[:provider_id],
+        title: valid_attributes[:title]
+      }
+
+      i3 = Ingredient.new(i3_attr)
+      expect(i3).to be_valid
+    end
   end
 end

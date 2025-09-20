@@ -37,6 +37,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_164545) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["provider_name", "provider_id"], name: "index_ingredients_on_provider_name_and_provider_id", unique: true
   end
 
   create_table "user_accounts", force: :cascade do |t|
