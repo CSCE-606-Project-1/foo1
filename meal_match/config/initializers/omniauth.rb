@@ -5,7 +5,6 @@
 # respect to google
 # so that users using our app can authenticate using Google
 Rails.application.config.middleware.use OmniAuth::Builder do
-
   # Modifying the global OmniAuth config, the callback url prefix
   # is changed from default auth -> oauth.
   #
@@ -27,6 +26,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       # which according to tutorial expires every hour, so in background
       # our app can request for a new one. (TODO: Not really sure if we
       # need offline, but kept it just in case)
-      scope: "email, profile, offline",
+      scope: "email, profile, offline"
     }
 end
