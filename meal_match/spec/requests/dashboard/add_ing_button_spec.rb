@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "ostruct"
 
 RSpec.describe "Dashboard Add Ingredients button", type: :request do
-  let(:user) { OpenStruct.new(first_name: "Test", last_name: "User", email: "test@example.com") }
+  let(:user) { instance_double("User", first_name: "Test", last_name: "User", email: "test@example.com") }
 
   before do
     # Stub auth so /dashboard renders instead of redirecting

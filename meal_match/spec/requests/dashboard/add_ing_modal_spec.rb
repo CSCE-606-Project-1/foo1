@@ -1,10 +1,12 @@
 # spec/system/dashboard/add_ing_modal_spec.rb
 # (folder "system" optional; you already have `type: :system`)
 require "rails_helper"
-require "ostruct"
 
 RSpec.describe "Dashboard Add Ingredients modal", type: :system do
-  let(:user) { OpenStruct.new(first_name: "Test", last_name: "User", email: "test@example.com") }
+  let(:user) { instance_double("User", first_name: "Test", last_name: "User", email: "test@example.com") }
+  # Reusable selectors for modal hidden/visible states used by expectations
+  let(:modal_hidden_selector) { '#ingredients-modal[hidden]' }
+  let(:modal_visible_selector) { '#ingredients-modal:not([hidden])' }
 
   before do
     allow_any_instance_of(ApplicationController)
@@ -18,19 +20,24 @@ RSpec.describe "Dashboard Add Ingredients modal", type: :system do
     expect(page).to have_current_path("/dashboard", ignore_query: true)
     expect(page).to have_button("Add Ingredients +")
 
-    expect(page).to have_selector("#ingredients-modal[hidden]", visible: :all)
+    # The modal should be hidden initially
+    expect(page).to have_selector(modal_hidden_selector, visible: :all)
 
     click_button "Add Ingredients +"
-    expect(page).to have_selector("#ingredients-modal:not([hidden])", visible: :all)
+    # Clicking the button should open the modal
+    expect(page).to have_selector(modal_visible_selector, visible: :all)
     expect(page).to have_content("Add Ingredients")
 
     find("#ingredients-close-btn").click
-    expect(page).to have_selector("#ingredients-modal[hidden]", visible: :all)
+    # Closing via the Close button hides the modal again
+    expect(page).to have_selector(modal_hidden_selector, visible: :all)
 
     click_button "Add Ingredients +"
-    expect(page).to have_selector("#ingredients-modal:not([hidden])", visible: :all)
+    # Re-open the modal
+    expect(page).to have_selector(modal_visible_selector, visible: :all)
 
     find("body").send_keys(:escape)
-    expect(page).to have_selector("#ingredients-modal[hidden]", visible: :all)
+    # Pressing Escape should also close the modal
+    expect(page).to have_selector(modal_hidden_selector, visible: :all)
   end
 end

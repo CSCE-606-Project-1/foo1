@@ -94,6 +94,8 @@
     // If Stimulus is connected, it will also respond — this just ensures tests
     // don't flake when Stimulus isn't ready yet.
     btn.addEventListener("click", () => {
+      // If Stimulus modal controller attached, let it handle open/close behavior.
+      if (modal.dataset.modalConnected === "true") return
       modal.hidden = false;
       if (search) { search.focus(); search.select(); }
       else { panel.focus(); }
@@ -101,10 +103,14 @@
 
     // Prevent accidental page reloads if Enter is pressed in the search field
     if (form) {
-      form.addEventListener("submit", (e) => e.preventDefault());
+      form.addEventListener("submit", (e) => {
+        if (modal.dataset.modalConnected === "true") return
+        e.preventDefault()
+      });
     }
 
     modal.addEventListener("click", (e) => {
+      if (modal.dataset.modalConnected === "true") return
       if (!panel.contains(e.target)) {
         modal.hidden = true;
         if (search) search.value = "";
@@ -112,11 +118,13 @@
     });
 
     if (close) close.addEventListener("click", () => {
+      if (modal.dataset.modalConnected === "true") return
       modal.hidden = true;
       if (search) search.value = "";
     });
 
     document.addEventListener("keydown", (e) => {
+      if (modal.dataset.modalConnected === "true") return
       if (e.key === "Escape") {
         modal.hidden = true;
         if (search) search.value = "";
