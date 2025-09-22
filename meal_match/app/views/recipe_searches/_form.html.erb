@@ -1,22 +1,222 @@
-<%= form_with(model: @recipe_search) do |form| %>
-  <% if @recipe_search.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@recipe_search.errors.count, "error") %> prohibited this recipe_search from being saved:</h2>
-      <ul>
-        <% @recipe_search.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <style>
+        :root {
+            --ios-bg: #f2f2f7;
+            --ios-card-bg: #ffffff;
+            --ios-primary: #007aff;
+            --ios-danger: #ff3b30;
+            --ios-success: #34c759;
+            --ios-text-primary: #000000;
+            --ios-text-secondary: #8e8e93;
+            --ios-border: #c6c6c8;
+            --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+            --ios-radius: 12px;
+            --ios-radius-large: 16px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--ios-bg);
+            color: var(--ios-text-primary);
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .form-container {
+            background-color: var(--ios-card-bg);
+            border-radius: var(--ios-radius-large);
+            padding: 20px;
+            box-shadow: var(--ios-shadow);
+        }
+        
+        .error-container {
+            background-color: rgba(255, 59, 48, 0.1);
+            border: 1px solid var(--ios-danger);
+            border-radius: var(--ios-radius);
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .error-container h2 {
+            color: var(--ios-danger);
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .error-container ul {
+            padding-left: 20px;
+        }
+        
+        .error-container li {
+            color: var(--ios-danger);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        
+        .instruction-text {
+            color: var(--ios-text-secondary);
+            font-size: 15px;
+            font-style: italic;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 12px;
+            background-color: rgba(142, 142, 147, 0.1);
+            border-radius: var(--ios-radius);
+        }
+        
+        .form-section {
+            margin-bottom: 24px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--ios-text-primary);
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--ios-border);
+            border-radius: var(--ios-radius);
+            font-size: 17px;
+            resize: vertical;
+            min-height: 100px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--ios-primary);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--ios-border);
+            border-radius: var(--ios-radius);
+            font-size: 17px;
+            background-color: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%238e8e93' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--ios-primary);
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--ios-primary);
+            color: white;
+            border: none;
+            border-radius: var(--ios-radius);
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .submit-button:active {
+            transform: scale(0.98);
+            opacity: 0.8;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--ios-text-secondary);
+            font-size: 15px;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--ios-border);
+        }
+        
+        .divider::before {
+            margin-right: 16px;
+        }
+        
+        .divider::after {
+            margin-left: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recipe Search</h1>
+    
+    <div class="form-container">
+        <%= form_with(model: @recipe_search, local: true, data: { turbo: false }) do |form| %>
+            <% if @recipe_search.errors.any? %>
+                <div class="error-container">
+                    <h2><%= pluralize(@recipe_search.errors.count, "error") %> prohibited this recipe search from being saved:</h2>
+                    <ul>
+                        <% @recipe_search.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+            
+            <p class="instruction-text">
+                Enter ingredients manually <strong>or</strong> choose a saved list (leave the other blank).
+            </p>
+            
+            <div class="form-section">
+                <%= form.label :ingredients, "Enter ingredients (comma separated)", class: "form-label" %>
+                <%= form.text_area :ingredients, rows: 3, class: "form-textarea", placeholder: "e.g., chicken, rice, tomatoes" %>
+            </div>
+            
+            <div class="divider">OR</div>
+            
+            <div class="form-section">
+                <%= form.label :ingredient_list_id, "Choose an Ingredient List", class: "form-label" %>
+                <%= form.collection_select :ingredient_list_id,
+                                           @ingredient_lists,
+                                           :id,
+                                           :title,
+                                           { include_blank: "Select a saved list..." },
+                                           { class: "form-select" } %>
+            </div>
+            
+            <div>
+                <%= form.submit "Search Recipes", class: "submit-button" %>
+            </div>
         <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :ingredients, "Enter ingredients", style: "display: block" %>
-    <%= form.text_area :ingredients %>
-  </div>
-
-  <div>
-    <%= form.submit "Search" %>
-  </div>
-
-<% end %>
+</body>
+</html>

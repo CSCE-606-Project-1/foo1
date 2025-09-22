@@ -48,6 +48,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_164545) do
     t.index ["user_id"], name: "index_ingredient_lists_on_user_id"
   end
 
+  create_table "ingredient_searches", force: :cascade do |t|
+    t.text "ingredients"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string "provider_name"
     t.string "provider_id"
@@ -56,6 +62,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_164545) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider_name", "provider_id"], name: "index_ingredients_on_provider_name_and_provider_id", unique: true
+  end
+
+  create_table "recipe_searches", force: :cascade do |t|
+    t.text "ingredients"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "ingredient_list_id"
+    t.index ["ingredient_list_id"], name: "index_recipe_searches_on_ingredient_list_id"
+  end
+
+  create_table "saved_recipes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "meal_id"
+    t.string "name"
+    t.string "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_saved_recipes_on_user_id"
   end
 
   create_table "user_accounts", force: :cascade do |t|
@@ -85,5 +109,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_164545) do
   add_foreign_key "ingredient_list_items", "ingredient_lists"
   add_foreign_key "ingredient_list_items", "ingredients"
   add_foreign_key "ingredient_lists", "users"
+  add_foreign_key "recipe_searches", "ingredient_lists"
+  add_foreign_key "saved_recipes", "users"
   add_foreign_key "user_accounts", "users"
 end

@@ -1,49 +1,52 @@
 require "httparty"
 
 class RecipeSearchesController < ApplicationController
-  before_action :set_recipe_search, only: %i[ show ]
+  before_action :require_login, only: %i[new create show]
+  before_action :set_recipe_search, only: %i[show]
 
   def new
     @recipe_search = RecipeSearch.new
+    @ingredient_lists = current_user.ingredient_lists
   end
 
-  # GET /recipe_searches/1
   def show
-    # Split input on commas or whitespace
-    ingredients = @recipe_search.ingredients.split(/[\s,]+/).reject(&:blank?)
-    @meals_by_ingredient = {}
+    if @recipe_search.ingredient_list_id.present?
+      @ingredient_list = @recipe_search.ingredient_list
+      ingredients = @ingredient_list.ingredients.pluck(:title)
+    else
+      @ingredient_list = nil
+      ingredients = @recipe_search.ingredients.to_s.split(/\s*,\s*/).reject(&:blank?)
+    end
 
-    ingredients.each do |ingredient|
-      url = "https://www.themealdb.com/api/json/v1/1/filter.php?i=#{URI.encode_www_form_component(ingredient)}"
+    if ingredients.any?
+      query = ingredients.map { |i| i.strip.gsub(/\s+/, "_") }.join(",")
+      url = "https://www.themealdb.com/api/json/v2/65232507/filter.php?i=#{URI.encode_www_form_component(query)}"
+
       response = HTTParty.get(url)
-
-      if response.success?
-        json = JSON.parse(response.body)
-        @meals_by_ingredient[ingredient] = json["meals"] || []
-      else
-        @meals_by_ingredient[ingredient] = []
-      end
+      @meals = response.success? ? JSON.parse(response.body)["meals"] || [] : []
+    else
+      @meals = []
     end
   end
 
-  # POST /recipe_searches
   def create
     @recipe_search = RecipeSearch.new(recipe_search_params)
 
     if @recipe_search.save
       redirect_to @recipe_search
     else
+      @ingredient_lists = current_user.ingredient_lists
       render :new, status: :unprocessable_entity
     end
   end
 
   private
 
-    def set_recipe_search
-      @recipe_search = RecipeSearch.find(params[:id])
-    end
+  def set_recipe_search
+    @recipe_search = RecipeSearch.find(params[:id])
+  end
 
-    def recipe_search_params
-      params.require(:recipe_search).permit(:ingredients)
-    end
+  def recipe_search_params
+    params.require(:recipe_search).permit(:ingredients, :ingredient_list_id)
+  end
 end
