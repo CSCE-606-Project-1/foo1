@@ -187,3 +187,728 @@ Processing by RecipeSearchesController#show as TURBO_STREAM
 Completed 200 OK in 1897ms (Views: 28.7ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/login" for ::1 at 2025-09-21 20:55:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 7 pending migrations:
+
+db/migrate/20250920151012_create_ingredients.rb
+db/migrate/20250920182046_add_unique_index_on_provider_id_scoped_to_provider_name.rb
+db/migrate/20250920212924_create_ingredient_lists.rb
+db/migrate/20250920213750_create_ingredient_list_items.rb
+db/migrate/20250920213755_add_references_to_ingredient_list_items.rb
+db/migrate/20250921000633_add_unique_index_on_ingredient_scoped_to_ingredient_list.rb
+db/migrate/20250921001944_add_user_id_as_foreign_key_to_ingredient_lists.rb
+
+
+):
+  
+activerecord (8.0.2.1) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.2.1) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.2.1) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.2.1) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.2.1) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.1) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.1) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.1) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (7.0.3) lib/puma/configuration.rb:299:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.0.3) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.0.3) lib/puma/thread_pool.rb:346:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.0.3) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.0.3) lib/puma/server.rb:497:in 'Puma::Server#process_client'
+puma (7.0.3) lib/puma/server.rb:266:in 'block in Puma::Server#run'
+puma (7.0.3) lib/puma/thread_pool.rb:173:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/recipe_searches/new" for ::1 at 2025-09-21 20:55:30 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 7 pending migrations:
+
+db/migrate/20250920151012_create_ingredients.rb
+db/migrate/20250920182046_add_unique_index_on_provider_id_scoped_to_provider_name.rb
+db/migrate/20250920212924_create_ingredient_lists.rb
+db/migrate/20250920213750_create_ingredient_list_items.rb
+db/migrate/20250920213755_add_references_to_ingredient_list_items.rb
+db/migrate/20250921000633_add_unique_index_on_ingredient_scoped_to_ingredient_list.rb
+db/migrate/20250921001944_add_user_id_as_foreign_key_to_ingredient_lists.rb
+
+
+):
+  
+activerecord (8.0.2.1) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.2.1) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.2.1) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.2.1) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.2.1) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.1) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.1) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.1) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (7.0.3) lib/puma/configuration.rb:299:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.0.3) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.0.3) lib/puma/thread_pool.rb:346:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.0.3) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.0.3) lib/puma/server.rb:497:in 'Puma::Server#process_client'
+puma (7.0.3) lib/puma/server.rb:266:in 'block in Puma::Server#run'
+puma (7.0.3) lib/puma/thread_pool.rb:173:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2025-09-21 20:55:31 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 7 pending migrations:
+
+db/migrate/20250920151012_create_ingredients.rb
+db/migrate/20250920182046_add_unique_index_on_provider_id_scoped_to_provider_name.rb
+db/migrate/20250920212924_create_ingredient_lists.rb
+db/migrate/20250920213750_create_ingredient_list_items.rb
+db/migrate/20250920213755_add_references_to_ingredient_list_items.rb
+db/migrate/20250921000633_add_unique_index_on_ingredient_scoped_to_ingredient_list.rb
+db/migrate/20250921001944_add_user_id_as_foreign_key_to_ingredient_lists.rb
+
+
+):
+  
+activerecord (8.0.2.1) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.2.1) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.2.1) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.2.1) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.2.1) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.0.2.1) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.2.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.2.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.2.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.1) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.1) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.1) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.2.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (7.0.3) lib/puma/configuration.rb:299:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.0.3) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.0.3) lib/puma/thread_pool.rb:346:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.0.3) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.0.3) lib/puma/server.rb:497:in 'Puma::Server#process_client'
+puma (7.0.3) lib/puma/server.rb:266:in 'block in Puma::Server#run'
+puma (7.0.3) lib/puma/thread_pool.rb:173:in 'block in Puma::ThreadPool#spawn_thread'
+  [1m[35m (11.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MealMatch'*/[0m
+Migrating to CreateIngredients (20250920151012)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (120.8ms)[0m  [1m[35mCREATE TABLE "ingredients" ("id" bigserial primary key, "provider_name" character varying, "provider_id" character varying, "title" character varying, "description" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250920151012') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (5.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+Migrating to AddUniqueIndexOnProviderIdScopedToProviderName (20250920182046)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_ingredients_on_provider_name_and_provider_id" ON "ingredients" ("provider_name", "provider_id") /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250920182046') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+Migrating to CreateIngredientLists (20250920212924)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (21.5ms)[0m  [1m[35mCREATE TABLE "ingredient_lists" ("id" bigserial primary key, "title" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250920212924') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+Migrating to CreateIngredientListItems (20250920213750)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "ingredient_list_items" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250920213750') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+Migrating to AddReferencesToIngredientListItems (20250920213755)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (3.7ms)[0m  [1m[35mALTER TABLE "ingredient_list_items" ADD "ingredient_list_id" bigint NOT NULL /*application='MealMatch'*/[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE INDEX "index_ingredient_list_items_on_ingredient_list_id" ON "ingredient_list_items" ("ingredient_list_id") /*application='MealMatch'*/[0m
+  [1m[35m (6.9ms)[0m  [1m[35mALTER TABLE "ingredient_list_items" ADD CONSTRAINT "fk_rails_f7f434ad6e"
+FOREIGN KEY ("ingredient_list_id")
+  REFERENCES "ingredient_lists" ("id")
+ /*application='MealMatch'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "ingredient_list_items" ADD "ingredient_id" bigint NOT NULL /*application='MealMatch'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_ingredient_list_items_on_ingredient_id" ON "ingredient_list_items" ("ingredient_id") /*application='MealMatch'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE "ingredient_list_items" ADD CONSTRAINT "fk_rails_1b50138753"
+FOREIGN KEY ("ingredient_id")
+  REFERENCES "ingredients" ("id")
+ /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250920213755') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (22.8ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+Migrating to AddUniqueIndexOnIngredientScopedToIngredientList (20250921000633)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "idx_on_ingredient_list_id_ingredient_id_6f8aea7fb4" ON "ingredient_list_items" ("ingredient_list_id", "ingredient_id") /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250921000633') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+Migrating to AddUserIdAsForeignKeyToIngredientLists (20250921001944)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mALTER TABLE "ingredient_lists" ADD "user_id" bigint NOT NULL /*application='MealMatch'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_ingredient_lists_on_user_id" ON "ingredient_lists" ("user_id") /*application='MealMatch'*/[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "ingredient_lists" ADD CONSTRAINT "fk_rails_f50bc75d07"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250921001944') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Started GET "/recipe_searches/new" for ::1 at 2025-09-21 20:56:20 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Processing by RecipeSearchesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  Rendered recipe_searches/_form.html.erb (Duration: 49.8ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 113.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 401.5ms | GC: 0.0ms)
+Completed 200 OK in 3494ms (Views: 633.3ms | ActiveRecord: 12.2ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/assets/controllers/index-ee64e1f1.js" for ::1 at 2025-09-21 20:56:25 -0500
+Started POST "/recipe_searches" for ::1 at 2025-09-21 20:56:55 -0500
+Processing by RecipeSearchesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "salt, pepper,"}, "commit" => "Search"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:33:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (17.5ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at") VALUES ('salt, pepper,', '2025-09-22 01:56:57.365844', '2025-09-22 01:56:57.365844') RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:33:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:33:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/2
+Completed 302 Found in 1282ms (ActiveRecord: 22.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/2" for ::1 at 2025-09-21 20:56:57 -0500
+Processing by RecipeSearchesController#show as TURBO_STREAM
+  Parameters: {"id" => "2"}
+  [1m[36mRecipeSearch Load (0.6ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 2 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:43:in 'RecipeSearchesController#set_recipe_search'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 11.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | GC: 0.0ms)
+Completed 200 OK in 1946ms (Views: 22.0ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-09-21 20:57:03 -0500
+Processing by LoginController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering login/new.html.erb within layouts/application
+  Rendered login/new.html.erb within layouts/application (Duration: 8.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | GC: 0.0ms)
+Completed 200 OK in 1286ms (Views: 28.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/oauth/google_oauth2" for ::1 at 2025-09-21 20:57:06 -0500
+(google_oauth2) Request phase initiated.
+Started GET "/oauth/google_oauth2/callback?state=44740267e1da21688df18df8b894425207c49b1fe0f76d85&code=4%2F0AVGzR1CundBYyhKSNnsH7YVRxjEpzR6ZVXg-JwX2a_aS5KLewpWBv8mx-HgVwPFSEPg0XQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&authuser=2&prompt=none" for ::1 at 2025-09-21 20:57:10 -0500
+(google_oauth2) Callback phase initiated.
+Processing by OAuth::GoogleOauth2Controller#callback as HTML
+  Parameters: {"state" => "44740267e1da21688df18df8b894425207c49b1fe0f76d85", "code" => "4/0AVGzR1CundBYyhKSNnsH7YVRxjEpzR6ZVXg-JwX2a_aS5KLewpWBv8mx-HgVwPFSEPg0XQ", "scope" => "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid", "authuser" => "2", "prompt" => "none"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'qacer6973@gmail.com' LIMIT 1 /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:14:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mUserAccount Load (2.3ms)[0m  [1m[34mSELECT "user_accounts".* FROM "user_accounts" WHERE "user_accounts"."provider" = 'google_oauth2' AND "user_accounts"."provider_account_id" IS NULL LIMIT 1 /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:30:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:51:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mUserAccount Update (7.8ms)[0m  [1m[33mUPDATE "user_accounts" SET "updated_at" = '2025-09-22 01:57:13.064693', "access_token" = 'ya29.a0AQQ_BDTMJlm5i5GvjNRJYoj-nRjGuMUvLb_vGgTf386SaUBOc5d4qyQ66uRgNF4wzav_601bvN3pVvZWZO_iLalwzVjUKfVPOlIJeqkPwQY0AVNPi7hmDKzTTQl7um5-7MP42ZirX_FS5zcJs6mmjprm0WQZnWcDehSakO72-GAmBKzoIsEBZ0qCc75t6esNEuNP5T6RaCgYKAa8SARUSFQHGX2MirmJdThZzr25BJpnQtQixqA0207', "expires_at" = '2025-09-22 02:57:09' WHERE "user_accounts"."id" = 1 /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:51:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:51:in 'OAuth::GoogleOauth2Controller#callback'
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 1532ms (ActiveRecord: 26.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-09-21 20:57:13 -0500
+Processing by DashboardController#show as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='MealMatch',controller='dashboard'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/show.html.erb within layouts/application
+  Rendered dashboard/show.html.erb within layouts/application (Duration: 10.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.6ms | GC: 0.0ms)
+Completed 200 OK in 1359ms (Views: 21.3ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MealMatch'*/[0m
+Migrating to AddIngredientListIdToRecipeSearches (20250922150458)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (27.5ms)[0m  [1m[35mALTER TABLE "recipe_searches" ADD "ingredient_list_id" bigint NOT NULL /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK /*application='MealMatch'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (7.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MealMatch'*/[0m
+Migrating to AddIngredientListIdToRecipeSearches (20250922150458)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[35m (15.9ms)[0m  [1m[35mALTER TABLE "recipe_searches" ADD "ingredient_list_id" bigint /*application='MealMatch'*/[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE INDEX "index_recipe_searches_on_ingredient_list_id" ON "recipe_searches" ("ingredient_list_id") /*application='MealMatch'*/[0m
+  [1m[35m (7.4ms)[0m  [1m[35mALTER TABLE "recipe_searches" ADD CONSTRAINT "fk_rails_c9e70a75b7"
+FOREIGN KEY ("ingredient_list_id")
+  REFERENCES "ingredient_lists" ("id")
+ /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250922150458') RETURNING "version" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 10:18:01 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (9.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.5ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:24
+  Rendered recipe_searches/_form.html.erb (Duration: 252.4ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 299.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 530.1ms | GC: 0.0ms)
+Completed 200 OK in 5250ms (Views: 680.3ms | ActiveRecord: 36.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/assets/controllers/index-ee64e1f1.js" for ::1 at 2025-09-22 10:18:09 -0500
+Started POST "/recipe_searches" for ::1 at 2025-09-22 10:18:29 -0500
+Processing by RecipeSearchesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => ""}, "commit" => "Search"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:31:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (15.9ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-22 15:18:31.759439', '2025-09-22 15:18:31.759439', NULL) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:31:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:31:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/3
+Completed 302 Found in 2170ms (ActiveRecord: 18.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/3" for ::1 at 2025-09-22 10:18:31 -0500
+Processing by RecipeSearchesController#show as TURBO_STREAM
+  Parameters: {"id" => "3"}
+  [1m[36mRecipeSearch Load (0.6ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 3 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:42:in 'RecipeSearchesController#set_recipe_search'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 8.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | GC: 0.0ms)
+Completed 200 OK in 1501ms (Views: 14.6ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 10:18:35 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.7ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:24
+  Rendered recipe_searches/_form.html.erb (Duration: 12.3ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 18.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.7ms | GC: 0.0ms)
+Completed 200 OK in 1306ms (Views: 28.7ms | ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches" for ::1 at 2025-09-22 10:18:39 -0500
+Processing by RecipeSearchesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/index.html.erb within layouts/application
+  Rendered recipe_searches/index.html.erb within layouts/application (Duration: 76.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 79.7ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 1383ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method 'each' for nil)
+Caused by: NoMethodError (undefined method 'each' for nil)
+
+Information for: ActionView::Template::Error (undefined method 'each' for nil):
+     5: <h1>Recipe searches</h1>
+     6: 
+     7: <div id="recipe_searches">
+     8:   <% @recipe_searches.each do |recipe_search| %>
+     9:     <%= render recipe_search %>
+    10:     <p>
+    11:       <%= link_to "Show this recipe search", recipe_search %>
+  
+app/views/recipe_searches/index.html.erb:8
+
+Information for cause: NoMethodError (undefined method 'each' for nil):
+  
+app/views/recipe_searches/index.html.erb:8
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 10:18:44 -0500
+Started GET "/favicon.ico" for ::1 at 2025-09-22 10:18:44 -0500
+Processing by RecipeSearchesController#new as HTML
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.7ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:24
+  Rendered recipe_searches/_form.html.erb (Duration: 8.1ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 10.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | GC: 0.0ms)
+Completed 200 OK in 1866ms (Views: 16.6ms | ActiveRecord: 1.4ms (2 queries, 0 cached) | GC: 25.4ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mUserAccount Load (2.9ms)[0m  [1m[34mSELECT "user_accounts".* FROM "user_accounts" WHERE "user_accounts"."user_id" = 1 /*application='MealMatch'*/[0m
+  [1m[36mUserAccount Destroy (0.8ms)[0m  [1m[31mDELETE FROM "user_accounts" WHERE "user_accounts"."id" = 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Load (0.5ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 1 /*application='MealMatch'*/[0m
+  [1m[36mUser Destroy (2.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 1 /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mIngredient Load (0.8ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Load (0.4ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Load (0.9ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Destroy (6.5ms)[0m  [1m[31mDELETE FROM "recipe_searches" WHERE "recipe_searches"."id" = 1 /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (22.4ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Destroy (25.4ms)[0m  [1m[31mDELETE FROM "recipe_searches" WHERE "recipe_searches"."id" = 2 /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Destroy (5.5ms)[0m  [1m[31mDELETE FROM "recipe_searches" WHERE "recipe_searches"."id" = 3 /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (8.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Load (1.3ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" /*application='MealMatch'*/[0m
+  [1m[36mIngredient Load (0.7ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Load (1.9ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Load (0.9ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mUser Create (6.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ('2025-09-22 15:28:38.686708', '2025-09-22 15:28:38.686708', 'test@example.com', 'Test', 'User') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredient Exists? (3.1ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = '1' AND "ingredients"."provider_name" = 'mealdb' LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredient Create (1.6ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ('mealdb', '1', 'Chicken Breast', NULL, '2025-09-22 15:28:38.725514', '2025-09-22 15:28:38.725514') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredient Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = '2' AND "ingredients"."provider_name" = 'mealdb' LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredient Create (0.4ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ('mealdb', '2', 'Chole', NULL, '2025-09-22 15:28:38.742791', '2025-09-22 15:28:38.742791') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredient Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = '3' AND "ingredients"."provider_name" = 'mealdb' LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredient Create (0.4ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ('mealdb', '3', 'Pav', NULL, '2025-09-22 15:28:38.757891', '2025-09-22 15:28:38.757891') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Create (3.7ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ('My Protein List', '2025-09-22 15:28:38.796088', '2025-09-22 15:28:38.796088', 2) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Create (9.6ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ('Indian Snacks', '2025-09-22 15:28:38.820943', '2025-09-22 15:28:38.820943', 2) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Exists? (8.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = 1 AND "ingredient_list_items"."ingredient_list_id" = 1 LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Create (2.0ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ('2025-09-22 15:28:38.890839', '2025-09-22 15:28:38.890839', 1, 1) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Exists? (6.2ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = 2 AND "ingredient_list_items"."ingredient_list_id" = 2 LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Create (0.9ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ('2025-09-22 15:28:38.924394', '2025-09-22 15:28:38.924394', 2, 2) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Exists? (4.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = 3 AND "ingredient_list_items"."ingredient_list_id" = 2 LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ('2025-09-22 15:28:38.943483', '2025-09-22 15:28:38.943483', 2, 3) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Create (5.2ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES (NULL, '2025-09-22 15:28:38.960162', '2025-09-22 15:28:38.960162', 1) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Delete All (9.8ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Delete All (11.0ms)[0m  [1m[31mDELETE FROM "ingredient_lists" /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Delete All (5.4ms)[0m  [1m[31mDELETE FROM "recipe_searches" /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Delete All (1.2ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Delete All (10.9ms)[0m  [1m[31mDELETE FROM "ingredient_lists" /*application='MealMatch'*/[0m
+  [1m[36mIngredient Delete All (3.1ms)[0m  [1m[31mDELETE FROM "ingredients" /*application='MealMatch'*/[0m
+  [1m[36mUser Delete All (5.3ms)[0m  [1m[31mDELETE FROM "users" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mUser Create (4.9ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ('2025-09-22 15:37:57.984136', '2025-09-22 15:37:57.984136', 'test@example.com', 'Test', 'User') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredient Exists? (4.2ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = '1001' AND "ingredients"."provider_name" = 'mealdb' LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ('mealdb', '1001', 'Chicken Breast', NULL, '2025-09-22 15:37:58.024303', '2025-09-22 15:37:58.024303') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredient Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = '1002' AND "ingredients"."provider_name" = 'mealdb' LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ('mealdb', '1002', 'Chole', NULL, '2025-09-22 15:37:58.042691', '2025-09-22 15:37:58.042691') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredient Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = '1003' AND "ingredients"."provider_name" = 'mealdb' LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ('mealdb', '1003', 'Pav', NULL, '2025-09-22 15:37:58.060387', '2025-09-22 15:37:58.060387') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Create (3.7ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ('Protein List', '2025-09-22 15:37:58.113576', '2025-09-22 15:37:58.113576', 3) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Exists? (5.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = 4 AND "ingredient_list_items"."ingredient_list_id" = 3 LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ('2025-09-22 15:37:58.143598', '2025-09-22 15:37:58.143598', 3, 4) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Delete All (0.9ms)[0m  [1m[31mDELETE FROM "recipe_searches" /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Delete All (10.9ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Delete All (3.0ms)[0m  [1m[31mDELETE FROM "ingredient_lists" /*application='MealMatch'*/[0m
+  [1m[36mIngredient Delete All (2.7ms)[0m  [1m[31mDELETE FROM "ingredients" /*application='MealMatch'*/[0m
+  [1m[36mUser Delete All (2.9ms)[0m  [1m[31mDELETE FROM "users" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mUser Create (4.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ('2025-09-22 15:45:48.449180', '2025-09-22 15:45:48.449180', 'test@example.com', 'Test', 'User') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Create (3.8ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ('Protein List', '2025-09-22 15:45:48.513055', '2025-09-22 15:45:48.513055', 4) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredient Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = '8b7fc60d-46d7-4a14-865d-2b573eff7be8' AND "ingredients"."provider_name" = 'mealdb' LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ('mealdb', '8b7fc60d-46d7-4a14-865d-2b573eff7be8', 'Chicken Breast', NULL, '2025-09-22 15:45:48.551955', '2025-09-22 15:45:48.551955') RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = 7 AND "ingredient_list_items"."ingredient_list_id" = 4 LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Create (1.0ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ('2025-09-22 15:45:48.574811', '2025-09-22 15:45:48.574811', 4, 7) RETURNING "id" /*application='MealMatch'*/[0m
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT /*application='MealMatch'*/[0m
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 11:50:49 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (8.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+Completed 500 Internal Server Error in 2273ms (ActiveRecord: 35.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method 'ingredient_lists' for nil):
+  
+app/controllers/recipe_searches_controller.rb:9:in 'RecipeSearchesController#new'
+Started GET "/login" for ::1 at 2025-09-22 11:52:39 -0500
+Processing by LoginController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering login/new.html.erb within layouts/application
+  Rendered login/new.html.erb within layouts/application (Duration: 9.5ms | GC: 1.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 182.7ms | GC: 6.3ms)
+Completed 200 OK in 1272ms (Views: 206.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 6.3ms)
+
+
+Started POST "/oauth/google_oauth2" for ::1 at 2025-09-22 11:52:43 -0500
+(google_oauth2) Request phase initiated.
+Started GET "/oauth/google_oauth2/callback?state=3fb5ba49491015dcb93f5d1f8f5e292b8836be8e4b4da1ed&code=4%2F0AVGzR1AkgkpKc1X4_2i8s9G1VtNSUigDBRpRutd7Dczig3edqE1Am4qg_4b0u34L0m11Rg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=2&prompt=none" for ::1 at 2025-09-22 11:52:46 -0500
+(google_oauth2) Callback phase initiated.
+Processing by OAuth::GoogleOauth2Controller#callback as HTML
+  Parameters: {"state" => "3fb5ba49491015dcb93f5d1f8f5e292b8836be8e4b4da1ed", "code" => "4/0AVGzR1AkgkpKc1X4_2i8s9G1VtNSUigDBRpRutd7Dczig3edqE1Am4qg_4b0u34L0m11Rg", "scope" => "email profile https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/userinfo.profile", "authuser" => "2", "prompt" => "none"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'qacer6973@gmail.com' LIMIT 1 /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:14:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:19:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mUser Create (12.0ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ('2025-09-22 16:52:51.342754', '2025-09-22 16:52:51.342754', 'qacer6973@gmail.com', 'Qu', 'N') RETURNING "id" /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:19:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:19:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mUserAccount Load (1.0ms)[0m  [1m[34mSELECT "user_accounts".* FROM "user_accounts" WHERE "user_accounts"."provider" = 'google_oauth2' AND "user_accounts"."provider_account_id" IS NULL LIMIT 1 /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:30:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:51:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mUserAccount Create (10.0ms)[0m  [1m[32mINSERT INTO "user_accounts" ("created_at", "updated_at", "user_id", "auth_protocol", "oauth2", "provider", "provider_account_id", "access_token", "token_type", "scope", "refresh_token", "expires_at") VALUES ('2025-09-22 16:52:51.449918', '2025-09-22 16:52:51.449918', 5, 'oauth2', NULL, 'google_oauth2', NULL, 'ya29.a0AQQ_BDQ2yS8-PJpaLrepHxdDesnCQJ6ozWF9z9wTYo8-ecfM71wRP5LZnv23DaspB9lr9LJAtMfu7zHjiqF4s_o9vkhRh67qq3ocz2g8t7f00QkQlVh5qHbGyehdSdXUJZXr8G7IdLOkYX1UaV0yZBQj908Ey5qHhLB5Y_9P_tmQUcO0A-mr7YzLIkuB0ZxnrMhb93pqaCgYKAQ8SARUSFQHGX2MihaYLg9ND6Rvrwa7EMoBcWw0207', 'Bearer', 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid', NULL, '2025-09-22 17:52:45') RETURNING "id" /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:51:in 'OAuth::GoogleOauth2Controller#callback'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*action='callback',application='MealMatch',controller='google_oauth2'*/[0m
+  ↳ app/controllers/oauth/google_oauth2_controller.rb:51:in 'OAuth::GoogleOauth2Controller#callback'
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 1208ms (ActiveRecord: 32.7ms (4 queries, 0 cached) | GC: 9.5ms)
+
+
+Started GET "/dashboard" for ::1 at 2025-09-22 11:52:51 -0500
+Processing by DashboardController#show as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1 /*action='show',application='MealMatch',controller='dashboard'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/show.html.erb within layouts/application
+  Rendered dashboard/show.html.erb within layouts/application (Duration: 7.1ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | GC: 1.4ms)
+Completed 200 OK in 1080ms (Views: 18.9ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 3.2ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 11:52:57 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (1.2ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 5 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:24
+  Rendered recipe_searches/_form.html.erb (Duration: 60.8ms | GC: 4.9ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 90.9ms | GC: 6.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 97.0ms | GC: 7.5ms)
+Completed 200 OK in 1246ms (Views: 102.9ms | ActiveRecord: 4.5ms (2 queries, 0 cached) | GC: 13.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mRecipeSearch Delete All (1.0ms)[0m  [1m[31mDELETE FROM "recipe_searches" /*application='MealMatch'*/[0m
+  [1m[36mIngredientListItem Delete All (4.2ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" /*application='MealMatch'*/[0m
+  [1m[36mIngredientList Delete All (3.3ms)[0m  [1m[31mDELETE FROM "ingredient_lists" /*application='MealMatch'*/[0m
+  [1m[36mIngredient Delete All (2.5ms)[0m  [1m[31mDELETE FROM "ingredients" /*application='MealMatch'*/[0m
+  [1m[36mUser Delete All (4.9ms)[0m  [1m[31mDELETE FROM "users" /*application='MealMatch'*/[0m
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 12:02:15 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 5 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 5 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:24
+  Rendered recipe_searches/_form.html.erb (Duration: 57.0ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 75.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 216.7ms | GC: 0.0ms)
+Completed 200 OK in 2701ms (Views: 255.0ms | ActiveRecord: 18.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-09-22 12:02:29 -0500
+Processing by LoginController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering login/new.html.erb within layouts/application
+  Rendered login/new.html.erb within layouts/application (Duration: 7.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | GC: 0.0ms)
+Completed 200 OK in 1046ms (Views: 17.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 12:02:42 -0500
+Processing by RecipeSearchesController#new as HTML
+Completed 500 Internal Server Error in 977ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method 'ingredient_lists' for nil):
+  
+app/controllers/recipe_searches_controller.rb:9:in 'RecipeSearchesController#new'
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 12:04:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Processing by RecipeSearchesController#new as HTML
+Completed 500 Internal Server Error in 2070ms (ActiveRecord: 12.9ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method 'ingredient_lists' for nil):
+  
+app/controllers/recipe_searches_controller.rb:9:in 'RecipeSearchesController#new'
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 12:07:35 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Processing by RecipeSearchesController#new as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 2138ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-09-22 12:07:38 -0500
+Processing by LoginController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering login/new.html.erb within layouts/application
+  Rendered login/new.html.erb within layouts/application (Duration: 59.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 219.9ms | GC: 0.0ms)
+Completed 200 OK in 1407ms (Views: 267.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/assets/application-8b441ae0.css" for ::1 at 2025-09-22 12:07:40 -0500
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-09-22 12:07:40 -0500
+Started GET "/assets/turbo.min-3a2e143f.js" for ::1 at 2025-09-22 12:07:40 -0500
+Started GET "/assets/stimulus.min-4b1e420e.js" for ::1 at 2025-09-22 12:07:41 -0500
+Started GET "/assets/controllers/application-3affb389.js" for ::1 at 2025-09-22 12:07:41 -0500
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for ::1 at 2025-09-22 12:07:41 -0500
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-09-22 12:07:42 -0500
+Started GET "/assets/controllers/index-ee64e1f1.js" for ::1 at 2025-09-22 12:07:42 -0500
+Started GET "/ingredient_searches/new" for ::1 at 2025-09-22 12:07:58 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ingredient_searches/new"):
+  
+Started GET "/new" for ::1 at 2025-09-22 12:08:12 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/new"):
+  
+Started GET "/recipe_searches/new" for ::1 at 2025-09-22 12:09:07 -0500
+Processing by RecipeSearchesController#new as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 1124ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-09-22 12:09:09 -0500
+Processing by LoginController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering login/new.html.erb within layouts/application
+  Rendered login/new.html.erb within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | GC: 0.0ms)
+Completed 200 OK in 1002ms (Views: 6.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

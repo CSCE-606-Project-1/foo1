@@ -4,8 +4,15 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-
 require 'cucumber/rails'
+require 'capybara/rspec'
+require 'webmock/cucumber'
+require 'rack_session_access/capybara'
+
+Capybara.default_driver = :rack_test
+Capybara.javascript_driver = :selenium_chrome_headless
+WebMock.disable_net_connect!(allow_localhost: true)
+ActionController::Base.allow_rescue = false
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how

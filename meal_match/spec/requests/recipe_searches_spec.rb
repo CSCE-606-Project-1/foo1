@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "RecipeSearches", type: :request do
+  let!(:user) { User.create!(email: "test@example.com", first_name: "Test", last_name: "User") }
+  before do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
+
   describe "GET /new" do
     it "renders the new template" do
       get new_recipe_search_path

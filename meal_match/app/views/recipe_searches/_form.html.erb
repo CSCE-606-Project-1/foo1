@@ -1,4 +1,4 @@
-<%= form_with(model: @recipe_search) do |form| %>
+<%= form_with(model: @recipe_search, local: true) do |form| %>
   <% if @recipe_search.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@recipe_search.errors.count, "error") %> prohibited this recipe_search from being saved:</h2>
@@ -10,13 +10,25 @@
     </div>
   <% end %>
 
+  <p style="font-style: italic;">
+    Enter ingredients manually <strong>or</strong> choose a saved list (leave the other blank).
+  </p>
+
   <div>
-    <%= form.label :ingredients, "Enter ingredients", style: "display: block" %>
-    <%= form.text_area :ingredients %>
+    <%= form.label :ingredients, "Enter ingredients (comma or space separated)", style: "display: block" %>
+    <%= form.text_area :ingredients, rows: 3 %>
+  </div>
+
+  <div>
+  <%= form.label :ingredient_list_id, "Or choose an Ingredient List", style: "display: block" %>
+    <%= form.collection_select :ingredient_list_id,
+                               @ingredient_lists,
+                               :id,
+                               :title,
+                               { include_blank: true } %>
   </div>
 
   <div>
     <%= form.submit "Search" %>
   </div>
-
 <% end %>

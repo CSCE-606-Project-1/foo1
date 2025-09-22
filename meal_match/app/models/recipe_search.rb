@@ -1,3 +1,3 @@
 class RecipeSearch < ApplicationRecord
-  validates :ingredients, presence: true
+  belongs_to :ingredient_list, optional: true
 end
