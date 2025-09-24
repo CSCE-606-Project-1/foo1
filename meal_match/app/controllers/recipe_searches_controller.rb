@@ -19,7 +19,6 @@ class RecipeSearchesController < ApplicationController
     end
 
     if ingredients.any?
-      # Join ingredients with commas for a combined search
       query = ingredients.map { |i| i.strip.gsub(/\s+/, "_") }.join(",")
       url = "https://www.themealdb.com/api/json/v2/65232507/filter.php?i=#{URI.encode_www_form_component(query)}"
 

@@ -2,14 +2,10 @@ require "httparty"
 
 class IngredientListRecipesController < ApplicationController
   before_action :require_login, only: %i[show]
+
   def show
-    if @recipe_search.ingredient_list_id.present?
-      @ingredient_list = @recipe_search.ingredient_list
-      ingredients = @ingredient_list.ingredients.pluck(:title)
-    else
-      @ingredient_list = nil
-      ingredients = @recipe_search.ingredients.to_s.split(/\s*,\s*/).reject(&:blank?)
-    end
+    @ingredient_list = current_user.ingredient_lists.find(params[:id])
+    ingredients = @ingredient_list.ingredients.pluck(:title)
 
     if ingredients.any?
       # Join ingredients with commas for a combined search

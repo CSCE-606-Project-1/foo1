@@ -6190,3 +6190,453 @@ Processing by RecipeSearchesController#show as HTML
   Rendered layout layouts/application.html.erb (Duration: 9.1ms | GC: 0.0ms)
 Completed 200 OK in 161ms (Views: 14.4ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
   [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredientListItem Exists? (9.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" IS NULL AND "ingredient_list_items"."ingredient_list_id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (3.8ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:56.893912"], ["updated_at", "2025-09-24 01:03:56.893912"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.9ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:03:56.901851"], ["updated_at", "2025-09-24 01:03:56.901851"], ["user_id", 192]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.0ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "pqr"], ["created_at", "2025-09-24 01:03:56.909906"], ["updated_at", "2025-09-24 01:03:56.909906"], ["user_id", 192]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = $1 AND "ingredient_lists"."id" = $2 LIMIT $3[0m  [["user_id", 192], ["id", 161], ["LIMIT", 1]]
+  [1m[36mIngredientList Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = $1 AND "ingredient_lists"."id" = $2 LIMIT $3[0m  [["user_id", 192], ["id", 162], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:56.973334"], ["updated_at", "2025-09-24 01:03:56.973334"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.3ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:03:56.978823"], ["updated_at", "2025-09-24 01:03:56.978823"], ["user_id", 193]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (1.7ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1"], ["title", "Eggs"], ["description", nil], ["created_at", "2025-09-24 01:03:56.990610"], ["updated_at", "2025-09-24 01:03:56.990610"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 189], ["ingredient_list_id", 163], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (2.2ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.003740"], ["updated_at", "2025-09-24 01:03:57.003740"], ["ingredient_list_id", 163], ["ingredient_id", 189]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "2"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "2"], ["title", "Chole"], ["description", nil], ["created_at", "2025-09-24 01:03:57.013924"], ["updated_at", "2025-09-24 01:03:57.013924"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 190], ["ingredient_list_id", 163], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (1.0ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.023097"], ["updated_at", "2025-09-24 01:03:57.023097"], ["ingredient_list_id", 163], ["ingredient_id", 190]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 163], ["id", 189], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 163], ["id", 190], ["LIMIT", 1]]
+  [1m[36mIngredient Count (3.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1[0m  [["ingredient_list_id", 163]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.064783"], ["updated_at", "2025-09-24 01:03:57.064783"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.0ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:03:57.070513"], ["updated_at", "2025-09-24 01:03:57.070513"], ["user_id", 194]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1"], ["title", "Eggs"], ["description", nil], ["created_at", "2025-09-24 01:03:57.079151"], ["updated_at", "2025-09-24 01:03:57.079151"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 191], ["ingredient_list_id", 164], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.8ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.088356"], ["updated_at", "2025-09-24 01:03:57.088356"], ["ingredient_list_id", 164], ["ingredient_id", 191]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 191], ["ingredient_list_id", 164], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.101935"], ["updated_at", "2025-09-24 01:03:57.101935"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.9ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:03:57.109314"], ["updated_at", "2025-09-24 01:03:57.109314"], ["user_id", 195]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.0ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "pqr"], ["created_at", "2025-09-24 01:03:57.116713"], ["updated_at", "2025-09-24 01:03:57.116713"], ["user_id", 195]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1"], ["title", "Eggs"], ["description", nil], ["created_at", "2025-09-24 01:03:57.128583"], ["updated_at", "2025-09-24 01:03:57.128583"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 192], ["ingredient_list_id", 165], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.8ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.140704"], ["updated_at", "2025-09-24 01:03:57.140704"], ["ingredient_list_id", 165], ["ingredient_id", 192]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "2"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "2"], ["title", "Chole"], ["description", nil], ["created_at", "2025-09-24 01:03:57.150217"], ["updated_at", "2025-09-24 01:03:57.150217"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.2ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 193], ["ingredient_list_id", 165], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.160658"], ["updated_at", "2025-09-24 01:03:57.160658"], ["ingredient_list_id", 165], ["ingredient_id", 193]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 193], ["ingredient_list_id", 166], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.8ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.169957"], ["updated_at", "2025-09-24 01:03:57.169957"], ["ingredient_list_id", 166], ["ingredient_id", 193]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "3"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "3"], ["title", "Pav"], ["description", nil], ["created_at", "2025-09-24 01:03:57.178912"], ["updated_at", "2025-09-24 01:03:57.178912"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 194], ["ingredient_list_id", 166], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (1.3ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.187977"], ["updated_at", "2025-09-24 01:03:57.187977"], ["ingredient_list_id", 166], ["ingredient_id", 194]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 165], ["id", 192], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 165], ["id", 193], ["LIMIT", 1]]
+  [1m[36mIngredient Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1[0m  [["ingredient_list_id", 165]]
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 166], ["id", 193], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 166], ["id", 194], ["LIMIT", 1]]
+  [1m[36mIngredient Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1[0m  [["ingredient_list_id", 166]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.216439"], ["updated_at", "2025-09-24 01:03:57.216439"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.235839"], ["updated_at", "2025-09-24 01:03:57.235839"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" IS NULL LIMIT $2[0m  [["provider_id", "1234"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" IS NULL AND "ingredients"."provider_name" = $1 LIMIT $2[0m  [["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1234"], ["title", "Egg"], ["description", "Great for protein, laid by hens/goats"], ["created_at", "2025-09-24 01:03:57.377847"], ["updated_at", "2025-09-24 01:03:57.377847"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdbextra"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (3.3ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.445072"], ["updated_at", "2025-09-24 01:03:57.445072"], ["email", "[FILTERED]"], ["first_name", nil], ["last_name", nil]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.9ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Protein List"], ["created_at", "2025-09-24 01:03:57.454028"], ["updated_at", "2025-09-24 01:03:57.454028"], ["user_id", 198]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (3.8ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:57.479364"], ["updated_at", "2025-09-24 01:03:57.479364"], ["email", "[FILTERED]"], ["first_name", "Test"], ["last_name", "User"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-23 20:03:57 -0500
+Processing by RecipeSearchesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.9ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = $1[0m  [["user_id", 199]]
+  Rendered recipe_searches/_form.html.erb (Duration: 40.4ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 60.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 242.0ms | GC: 0.0ms)
+Completed 200 OK in 518ms (Views: 288.2ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:58.405189"], ["updated_at", "2025-09-24 01:03:58.405189"], ["email", "[FILTERED]"], ["first_name", "Test"], ["last_name", "User"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+Started POST "/recipe_searches" for 127.0.0.1 at 2025-09-23 20:03:58 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"recipe_search" => {"ingredients" => "chicken_breast"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (3.6ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-24 01:03:58.495976"], ["updated_at", "2025-09-24 01:03:58.495976"], ["ingredient_list_id", nil]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recipe_searches/91
+Completed 302 Found in 15ms (ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mRecipeSearch Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+  [1m[36mRecipeSearch Load (0.8ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" ORDER BY "recipe_searches"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (3.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:03:58.524946"], ["updated_at", "2025-09-24 01:03:58.524946"], ["email", "[FILTERED]"], ["first_name", "Test"], ["last_name", "User"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (1.7ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-24 01:03:58.546774"], ["updated_at", "2025-09-24 01:03:58.546774"], ["ingredient_list_id", nil]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/recipe_searches/92" for 127.0.0.1 at 2025-09-23 20:03:58 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "92"}
+  [1m[36mRecipeSearch Load (0.8ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = $1 LIMIT $2[0m  [["id", 92], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 8.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | GC: 0.0ms)
+Completed 200 OK in 176ms (Views: 13.2ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredientListItem Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" IS NULL AND "ingredient_list_items"."ingredient_list_id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (10.6ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.645125"], ["updated_at", "2025-09-24 01:10:35.645125"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (6.5ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:10:35.663787"], ["updated_at", "2025-09-24 01:10:35.663787"], ["user_id", 202]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (1.9ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "pqr"], ["created_at", "2025-09-24 01:10:35.676061"], ["updated_at", "2025-09-24 01:10:35.676061"], ["user_id", 202]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = $1 AND "ingredient_lists"."id" = $2 LIMIT $3[0m  [["user_id", 202], ["id", 168], ["LIMIT", 1]]
+  [1m[36mIngredientList Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = $1 AND "ingredient_lists"."id" = $2 LIMIT $3[0m  [["user_id", 202], ["id", 169], ["LIMIT", 1]]
+  [1m[36mIngredient Load (1.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.737076"], ["updated_at", "2025-09-24 01:10:35.737076"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (1.8ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:10:35.743076"], ["updated_at", "2025-09-24 01:10:35.743076"], ["user_id", 203]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.9ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1"], ["title", "Eggs"], ["description", nil], ["created_at", "2025-09-24 01:10:35.752568"], ["updated_at", "2025-09-24 01:10:35.752568"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 196], ["ingredient_list_id", 170], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (1.7ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.761773"], ["updated_at", "2025-09-24 01:10:35.761773"], ["ingredient_list_id", 170], ["ingredient_id", 196]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "2"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "2"], ["title", "Chole"], ["description", nil], ["created_at", "2025-09-24 01:10:35.772229"], ["updated_at", "2025-09-24 01:10:35.772229"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 197], ["ingredient_list_id", 170], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.781778"], ["updated_at", "2025-09-24 01:10:35.781778"], ["ingredient_list_id", 170], ["ingredient_id", 197]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 170], ["id", 196], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 170], ["id", 197], ["LIMIT", 1]]
+  [1m[36mIngredient Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1[0m  [["ingredient_list_id", 170]]
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Load (2.0ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1[0m  [["ingredient_id", 196]]
+  [1m[36mIngredientListItem Destroy (10.7ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" WHERE "ingredient_list_items"."id" = $1[0m  [["id", 174]]
+  [1m[36mIngredient Destroy (2.0ms)[0m  [1m[31mDELETE FROM "ingredients" WHERE "ingredients"."id" = $1[0m  [["id", 196]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Load (1.8ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1[0m  [["ingredient_id", 197]]
+  [1m[36mIngredientListItem Destroy (0.5ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" WHERE "ingredient_list_items"."id" = $1[0m  [["id", 175]]
+  [1m[36mIngredient Destroy (0.7ms)[0m  [1m[31mDELETE FROM "ingredients" WHERE "ingredients"."id" = $1[0m  [["id", 197]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.855088"], ["updated_at", "2025-09-24 01:10:35.855088"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (2.4ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:10:35.861688"], ["updated_at", "2025-09-24 01:10:35.861688"], ["user_id", 204]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1"], ["title", "Eggs"], ["description", nil], ["created_at", "2025-09-24 01:10:35.872581"], ["updated_at", "2025-09-24 01:10:35.872581"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (3.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 198], ["ingredient_list_id", 171], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (1.3ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.886259"], ["updated_at", "2025-09-24 01:10:35.886259"], ["ingredient_list_id", 171], ["ingredient_id", 198]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 198], ["ingredient_list_id", 171], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Load (1.8ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1[0m  [["ingredient_id", 198]]
+  [1m[36mIngredientListItem Destroy (0.5ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" WHERE "ingredient_list_items"."id" = $1[0m  [["id", 176]]
+  [1m[36mIngredient Destroy (0.6ms)[0m  [1m[31mDELETE FROM "ingredients" WHERE "ingredients"."id" = $1[0m  [["id", 198]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.912271"], ["updated_at", "2025-09-24 01:10:35.912271"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (1.9ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "abc"], ["created_at", "2025-09-24 01:10:35.918000"], ["updated_at", "2025-09-24 01:10:35.918000"], ["user_id", 205]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (1.9ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "pqr"], ["created_at", "2025-09-24 01:10:35.923617"], ["updated_at", "2025-09-24 01:10:35.923617"], ["user_id", 205]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1"], ["title", "Eggs"], ["description", nil], ["created_at", "2025-09-24 01:10:35.934730"], ["updated_at", "2025-09-24 01:10:35.934730"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 199], ["ingredient_list_id", 172], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.945784"], ["updated_at", "2025-09-24 01:10:35.945784"], ["ingredient_list_id", 172], ["ingredient_id", 199]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "2"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (1.1ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "2"], ["title", "Chole"], ["description", nil], ["created_at", "2025-09-24 01:10:35.954202"], ["updated_at", "2025-09-24 01:10:35.954202"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 200], ["ingredient_list_id", 172], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.962847"], ["updated_at", "2025-09-24 01:10:35.962847"], ["ingredient_list_id", 172], ["ingredient_id", 200]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 200], ["ingredient_list_id", 173], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.970548"], ["updated_at", "2025-09-24 01:10:35.970548"], ["ingredient_list_id", 173], ["ingredient_id", 200]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "3"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "3"], ["title", "Pav"], ["description", nil], ["created_at", "2025-09-24 01:10:35.979510"], ["updated_at", "2025-09-24 01:10:35.979510"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1 AND "ingredient_list_items"."ingredient_list_id" = $2 LIMIT $3[0m  [["ingredient_id", 201], ["ingredient_list_id", 173], ["LIMIT", 1]]
+  [1m[36mIngredientListItem Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredient_list_items" ("created_at", "updated_at", "ingredient_list_id", "ingredient_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:35.987633"], ["updated_at", "2025-09-24 01:10:35.987633"], ["ingredient_list_id", 173], ["ingredient_id", 201]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 172], ["id", 199], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 172], ["id", 200], ["LIMIT", 1]]
+  [1m[36mIngredient Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1[0m  [["ingredient_list_id", 172]]
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 173], ["id", 200], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1 AND "ingredients"."id" = $2 LIMIT $3[0m  [["ingredient_list_id", 173], ["id", 201], ["LIMIT", 1]]
+  [1m[36mIngredient Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = $1[0m  [["ingredient_list_id", 173]]
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Load (2.0ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1[0m  [["ingredient_id", 199]]
+  [1m[36mIngredientListItem Destroy (0.6ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" WHERE "ingredient_list_items"."id" = $1[0m  [["id", 177]]
+  [1m[36mIngredient Destroy (0.6ms)[0m  [1m[31mDELETE FROM "ingredients" WHERE "ingredients"."id" = $1[0m  [["id", 199]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Load (1.9ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1[0m  [["ingredient_id", 200]]
+  [1m[36mIngredientListItem Destroy (0.6ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" WHERE "ingredient_list_items"."id" = $1[0m  [["id", 178]]
+  [1m[36mIngredientListItem Destroy (0.5ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" WHERE "ingredient_list_items"."id" = $1[0m  [["id", 179]]
+  [1m[36mIngredient Destroy (0.7ms)[0m  [1m[31mDELETE FROM "ingredients" WHERE "ingredients"."id" = $1[0m  [["id", 200]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Load (1.7ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1[0m  [["ingredient_id", 201]]
+  [1m[36mIngredientListItem Destroy (0.5ms)[0m  [1m[31mDELETE FROM "ingredient_list_items" WHERE "ingredient_list_items"."id" = $1[0m  [["id", 180]]
+  [1m[36mIngredient Destroy (0.6ms)[0m  [1m[31mDELETE FROM "ingredients" WHERE "ingredients"."id" = $1[0m  [["id", 201]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:36.044354"], ["updated_at", "2025-09-24 01:10:36.044354"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:36.064997"], ["updated_at", "2025-09-24 01:10:36.064997"], ["email", "[FILTERED]"], ["first_name", "Solid"], ["last_name", "Snake"]]
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.6ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" IS NULL LIMIT $2[0m  [["provider_id", "1234"], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" IS NULL AND "ingredients"."provider_name" = $1 LIMIT $2[0m  [["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mIngredient Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.6ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("provider_name", "provider_id", "title", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["provider_name", "mealdb"], ["provider_id", "1234"], ["title", "Egg"], ["description", "Great for protein, laid by hens/goats"], ["created_at", "2025-09-24 01:10:36.206527"], ["updated_at", "2025-09-24 01:10:36.206527"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mIngredient Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdb"], ["LIMIT", 1]]
+  [1m[36mIngredient Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE "ingredients"."provider_id" = $1 AND "ingredients"."provider_name" = $2 LIMIT $3[0m  [["provider_id", "1234"], ["provider_name", "mealdbextra"], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.7ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientListItem Load (2.2ms)[0m  [1m[34mSELECT "ingredient_list_items".* FROM "ingredient_list_items" WHERE "ingredient_list_items"."ingredient_id" = $1[0m  [["ingredient_id", 202]]
+  [1m[36mIngredient Destroy (0.5ms)[0m  [1m[31mDELETE FROM "ingredients" WHERE "ingredients"."id" = $1[0m  [["id", 202]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:36.262611"], ["updated_at", "2025-09-24 01:10:36.262611"], ["email", "[FILTERED]"], ["first_name", nil], ["last_name", nil]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mIngredientList Create (1.6ms)[0m  [1m[32mINSERT INTO "ingredient_lists" ("title", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Protein List"], ["created_at", "2025-09-24 01:10:36.271333"], ["updated_at", "2025-09-24 01:10:36.271333"], ["user_id", 208]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:36.282746"], ["updated_at", "2025-09-24 01:10:36.282746"], ["email", "[FILTERED]"], ["first_name", "Test"], ["last_name", "User"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/recipe_searches/new" for 127.0.0.1 at 2025-09-23 20:10:36 -0500
+Processing by RecipeSearchesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = $1[0m  [["user_id", 209]]
+  Rendered recipe_searches/_form.html.erb (Duration: 30.4ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 46.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 189.5ms | GC: 0.0ms)
+Completed 200 OK in 445ms (Views: 242.1ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:37.079896"], ["updated_at", "2025-09-24 01:10:37.079896"], ["email", "[FILTERED]"], ["first_name", "Test"], ["last_name", "User"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+Started POST "/recipe_searches" for 127.0.0.1 at 2025-09-23 20:10:37 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"recipe_search" => {"ingredients" => "chicken_breast"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (2.1ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-24 01:10:37.137277"], ["updated_at", "2025-09-24 01:10:37.137277"], ["ingredient_list_id", nil]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/recipe_searches/93
+Completed 302 Found in 9ms (ActiveRecord: 2.7ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mRecipeSearch Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "recipe_searches"[0m
+  [1m[36mRecipeSearch Load (0.7ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" ORDER BY "recipe_searches"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "email", "first_name", "last_name") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2025-09-24 01:10:37.169610"], ["updated_at", "2025-09-24 01:10:37.169610"], ["email", "[FILTERED]"], ["first_name", "Test"], ["last_name", "User"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRecipeSearch Create (2.0ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["ingredients", "chicken_breast"], ["created_at", "2025-09-24 01:10:37.183378"], ["updated_at", "2025-09-24 01:10:37.183378"], ["ingredient_list_id", nil]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/recipe_searches/94" for 127.0.0.1 at 2025-09-23 20:10:37 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "94"}
+  [1m[36mRecipeSearch Load (0.7ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = $1 LIMIT $2[0m  [["id", 94], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 5.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | GC: 0.0ms)
+Completed 200 OK in 118ms (Views: 9.1ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
