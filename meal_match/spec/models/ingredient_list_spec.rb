@@ -12,25 +12,25 @@ RSpec.describe IngredientList, type: :model do
 
   let(:ingredient_1) do
     Ingredient.create!(provider_name: "mealdb",
-                       provider_id: "1",
+                       provider_id: "1001",
                        title: "Eggs")
   end
 
   let(:ingredient_2) do
     Ingredient.create!(provider_name: "mealdb",
-                       provider_id: "2",
+                       provider_id: "1002",
                        title: "Chole")
   end
 
   let(:ingredient_3) do
     Ingredient.create!(provider_name: "mealdb",
-                       provider_id: "3",
+                       provider_id: "1003",
                        title: "Pav")
   end
 
   let(:ingredient_4) do
     Ingredient.create!(provider_name: "mealdb",
-                       provider_id: "4",
+                       provider_id: "1004",
                        title: "Misal")
   end
 
