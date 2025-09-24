@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_22_150458) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -56,6 +56,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_150458) do
     t.index ["ingredient_list_id"], name: "index_recipe_searches_on_ingredient_list_id"
   end
 
+  create_table "saved_recipes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "meal_id"
+    t.string "name"
+    t.string "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_saved_recipes_on_user_id"
+  end
+
   create_table "user_accounts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,5 +94,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_22_150458) do
   add_foreign_key "ingredient_list_items", "ingredients"
   add_foreign_key "ingredient_lists", "users"
   add_foreign_key "recipe_searches", "ingredient_lists"
+  add_foreign_key "saved_recipes", "users"
   add_foreign_key "user_accounts", "users"
 end

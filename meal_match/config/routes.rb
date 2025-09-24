@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "saved_recipes/index"
+  get "saved_recipes/create"
+  get "saved_recipes/destroy"
   resources :recipe_searches
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -32,4 +35,7 @@ Rails.application.routes.draw do
 
   # Redirect to show recipes if function called by ingredient list ID
   get "/recipe_searches/id/:id", to: "ingredient_list_recipes#show", as: :ingredient_list_recipes
+
+  # Routes for saved recipes
+  resources :saved_recipes, only: [:index, :create, :destroy]
 end

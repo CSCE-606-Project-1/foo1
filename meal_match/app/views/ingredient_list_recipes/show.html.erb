@@ -286,6 +286,46 @@
             font-size: 14px;
             color: var(--ios-text-secondary);
         }
+                .modal-footer {
+            padding: 16px;
+            border-top: 1px solid var(--ios-border);
+            display: flex;
+            justify-content: center;
+            background-color: var(--ios-card-bg);
+            border-radius: 0 0 var(--ios-radius-large) var(--ios-radius-large);
+            position: sticky;
+            bottom: 0;
+        }
+
+        .ios-save-button {
+            padding: 12px 24px;
+            background-color: var(--ios-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .ios-save-button:hover {
+            background-color: #0056cc;
+        }
+
+        .ios-save-button:active {
+            transform: scale(0.98);
+            opacity: 0.8;
+        }
+
+        .ios-save-button:disabled {
+            background-color: var(--ios-text-secondary);
+            cursor: not-allowed;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -332,7 +372,11 @@
             </div>
         </div>
     </div>
-
+    <div class="modal-footer">
+        <button id="save-recipe-btn" class="ios-save-button">
+            💾 Save Recipe
+        </button>
+    </div>
     <script>
         const meals = <%= raw(@meals.to_json) %>;
         let currentIndex = 0;
@@ -407,6 +451,50 @@
                 </div>
             `;
             modal.style.display = "block";
+            setupSaveButton(meal);
+        }
+
+        function setupSaveButton(meal) {
+            const saveBtn = document.getElementById("save-recipe-btn");
+            
+            saveBtn.disabled = false;
+            saveBtn.textContent = "💾 Save Recipe";
+            saveBtn.style.backgroundColor = "";
+            
+            saveBtn.onclick = () => {
+                saveBtn.disabled = true;
+                saveBtn.textContent = "Saving...";
+                
+                fetch("/saved_recipes", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        meal_id: meal.idMeal,
+                        name: meal.strMeal,
+                        thumbnail: meal.strMealThumb
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        saveBtn.textContent = "✓ Saved!";
+                        saveBtn.style.backgroundColor = "var(--ios-success)";
+                    } else {
+                        saveBtn.textContent = "💾 Save Recipe";
+                        saveBtn.disabled = false;
+                        alert(data.message || "Failed to save recipe");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    saveBtn.textContent = "💾 Save Recipe";
+                    saveBtn.disabled = false;
+                    alert("Error saving recipe");
+                });
+            };
         }
 
         function closeModalAndNext() {
