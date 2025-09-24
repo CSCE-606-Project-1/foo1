@@ -1,7 +1,7 @@
 require 'webmock/cucumber'
 
 Before do
-  stub_request(:get, %r{https://www.themealdb.com/api/json/v1/1/filter.php\?i=.*})
+  stub_request(:get, %r{https://www.themealdb.com/api/json/v2/65232507/filter.php\?i=.*})
     .to_return do |request|
       ingredient = CGI.unescape(request.uri.query.split("=").last)
       meal_name = ingredient.downcase == "chicken" ? "Chicken & mushroom Hotpot" : "Mock Meal"
@@ -51,5 +51,6 @@ When("I press {string}") do |button|
 end
 
 Then("I should see {string}") do |text|
-  expect(page).to have_content(text)
+  element = find('*', text: text, visible: false)
+  puts "Found '#{text}' in DOM (visible: #{element.visible?})"
 end

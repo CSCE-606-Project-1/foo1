@@ -17,6 +17,6 @@ Feature: Recipe Search with Ingredient Lists
   Scenario: Search using manual ingredients
     Given I am logged in as "test@example.com"
     When I visit the new recipe search page
-    And I fill in "Enter ingredients (comma or space separated)" with "Chole, Pav"
+    And I fill in "Enter ingredients (comma separated)" with "Chole, Pav"
     And I press "Search"
     Then I should see "Mock Meal"

@@ -30,7 +30,7 @@ RSpec.describe "RecipeSearches", type: :request do
 
     before do
       # Stub external API
-      stub_request(:get, %r{https://www.themealdb.com/api/json/v1/1/filter.php})
+      stub_request(:get, %r{https://www.themealdb.com/api/json/v2/65232507/filter.php})
         .to_return(
           status: 200,
           body: {

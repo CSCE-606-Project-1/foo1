@@ -10,15 +10,15 @@ user = User.find_by(email: "qacer6973@gmail.com")
 
 if user.nil?
   user = User.create!(
-    email: "qacer6973@gmail.com", 
-    first_name: "Qacer", 
+    email: "qacer6973@gmail.com",
+    first_name: "Qacer",
     last_name: "Test"
   )
   UserAccount.create!(user: user)
   puts "Created new user"
 else
   puts "Found existing user: #{user.email}"
-  
+
   user.ingredient_lists.destroy_all
 end
 
