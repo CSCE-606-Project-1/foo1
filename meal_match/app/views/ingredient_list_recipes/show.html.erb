@@ -5,265 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Results</title>
     <%= csrf_meta_tags %>
+</head>
+
+<body data-page="recipe-results-show" style="background-color: #f2f2f7; color: #000000; padding: 16px; max-width: 600px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; box-sizing: border-box;">
+<div data-recipe-results-container style="box-sizing: border-box;">
+    <h1 style="font-size: 28px; font-weight: 700; margin-bottom: 16px; text-align: center;">Recipe Results</h1>
+    
+    <div style="display: flex; justify-content: flex-start; margin-bottom: 16px;">
+        <a href="<%= new_recipe_search_path %>" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background-color: #ffffff; color: #007aff; text-decoration: none; border-radius: 12px; font-size: 16px; font-weight: 500; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08); transition: all 0.2s ease;">
+            <span>←</span> Back to Search
+        </a>
+    </div>
+    
+    <div style="background-color: #ffffff; border-radius: 12px; padding: 16px; margin-bottom: 20px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);">
+        <strong style="color: #8e8e93; font-size: 14px; display: block; margin-bottom: 4px;">Searched Ingredients:</strong>
+        <div style="font-size: 16px; color: #000000;">
+            <% if @ingredient_list.present? %>
+                <%= @ingredient_list.ingredients.pluck(:title).join(", ") %>
+            <% else %>
+                <%= @recipe_search.ingredients %>
+            <% end %>
+        </div>
+    </div>
+    
+    <div id="recipe-card" style="background-color: #ffffff; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08); text-align: center; min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;"></div>
+    
+    <div style="display: flex; justify-content: space-between; gap: 16px; margin-top: auto;">
+        <button id="hate-btn" style="flex: 1; padding: 14px 20px; border: none; border-radius: 10px; font-size: 17px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease; background-color: #ff3b30; color: white;">
+            <span>❌</span> Hate
+        </button>
+        <button id="like-btn" style="flex: 1; padding: 14px 20px; border: none; border-radius: 10px; font-size: 17px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease; background-color: #34c759; color: white;">
+            <span>💚</span> Like
+        </button>
+    </div>
+    
+    <div style="text-align: center; margin-top: 12px; font-size: 14px; color: #8e8e93;">
+        Use ← and → arrow keys to navigate
+    </div>
+    
+    <div id="recipe-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; padding: 16px;">
+        <div style="background-color: #ffffff; border-radius: 16px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); margin: 5vh auto;">
+            <div style="padding: 16px; border-bottom: 1px solid #c6c6c8; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background-color: #ffffff; border-radius: 16px 16px 0 0; z-index: 10;">
+                <h2 style="font-size: 20px; font-weight: 600;">Recipe Details</h2>
+                <span id="modal-close" style="font-size: 24px; cursor: pointer; color: #8e8e93; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">&times;</span>
+            </div>
+            <div id="modal-content" style="padding: 16px;"></div>
+        </div>
+    </div>
+    
+    <div style="padding: 16px; border-top: 1px solid #c6c6c8; display: flex; justify-content: center; background-color: #ffffff; border-radius: 0 0 16px 16px; position: sticky; bottom: 0; margin-top: 20px;">
+        <button id="save-recipe-btn" style="padding: 12px 24px; background-color: #007aff; color: white; border: none; border-radius: 10px; font-size: 17px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s ease;">
+            💾 Save Recipe
+        </button>
+    </div>
+
     <style>
-        :root {
-            --ios-bg: #f2f2f7;
-            --ios-card-bg: #ffffff;
-            --ios-primary: #007aff;
-            --ios-danger: #ff3b30;
-            --ios-success: #34c759;
-            --ios-text-primary: #000000;
-            --ios-text-secondary: #8e8e93;
-            --ios-border: #c6c6c8;
-            --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-            --ios-radius: 12px;
-            --ios-radius-large: 16px;
-        }
-        
-        * {
+        body[data-page="recipe-results-show"] {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-        
-        body {
-            background-color: var(--ios-bg);
-            color: var(--ios-text-primary);
-            padding: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        .back-button-container {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 16px;
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
-            background-color: var(--ios-card-bg);
-            color: var(--ios-primary);
-            text-decoration: none;
-            border-radius: var(--ios-radius);
-            font-size: 16px;
-            font-weight: 500;
-            box-shadow: var(--ios-shadow);
-            transition: all 0.2s ease;
-        }
-
-        .back-button:hover {
-            background-color: rgba(0, 122, 255, 0.1);
-        }
-
-        .back-button:active {
-            transform: scale(0.98);
-        }
-        
-        .ingredient-section {
-            background-color: var(--ios-card-bg);
-            border-radius: var(--ios-radius);
-            padding: 16px;
-            margin-bottom: 20px;
-            box-shadow: var(--ios-shadow);
-        }
-        
-        .ingredient-section strong {
-            color: var(--ios-text-secondary);
-            font-size: 14px;
-            display: block;
-            margin-bottom: 4px;
-        }
-        
-        .ingredient-list {
-            font-size: 16px;
-            color: var(--ios-text-primary);
-        }
-        
-        #recipe-card {
-            background-color: var(--ios-card-bg);
-            border-radius: var(--ios-radius-large);
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--ios-shadow);
-            text-align: center;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        #recipe-card h2 {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        
-        #recipe-card img {
-            border-radius: 12px;
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 12px;
-        }
-        
-        #recipe-card p {
-            color: var(--ios-text-secondary);
-            font-size: 14px;
-        }
-        
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            margin-top: auto;
-        }
-        
-        .ios-button {
-            flex: 1;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-        
-        .ios-button:active {
-            transform: scale(0.98);
-            opacity: 0.8;
-        }
-        
-        #hate-btn {
-            background-color: var(--ios-danger);
-            color: white;
-        }
-        
-        #like-btn {
-            background-color: var(--ios-success);
-            color: white;
-        }
-        
-        #recipe-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            padding: 16px;
-        }
-        
-        .modal-content {
-            background-color: var(--ios-card-bg);
-            border-radius: var(--ios-radius-large);
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin: 5vh auto;
-        }
-        
-        .modal-header {
-            padding: 16px;
-            border-bottom: 1px solid var(--ios-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            background-color: var(--ios-card-bg);
-            border-radius: var(--ios-radius-large) var(--ios-radius-large) 0 0;
-            z-index: 10;
-        }
-        
-        .modal-header h2 {
-            font-size: 20px;
-            font-weight: 600;
-        }
-        
-        #modal-close {
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--ios-text-secondary);
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        #modal-close:hover {
-            background-color: var(--ios-bg);
-        }
-        
-        .modal-body {
-            padding: 16px;
-        }
-        
-        .modal-image {
-            width: 100%;
-            border-radius: 12px;
-            margin-bottom: 16px;
-        }
-        
-        .modal-section {
-            margin-bottom: 20px;
-        }
-        
-        .modal-section h3 {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--ios-text-primary);
-        }
-        
-        .modal-section p, .modal-section ul {
-            font-size: 16px;
-            line-height: 1.4;
-            color: var(--ios-text-primary);
-        }
-        
-        .modal-section ul {
-            padding-left: 20px;
-        }
-        
-        .modal-section li {
-            margin-bottom: 4px;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--ios-text-secondary);
-        }
-        
-        .empty-state p {
-            font-size: 16px;
-            margin-bottom: 8px;
         }
         
         @keyframes modalAppear {
@@ -277,124 +78,63 @@
             }
         }
         
-        .modal-content {
-            animation: modalAppear 0.3s ease;
+        body[data-page="recipe-results-show"] a:hover {
+            background-color: rgba(0, 122, 255, 0.1) !important;
         }
         
-        .keyboard-hint {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 14px;
-            color: var(--ios-text-secondary);
+        body[data-page="recipe-results-show"] a:active {
+            transform: scale(0.98) !important;
         }
-                .modal-footer {
-            padding: 16px;
-            border-top: 1px solid var(--ios-border);
-            display: flex;
-            justify-content: center;
-            background-color: var(--ios-card-bg);
-            border-radius: 0 0 var(--ios-radius-large) var(--ios-radius-large);
-            position: sticky;
-            bottom: 0;
+        
+        body[data-page="recipe-results-show"] button:active {
+            transform: scale(0.98) !important;
+            opacity: 0.8 !important;
         }
-
-        .ios-save-button {
-            padding: 12px 24px;
-            background-color: var(--ios-primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
+        
+        body[data-page="recipe-results-show"] #modal-close:hover {
+            background-color: #f2f2f7 !important;
         }
-
-        .ios-save-button:hover {
-            background-color: #0056cc;
+        
+        body[data-page="recipe-results-show"] #save-recipe-btn:hover {
+            background-color: #0056cc !important;
         }
-
-        .ios-save-button:active {
-            transform: scale(0.98);
-            opacity: 0.8;
+        
+        body[data-page="recipe-results-show"] #save-recipe-btn:disabled {
+            background-color: #8e8e93 !important;
+            cursor: not-allowed !important;
+            transform: none !important;
         }
-
-        .ios-save-button:disabled {
-            background-color: var(--ios-text-secondary);
-            cursor: not-allowed;
-            transform: none;
+        
+        body[data-page="recipe-results-show"] #recipe-modal > div {
+            animation: modalAppear 0.3s ease;
         }
     </style>
-</head>
-<body>
-    <h1>Recipe Results</h1>
-    <div class="back-button-container">
-        <a href="<%= new_recipe_search_path %>" class="back-button">
-            <span>←</span> Back to Search
-        </a>
-    </div>
-    <div class="ingredient-section">
-        <strong>Searched Ingredients:</strong>
-        <div class="ingredient-list">
-            <% if @ingredient_list.present? %>
-                <%= @ingredient_list.ingredients.pluck(:title).join(", ") %>
-            <% else %>
-                <%= @recipe_search.ingredients %>
-            <% end %>
-        </div>
-    </div>
-    
-    <div id="recipe-card"></div>
-    
-    <div class="button-container">
-        <button id="hate-btn" class="ios-button">
-            <span>❌</span> Hate
-        </button>
-        <button id="like-btn" class="ios-button">
-            <span>💚</span> Like
-        </button>
-    </div>
-    
-    <div class="keyboard-hint">
-        Use ← and → arrow keys to navigate
-    </div>
-    
-    <div id="recipe-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Recipe Details</h2>
-                <span id="modal-close">&times;</span>
-            </div>
-            <div id="modal-content" class="modal-body"></div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button id="save-recipe-btn" class="ios-save-button">
-            💾 Save Recipe
-        </button>
-    </div>
 
     <script>
+    (function() {
+        'use strict';
+        
+        if (document.body.getAttribute('data-page') !== 'recipe-results-show') return;
+        const container = document.querySelector('[data-recipe-results-container]');
+        if (!container) return;
+        
         const meals = <%= raw(@meals.to_json) %>;
         let currentIndex = 0;
 
-        const recipeCard = document.getElementById("recipe-card");
-        const hateBtn = document.getElementById("hate-btn");
-        const likeBtn = document.getElementById("like-btn");
-        const modal = document.getElementById("recipe-modal");
-        const modalContent = document.getElementById("modal-content");
-        const modalClose = document.getElementById("modal-close");
-        const saveBtn = document.getElementById("save-recipe-btn");
+        const recipeCard = container.querySelector("#recipe-card");
+        const hateBtn = container.querySelector("#hate-btn");
+        const likeBtn = container.querySelector("#like-btn");
+        const modal = container.querySelector("#recipe-modal");
+        const modalContent = container.querySelector("#modal-content");
+        const modalClose = container.querySelector("#modal-close");
+        const saveBtn = container.querySelector("#save-recipe-btn");
 
         function renderRecipe() {
             if (meals.length === 0) {
                 recipeCard.innerHTML = `
-                    <div class="empty-state">
-                        <p>No recipes found.</p>
-                        <p>Try different ingredients.</p>
+                    <div style="text-align: center; padding: 40px 20px; color: #8e8e93;">
+                        <p style="font-size: 16px; margin-bottom: 8px;">No recipes found.</p>
+                        <p style="font-size: 16px; margin-bottom: 8px;">Try different ingredients.</p>
                     </div>
                 `;
                 hateBtn.style.display = "none";
@@ -404,8 +144,8 @@
 
             if (currentIndex >= meals.length) {
                 recipeCard.innerHTML = `
-                    <div class="empty-state">
-                        <p>No more recipes available.</p>
+                    <div style="text-align: center; padding: 40px 20px; color: #8e8e93;">
+                        <p style="font-size: 16px; margin-bottom: 8px;">No more recipes available.</p>
                     </div>
                 `;
                 hateBtn.style.display = "none";
@@ -415,9 +155,9 @@
 
             const meal = meals[currentIndex];
             recipeCard.innerHTML = `
-                <h2>${meal.strMeal}</h2>
-                <img src="${meal.strMealThumb}" width="300" style="border-radius:12px;" />
-                <p>Meal ID: ${meal.idMeal}</p>
+                <h2 style="font-size: 22px; font-weight: 600; margin-bottom: 12px;">${meal.strMeal}</h2>
+                <img src="${meal.strMealThumb}" width="300" style="border-radius:12px; max-width: 100%; height: auto; margin-bottom: 12px;" />
+                <p style="color: #8e8e93; font-size: 14px;">Meal ID: ${meal.idMeal}</p>
             `;
         }
 
@@ -431,109 +171,104 @@
                 const ing = details["strIngredient" + i];
                 const measure = details["strMeasure" + i];
                 if (ing && ing.trim()) {
-                    ingredientsHtml += `<li>${ing} - ${measure}</li>`;
+                    ingredientsHtml += `<li style="margin-bottom: 4px;">${ing} - ${measure}</li>`;
                 }
             }
 
             modalContent.innerHTML = `
-                <img src="${details.strMealThumb}" class="modal-image" />
-                <div class="modal-section">
-                    <h3>About</h3>
-                    <p><strong>Category:</strong> ${details.strCategory}</p>
-                    <p><strong>Area:</strong> ${details.strArea}</p>
+                <img src="${details.strMealThumb}" style="width: 100%; border-radius: 12px; margin-bottom: 16px;" />
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-size: 17px; font-weight: 600; margin-bottom: 8px; color: #000000;">About</h3>
+                    <p style="font-size: 16px; line-height: 1.4; color: #000000;"><strong>Category:</strong> ${details.strCategory}</p>
+                    <p style="font-size: 16px; line-height: 1.4; color: #000000;"><strong>Area:</strong> ${details.strArea}</p>
                 </div>
-                <div class="modal-section">
-                    <h3>Instructions</h3>
-                    <p>${details.strInstructions}</p>
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-size: 17px; font-weight: 600; margin-bottom: 8px; color: #000000;">Instructions</h3>
+                    <p style="font-size: 16px; line-height: 1.4; color: #000000;">${details.strInstructions}</p>
                 </div>
-                <div class="modal-section">
-                    <h3>Ingredients</h3>
-                    <ul>${ingredientsHtml}</ul>
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-size: 17px; font-weight: 600; margin-bottom: 8px; color: #000000;">Ingredients</h3>
+                    <ul style="font-size: 16px; line-height: 1.4; color: #000000; padding-left: 20px;">${ingredientsHtml}</ul>
                 </div>
             `;
             modal.style.display = "block";
             setupSaveButton(meal);
         }
 
-function setupSaveButton(meal) {
-    saveBtn.disabled = false;
-    saveBtn.textContent = "💾 Save Recipe";
-    saveBtn.style.backgroundColor = "";
-
-    saveBtn.onclick = () => {
-        saveBtn.disabled = true;
-        saveBtn.textContent = "Saving...";
-
-        fetch("/saved_recipes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
-            },
-            body: JSON.stringify({
-                meal_id: meal.idMeal,
-                name: meal.strMeal,
-                thumbnail: meal.strMealThumb
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                saveBtn.textContent = "✓ Saved!";
-                saveBtn.style.backgroundColor = "var(--ios-success)";
-
-                // move to next recipe after short delay
-                setTimeout(() => {
-                    modal.style.display = "none";
-                    currentIndex++;
-                    renderRecipe();
-
-                    // ✅ Refresh Save button for next recipe if available
-                    if (currentIndex < meals.length) {
-                        setupSaveButton(meals[currentIndex]);
-                    }
-                }, 800);
-            } else {
-                saveBtn.textContent = "💾 Save Recipe";
-                saveBtn.disabled = false;
-                alert(data.message || "Failed to save recipe");
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            saveBtn.textContent = "💾 Save Recipe";
+        function setupSaveButton(meal) {
             saveBtn.disabled = false;
-            alert("Error saving recipe");
-        });
-    };
-}
+            saveBtn.textContent = "💾 Save Recipe";
+            saveBtn.style.backgroundColor = "";
 
+            saveBtn.onclick = () => {
+                saveBtn.disabled = true;
+                saveBtn.textContent = "Saving...";
+
+                fetch("/saved_recipes", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        meal_id: meal.idMeal,
+                        name: meal.strMeal,
+                        thumbnail: meal.strMealThumb
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        saveBtn.textContent = "✓ Saved!";
+                        saveBtn.style.backgroundColor = "#34c759";
+
+                        setTimeout(() => {
+                            modal.style.display = "none";
+                            currentIndex++;
+                            renderRecipe();
+
+                            if (currentIndex < meals.length) {
+                                setupSaveButton(meals[currentIndex]);
+                            }
+                        }, 800);
+                    } else {
+                        saveBtn.textContent = "💾 Save Recipe";
+                        saveBtn.disabled = false;
+                        alert(data.message || "Failed to save recipe");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    saveBtn.textContent = "💾 Save Recipe";
+                    saveBtn.disabled = false;
+                    alert("Error saving recipe");
+                });
+            };
+        }
 
         function closeModal() {
             modal.style.display = "none";
         }
 
-        hateBtn.addEventListener("click", () => {
+        function handleHateClick() {
             currentIndex++;
             renderRecipe();
             if (currentIndex < meals.length) {
                 setupSaveButton(meals[currentIndex]);
-    }
-        });
+            }
+        }
 
-        likeBtn.addEventListener("click", () => {
+        function handleLikeClick() {
             showModal(meals[currentIndex]);
-        });
+        }
 
-        modalClose.addEventListener("click", closeModal);
-
-        window.addEventListener("click", (e) => {
+        function handleModalClick(e) {
             if (e.target === modal) {
                 closeModal();
             }
-        });
+        }
 
-        window.addEventListener("keydown", (e) => {
+        function handleKeydown(e) {
             if (modal.style.display === "block") {
                 if (e.key === "Escape") {
                     closeModal();
@@ -549,11 +284,32 @@ function setupSaveButton(meal) {
                     showModal(meals[currentIndex]);
                 }
             }
-        });
+        }
+
+        hateBtn.addEventListener("click", handleHateClick);
+        likeBtn.addEventListener("click", handleLikeClick);
+        modalClose.addEventListener("click", closeModal);
+        window.addEventListener("click", handleModalClick);
+        window.addEventListener("keydown", handleKeydown);
+
+        function cleanup() {
+            hateBtn.removeEventListener("click", handleHateClick);
+            likeBtn.removeEventListener("click", handleLikeClick);
+            modalClose.removeEventListener("click", closeModal);
+            window.removeEventListener("click", handleModalClick);
+            window.removeEventListener("keydown", handleKeydown);
+        }
+
+        window.addEventListener('beforeunload', cleanup);
+        document.addEventListener('turbo:before-cache', cleanup);
 
         renderRecipe();
         if (meals.length > 0) {
-            setupSaveButton(meals[0]);}
+            setupSaveButton(meals[0]);
+        }
+
+    })();
     </script>
+</div>
 </body>
 </html>
