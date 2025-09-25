@@ -9,15 +9,25 @@ class SavedRecipesController < ApplicationController
     recipe = current_user.saved_recipes.new(
       meal_id: params[:meal_id],
       name: params[:name],
-      thumbnail: params[:thumbnail]
+      thumbnail: params[:thumbnail],
+      category: params[:category],
+      area: params[:area],
+      description: params[:description]
     )
 
     if recipe.save
-      render json: { success: true, message: "Recipe saved!" }
+      respond_to do |format|
+        format.json { render json: { success: true, message: "Recipe saved!" } }
+        format.html { redirect_back fallback_location: request.referrer || root_path }
+      end
     else
-      render json: { success: false, message: recipe.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      respond_to do |format|
+        format.json { render json: { success: false, message: recipe.errors.full_messages.join(", ") }, status: :unprocessable_entity }
+        format.html { redirect_back fallback_location: request.referrer || root_path, alert: recipe.errors.full_messages.join(", ") }
+      end
     end
   end
+
 
   def destroy
     recipe = current_user.saved_recipes.find(params[:id])

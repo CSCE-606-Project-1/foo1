@@ -20,10 +20,23 @@ class RecipeSearchesController < ApplicationController
 
     if ingredients.any?
       query = ingredients.map { |i| i.strip.gsub(/\s+/, "_") }.join(",")
-      url = "https://www.themealdb.com/api/json/v2/65232507/filter.php?i=#{URI.encode_www_form_component(query)}"
+      api_key = ENV["MEALDB_API_KEY"]
+      url = "https://www.themealdb.com/api/json/v2/#{api_key}/filter.php?i=#{URI.encode_www_form_component(query)}"
 
       response = HTTParty.get(url)
-      @meals = response.success? ? JSON.parse(response.body)["meals"] || [] : []
+      meals = response.success? ? JSON.parse(response.body)["meals"] || [] : []
+
+      @meals = meals.map do |meal|
+        meal_id = meal["idMeal"]
+        detail_url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=#{meal_id}"
+        detail_res = HTTParty.get(detail_url)
+
+        if detail_res.success?
+          JSON.parse(detail_res.body)["meals"].first
+        else
+          meal # fallback: return minimal data
+        end
+      end.compact
     else
       @meals = []
     end
