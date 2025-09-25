@@ -6,4 +6,10 @@ class DashboardController < ApplicationController
 
   def show
   end
+
+  # Render a dedicated Add Ingredients page. The modal markup and
+  # progressive-enhancement JS are moved into a separate template so
+  # it can be tested and visited directly at /add-ingredients.
+  def add_ingredients
+  end
 end

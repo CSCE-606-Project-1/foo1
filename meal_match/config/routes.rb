@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   # Dashboard related (after login)
   get "/dashboard", to: "dashboard#show", as: :dashboard
+  # Dedicated page for adding ingredients (modal moved to its own route)
+  get "/add-ingredients", to: "dashboard#add_ingredients", as: :add_ingredients
 
   # Redirect the root path to the login page
   root "login#new"

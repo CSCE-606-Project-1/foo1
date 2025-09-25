@@ -12,8 +12,8 @@ RSpec.describe "Dashboard Add Ingredients button", type: :request do
       .and_return(user)
   end
 
-  it "renders a button labeled 'Add Ingredients +'" do
-    get "/dashboard"
+  it "renders a button labeled 'Add Ingredients +' on the add_ingredients page" do
+    get "/add-ingredients"
     expect(response).to have_http_status(:ok)
     expect(response.body).to include("Add Ingredients +")
   end

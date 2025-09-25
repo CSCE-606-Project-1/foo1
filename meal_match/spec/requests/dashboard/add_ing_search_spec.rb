@@ -13,10 +13,10 @@ RSpec.describe "Dashboard Add Ingredients modal search", type: :system do
   end
 
   it "shows a search input, lets me type, doesn't submit, and clears on close" do
-    visit "/dashboard"
+  visit "/add-ingredients"
 
-    # Open modal
-    click_button "Add Ingredients +"
+  # Open modal
+  click_button "Add Ingredients +"
 
     # The search field is present and focused
     expect(page).to have_field("Search ingredients", type: "search", with: "", wait: 5)
@@ -26,8 +26,8 @@ RSpec.describe "Dashboard Add Ingredients modal search", type: :system do
     expect(page.find("#ingredients-search").value).to eq("chicken thighs")
 
     # Hitting Enter shouldn't navigate or close the modal
-    page.find("#ingredients-search").send_keys(:enter)
-    expect(page).to have_current_path("/dashboard") # still on dashboard
+  page.find("#ingredients-search").send_keys(:enter)
+  expect(page).to have_current_path("/add-ingredients") # still on add-ingredients
     expect(page).to have_selector("#ingredients-modal:not([hidden])", visible: :all)
 
     # Close -> input clears

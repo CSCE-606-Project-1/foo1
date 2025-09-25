@@ -14,10 +14,10 @@ RSpec.describe "Dashboard Add Ingredients modal", type: :system do
   end
 
   it "is hidden by default, opens on click, and closes on Close or ESC" do
-    visit "/dashboard"
+  visit "/add-ingredients"
 
-    # Guard so we fail loudly if something redirects us
-    expect(page).to have_current_path("/dashboard", ignore_query: true)
+  # Guard so we fail loudly if something redirects us
+  expect(page).to have_current_path("/add-ingredients", ignore_query: true)
     expect(page).to have_button("Add Ingredients +")
 
     # The modal should be hidden initially
