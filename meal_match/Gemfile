@@ -59,6 +59,7 @@ group :development, :test do
   # Cucumber acceptance tests
   gem "cucumber-rails", require: false
   gem "database_cleaner-active_record"
+  gem "rspec-rails"
 end
 
 group :development do
