@@ -180,7 +180,7 @@
     <h1>Recipe Search</h1>
     
     <div class="form-container">
-        <%= form_with(model: @recipe_search, local: true) do |form| %>
+        <%= form_with(model: @recipe_search, local: true, data: { turbo: false }) do |form| %>
             <% if @recipe_search.errors.any? %>
                 <div class="error-container">
                     <h2><%= pluralize(@recipe_search.errors.count, "error") %> prohibited this recipe search from being saved:</h2>

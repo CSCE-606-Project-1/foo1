@@ -37,5 +37,5 @@ Rails.application.routes.draw do
   get "/recipe_searches/id/:id", to: "ingredient_list_recipes#show", as: :ingredient_list_recipes
 
   # Routes for saved recipes
-  resources :saved_recipes, only: [:index, :create, :destroy]
+  resources :saved_recipes, only: [ :index, :create, :destroy ]
 end

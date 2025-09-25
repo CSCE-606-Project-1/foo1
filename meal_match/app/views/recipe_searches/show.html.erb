@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Results</title>
+    <%= csrf_meta_tags %>
     <style>
         :root {
             --ios-bg: #f2f2f7;
@@ -346,8 +347,7 @@
         </div>
     </div>
     
-    <div id="recipe-card">
-    </div>
+    <div id="recipe-card"></div>
     
     <div class="button-container">
         <button id="hate-btn" class="ios-button">
@@ -368,8 +368,7 @@
                 <h2>Recipe Details</h2>
                 <span id="modal-close">&times;</span>
             </div>
-            <div id="modal-content" class="modal-body">
-            </div>
+            <div id="modal-content" class="modal-body"></div>
         </div>
     </div>
     <div class="modal-footer">
@@ -377,6 +376,7 @@
             💾 Save Recipe
         </button>
     </div>
+
     <script>
         const meals = <%= raw(@meals.to_json) %>;
         let currentIndex = 0;
@@ -387,6 +387,7 @@
         const modal = document.getElementById("recipe-modal");
         const modalContent = document.getElementById("modal-content");
         const modalClose = document.getElementById("modal-close");
+        const saveBtn = document.getElementById("save-recipe-btn");
 
         function renderRecipe() {
             if (meals.length === 0) {
@@ -454,53 +455,62 @@
             setupSaveButton(meal);
         }
 
-        function setupSaveButton(meal) {
-            const saveBtn = document.getElementById("save-recipe-btn");
-            
-            saveBtn.disabled = false;
-            saveBtn.textContent = "💾 Save Recipe";
-            saveBtn.style.backgroundColor = "";
-            
-            saveBtn.onclick = () => {
-                saveBtn.disabled = true;
-                saveBtn.textContent = "Saving...";
-                
-                fetch("/saved_recipes", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
-                    },
-                    body: JSON.stringify({
-                        meal_id: meal.idMeal,
-                        name: meal.strMeal,
-                        thumbnail: meal.strMealThumb
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        saveBtn.textContent = "✓ Saved!";
-                        saveBtn.style.backgroundColor = "var(--ios-success)";
-                    } else {
-                        saveBtn.textContent = "💾 Save Recipe";
-                        saveBtn.disabled = false;
-                        alert(data.message || "Failed to save recipe");
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    saveBtn.textContent = "💾 Save Recipe";
-                    saveBtn.disabled = false;
-                    alert("Error saving recipe");
-                });
-            };
-        }
+function setupSaveButton(meal) {
+    saveBtn.disabled = false;
+    saveBtn.textContent = "💾 Save Recipe";
+    saveBtn.style.backgroundColor = "";
 
-        function closeModalAndNext() {
+    saveBtn.onclick = () => {
+        saveBtn.disabled = true;
+        saveBtn.textContent = "Saving...";
+
+        fetch("/saved_recipes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                meal_id: meal.idMeal,
+                name: meal.strMeal,
+                thumbnail: meal.strMealThumb
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                saveBtn.textContent = "✓ Saved!";
+                saveBtn.style.backgroundColor = "var(--ios-success)";
+
+                // move to next recipe after short delay
+                setTimeout(() => {
+                    modal.style.display = "none";
+                    currentIndex++;
+                    renderRecipe();
+
+                    // ✅ Refresh Save button for next recipe if available
+                    if (currentIndex < meals.length) {
+                        setupSaveButton(meals[currentIndex]);
+                    }
+                }, 800);
+            } else {
+                saveBtn.textContent = "💾 Save Recipe";
+                saveBtn.disabled = false;
+                alert(data.message || "Failed to save recipe");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            saveBtn.textContent = "💾 Save Recipe";
+            saveBtn.disabled = false;
+            alert("Error saving recipe");
+        });
+    };
+}
+
+
+        function closeModal() {
             modal.style.display = "none";
-            currentIndex++;
-            renderRecipe();
         }
 
         hateBtn.addEventListener("click", () => {
@@ -512,18 +522,18 @@
             showModal(meals[currentIndex]);
         });
 
-        modalClose.addEventListener("click", closeModalAndNext);
+        modalClose.addEventListener("click", closeModal);
 
         window.addEventListener("click", (e) => {
             if (e.target === modal) {
-                closeModalAndNext();
+                closeModal();
             }
         });
 
         window.addEventListener("keydown", (e) => {
             if (modal.style.display === "block") {
                 if (e.key === "Escape") {
-                    closeModalAndNext();
+                    closeModal();
                 }
             } else {
                 if (e.key === "ArrowLeft") {
@@ -536,6 +546,8 @@
         });
 
         renderRecipe();
+        if (meals.length > 0) {
+            setupSaveButton(meals[0]);}
     </script>
 </body>
 </html>
