@@ -7487,3 +7487,1093 @@ Processing by SavedRecipesController#index as TURBO_STREAM
 Completed 200 OK in 1040ms (Views: 11.5ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:05:47 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+Processing by RecipeSearchesController#new as HTML
+Started GET "/recipe_searches/id/24" for ::1 at 2025-09-24 20:05:49 -0500
+Processing by IngredientListRecipesController#show as HTML
+  Parameters: {"id" => "24"}
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:05:51 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (1.1ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 111.6ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 153.7ms | GC: 0.0ms)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mIngredientList Load (0.8ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 AND "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:7:in 'IngredientListRecipesController#show'
+  [1m[36mIngredient Pluck (3.0ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:8:in 'IngredientListRecipesController#show'
+  Rendered layout layouts/application.html.erb (Duration: 503.1ms | GC: 0.0ms)
+Completed 200 OK in 3827ms (Views: 571.3ms | ActiveRecord: 75.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  Rendering layout layouts/application.html.erb
+  Rendering ingredient_list_recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.1ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/ingredient_list_recipes/show.html.erb:343
+  Rendered ingredient_list_recipes/show.html.erb within layouts/application (Duration: 30.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 36.8ms | GC: 0.0ms)
+Completed 200 OK in 3800ms (Views: 49.4ms | ActiveRecord: 12.4ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.9ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 25.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.7ms | GC: 0.0ms)
+Completed 200 OK in 2454ms (Views: 35.6ms | ActiveRecord: 6.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:06:57 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 12.2ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 16.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.7ms | GC: 0.0ms)
+Completed 200 OK in 1500ms (Views: 22.2ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/recipe_searches" for ::1 at 2025-09-24 20:07:05 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => "23"}, "commit" => "Search Recipes"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (6.8ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-25 01:07:07.143740', '2025-09-25 01:07:07.143740', 23) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/91
+Completed 302 Found in 1330ms (ActiveRecord: 17.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/91" for ::1 at 2025-09-24 20:07:07 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "91"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mRecipeSearch Load (0.6ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 91 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:46:in 'RecipeSearchesController#set_recipe_search'
+  [1m[36mIngredientList Load (0.5ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."id" = 23 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:14:in 'RecipeSearchesController#show'
+  [1m[36mIngredient Pluck (0.8ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 23 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:15:in 'RecipeSearchesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.0ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 23[0m
+  ↳ app/views/recipe_searches/show.html.erb:343
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 14.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.0ms | GC: 0.0ms)
+Completed 200 OK in 1547ms (Views: 21.4ms | ActiveRecord: 2.5ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:07:16 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.7ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 9.7ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 12.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | GC: 0.0ms)
+Completed 200 OK in 1221ms (Views: 17.9ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/recipe_searches" for ::1 at 2025-09-24 20:07:21 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => "24"}, "commit" => "Search Recipes"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (6.2ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-25 01:07:22.978711', '2025-09-25 01:07:22.978711', 24) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (8.3ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/92
+Completed 302 Found in 1342ms (ActiveRecord: 15.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/92" for ::1 at 2025-09-24 20:07:23 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "92"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mRecipeSearch Load (2.3ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 92 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:46:in 'RecipeSearchesController#set_recipe_search'
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:14:in 'RecipeSearchesController#show'
+  [1m[36mIngredient Pluck (0.6ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:15:in 'RecipeSearchesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.0ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/recipe_searches/show.html.erb:343
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 12.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 25.4ms | GC: 0.0ms)
+Completed 200 OK in 1626ms (Views: 29.0ms | ActiveRecord: 3.9ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:07:52 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg", "saved_recipe" => {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (6.2ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52940' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.7ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52940', 'Brown Stew Chicken', 'https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg', '2025-09-25 01:07:53.927519', '2025-09-25 01:07:53.927519') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (11.0ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1442ms (Views: 0.2ms | ActiveRecord: 18.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:08:00 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 9.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | GC: 0.0ms)
+Completed 200 OK in 1260ms (Views: 14.3ms | ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:08:10 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52846", "name" => "Chicken & mushroom Hotpot", "thumbnail" => "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg", "saved_recipe" => {"meal_id" => "52846", "name" => "Chicken & mushroom Hotpot", "thumbnail" => "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (6.7ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52846' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.6ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52846', 'Chicken & mushroom Hotpot', 'https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg', '2025-09-25 01:08:12.295385', '2025-09-25 01:08:12.295385') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1371ms (Views: 0.2ms | ActiveRecord: 19.7ms (3 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:08:15 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.4ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 8.4ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | GC: 0.9ms)
+Completed 200 OK in 1279ms (Views: 14.9ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started DELETE "/saved_recipes/16" for ::1 at 2025-09-24 20:09:23 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "16"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (1.0ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 16 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (4.2ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 16 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (8.9ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1164ms (ActiveRecord: 14.8ms (3 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:09:25 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (1.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 10.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | GC: 0.0ms)
+Completed 200 OK in 1272ms (Views: 14.4ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 1.1ms)
+
+
+Started DELETE "/saved_recipes/17" for ::1 at 2025-09-24 20:09:28 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "17"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 17 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (4.5ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 17 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (8.3ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1245ms (ActiveRecord: 14.6ms (3 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:09:29 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 6.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | GC: 0.0ms)
+Completed 200 OK in 1189ms (Views: 11.3ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/recipe_searches/id/24" for ::1 at 2025-09-24 20:09:33 -0500
+Processing by IngredientListRecipesController#show as HTML
+  Parameters: {"id" => "24"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 AND "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:7:in 'IngredientListRecipesController#show'
+  [1m[36mIngredient Pluck (0.9ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:8:in 'IngredientListRecipesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering ingredient_list_recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.1ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/ingredient_list_recipes/show.html.erb:343
+  Rendered ingredient_list_recipes/show.html.erb within layouts/application (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.6ms | GC: 0.0ms)
+Completed 200 OK in 1569ms (Views: 25.2ms | ActiveRecord: 2.2ms (4 queries, 1 cached) | GC: 0.5ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:09:37 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg", "saved_recipe" => {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (5.5ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52940' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.7ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52940', 'Brown Stew Chicken', 'https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg', '2025-09-25 01:09:39.791425', '2025-09-25 01:09:39.791425') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1140ms (Views: 0.2ms | ActiveRecord: 18.8ms (3 queries, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:09:57 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52846", "name" => "Chicken & mushroom Hotpot", "thumbnail" => "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg", "saved_recipe" => {"meal_id" => "52846", "name" => "Chicken & mushroom Hotpot", "thumbnail" => "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (5.5ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52846' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.6ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52846', 'Chicken & mushroom Hotpot', 'https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg', '2025-09-25 01:09:58.676991', '2025-09-25 01:09:58.676991') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1066ms (Views: 0.3ms | ActiveRecord: 14.8ms (3 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:10:02 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 7.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | GC: 0.0ms)
+Completed 200 OK in 1160ms (Views: 11.9ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/saved_recipes/18" for ::1 at 2025-09-24 20:10:13 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "18"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.5ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 18 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (4.8ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 18 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (8.7ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1122ms (ActiveRecord: 14.9ms (3 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:10:14 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (1.0ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 11.2ms | GC: 2.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | GC: 2.4ms)
+Completed 200 OK in 1181ms (Views: 15.8ms | ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 2.4ms)
+
+
+Started DELETE "/saved_recipes/19" for ::1 at 2025-09-24 20:10:18 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "19"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 19 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (5.0ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 19 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1322ms (ActiveRecord: 14.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:10:19 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.5ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 5.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | GC: 0.0ms)
+Completed 200 OK in 1286ms (Views: 9.8ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/id/24" for ::1 at 2025-09-24 20:10:32 -0500
+Processing by IngredientListRecipesController#show as HTML
+  Parameters: {"id" => "24"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mIngredientList Load (0.7ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 AND "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:7:in 'IngredientListRecipesController#show'
+  [1m[36mIngredient Pluck (0.6ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:8:in 'IngredientListRecipesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering ingredient_list_recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.0ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/ingredient_list_recipes/show.html.erb:343
+  Rendered ingredient_list_recipes/show.html.erb within layouts/application (Duration: 11.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.4ms | GC: 0.0ms)
+Completed 200 OK in 1603ms (Views: 21.1ms | ActiveRecord: 1.9ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:11:22 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (1.0ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 16.1ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 21.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.7ms | GC: 0.0ms)
+Completed 200 OK in 1324ms (Views: 32.1ms | ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/recipe_searches" for ::1 at 2025-09-24 20:12:12 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => "23"}, "commit" => "Search Recipes"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (5.1ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-25 01:12:13.590691', '2025-09-25 01:12:13.590691', 23) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/93
+Completed 302 Found in 1253ms (ActiveRecord: 16.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/93" for ::1 at 2025-09-24 20:12:13 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "93"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mRecipeSearch Load (0.5ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 93 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:46:in 'RecipeSearchesController#set_recipe_search'
+  [1m[36mIngredientList Load (0.8ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."id" = 23 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:14:in 'RecipeSearchesController#show'
+  [1m[36mIngredient Pluck (0.7ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 23 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:15:in 'RecipeSearchesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.0ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 23[0m
+  ↳ app/views/recipe_searches/show.html.erb:343
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 16.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 35.9ms | GC: 0.0ms)
+Completed 200 OK in 1701ms (Views: 40.2ms | ActiveRecord: 2.6ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:12:24 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.5ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 37.9ms | GC: 29.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 41.5ms | GC: 29.4ms)
+Completed 200 OK in 1309ms (Views: 42.5ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 29.4ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:12:28 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.8ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 7.9ms | GC: 1.2ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 14.1ms | GC: 1.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.7ms | GC: 1.2ms)
+Completed 200 OK in 1306ms (Views: 23.4ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+Started POST "/recipe_searches" for ::1 at 2025-09-24 20:12:34 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => "24"}, "commit" => "Search Recipes"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (7.8ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-25 01:12:36.028368', '2025-09-25 01:12:36.028368', 24) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/94
+Completed 302 Found in 1273ms (ActiveRecord: 11.4ms (2 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/recipe_searches/94" for ::1 at 2025-09-24 20:12:36 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "94"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mRecipeSearch Load (0.5ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 94 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:46:in 'RecipeSearchesController#set_recipe_search'
+  [1m[36mIngredientList Load (0.8ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:14:in 'RecipeSearchesController#show'
+  [1m[36mIngredient Pluck (0.7ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:15:in 'RecipeSearchesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.1ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/recipe_searches/show.html.erb:343
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 32.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 42.3ms | GC: 0.0ms)
+Completed 200 OK in 1701ms (Views: 48.1ms | ActiveRecord: 2.4ms (5 queries, 1 cached) | GC: 1.7ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:13:08 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg", "saved_recipe" => {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (9.2ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52940' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.6ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52940', 'Brown Stew Chicken', 'https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg', '2025-09-25 01:13:10.213156', '2025-09-25 01:13:10.213156') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1283ms (Views: 0.6ms | ActiveRecord: 20.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:13:12 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 10.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.0ms | GC: 0.0ms)
+Completed 200 OK in 1224ms (Views: 13.7ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:13:28 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg", "saved_recipe" => {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (5.1ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52796' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (1.0ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52796', 'Chicken Alfredo Primavera', 'https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg', '2025-09-25 01:13:29.893519', '2025-09-25 01:13:29.893519') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (8.6ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1071ms (Views: 0.2ms | ActiveRecord: 15.6ms (3 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:13:33 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.5ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | GC: 0.0ms)
+Completed 200 OK in 1042ms (Views: 12.8ms | ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:16:03 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 23.7ms | GC: 3.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 70.7ms | GC: 3.0ms)
+Completed 200 OK in 1537ms (Views: 95.2ms | ActiveRecord: 8.9ms (2 queries, 0 cached) | GC: 3.5ms)
+
+
+Started GET "/recipe_searches/id/24" for ::1 at 2025-09-24 20:16:06 -0500
+Processing by IngredientListRecipesController#show as HTML
+  Parameters: {"id" => "24"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mIngredientList Load (0.5ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 AND "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:7:in 'IngredientListRecipesController#show'
+  [1m[36mIngredient Pluck (0.6ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:8:in 'IngredientListRecipesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering ingredient_list_recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.1ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/ingredient_list_recipes/show.html.erb:343
+  Rendered ingredient_list_recipes/show.html.erb within layouts/application (Duration: 14.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.5ms | GC: 0.0ms)
+Completed 200 OK in 1942ms (Views: 29.0ms | ActiveRecord: 11.9ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:16:10 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 14.5ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 35.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 39.6ms | GC: 0.0ms)
+Completed 200 OK in 1146ms (Views: 46.7ms | ActiveRecord: 3.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:16:13 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.7ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 9.0ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 11.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.0ms | GC: 0.0ms)
+Completed 200 OK in 1226ms (Views: 16.9ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/saved_recipes/20" for ::1 at 2025-09-24 20:16:17 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "20"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.8ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 20 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (4.7ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 20 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (8.9ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1164ms (ActiveRecord: 15.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:16:18 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 8.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | GC: 0.0ms)
+Completed 200 OK in 1055ms (Views: 13.3ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/saved_recipes/21" for ::1 at 2025-09-24 20:16:21 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "21"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 21 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (5.2ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 21 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1098ms (ActiveRecord: 15.8ms (3 queries, 0 cached) | GC: 20.3ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:16:22 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 6.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | GC: 0.0ms)
+Completed 200 OK in 1094ms (Views: 10.6ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+Started POST "/recipe_searches" for ::1 at 2025-09-24 20:16:31 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => "24"}, "commit" => "Search Recipes"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (4.9ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-25 01:16:32.779106', '2025-09-25 01:16:32.779106', 24) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (8.3ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/95
+Completed 302 Found in 1149ms (ActiveRecord: 14.2ms (2 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/recipe_searches/95" for ::1 at 2025-09-24 20:16:32 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "95"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mRecipeSearch Load (0.5ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 95 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:46:in 'RecipeSearchesController#set_recipe_search'
+  [1m[36mIngredientList Load (0.5ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:14:in 'RecipeSearchesController#show'
+  [1m[36mIngredient Pluck (0.8ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:15:in 'RecipeSearchesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.0ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/recipe_searches/show.html.erb:343
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 13.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.2ms | GC: 0.0ms)
+Completed 200 OK in 1484ms (Views: 18.8ms | ActiveRecord: 2.3ms (5 queries, 1 cached) | GC: 2.0ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:16:36 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg", "saved_recipe" => {"meal_id" => "52940", "name" => "Brown Stew Chicken", "thumbnail" => "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (5.6ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52940' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.8ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52940', 'Brown Stew Chicken', 'https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg', '2025-09-25 01:16:37.914503', '2025-09-25 01:16:37.914503') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (10.6ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1091ms (Views: 0.4ms | ActiveRecord: 17.8ms (3 queries, 0 cached) | GC: 0.8ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:16:42 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg", "saved_recipe" => {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (5.8ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52796' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.6ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52796', 'Chicken Alfredo Primavera', 'https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg', '2025-09-25 01:16:44.242961', '2025-09-25 01:16:44.242961') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (9.1ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1093ms (Views: 0.2ms | ActiveRecord: 16.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:16:45 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 8.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | GC: 0.0ms)
+Completed 200 OK in 1138ms (Views: 12.3ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/saved_recipes/22" for ::1 at 2025-09-24 20:16:50 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "22"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 22 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (5.9ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 22 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1176ms (ActiveRecord: 15.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:16:52 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.8ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 8.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | GC: 0.0ms)
+Completed 200 OK in 1026ms (Views: 11.8ms | ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started DELETE "/saved_recipes/23" for ::1 at 2025-09-24 20:16:55 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "23"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 23 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (5.0ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 23 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (9.3ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1208ms (ActiveRecord: 15.7ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:16:56 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 7.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | GC: 0.0ms)
+Completed 200 OK in 1053ms (Views: 10.5ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:17:05 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.5ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 6.3ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | GC: 0.0ms)
+Completed 200 OK in 1160ms (Views: 12.8ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/recipe_searches" for ::1 at 2025-09-24 20:17:51 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => "23"}, "commit" => "Search Recipes"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (10.5ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-25 01:17:53.291852', '2025-09-25 01:17:53.291852', 23) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/96
+Completed 302 Found in 1279ms (ActiveRecord: 13.6ms (2 queries, 0 cached) | GC: 2.8ms)
+
+
+Started GET "/recipe_searches/96" for ::1 at 2025-09-24 20:17:53 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "96"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mRecipeSearch Load (0.5ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 96 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:46:in 'RecipeSearchesController#set_recipe_search'
+  [1m[36mIngredientList Load (0.7ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."id" = 23 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:14:in 'RecipeSearchesController#show'
+  [1m[36mIngredient Pluck (0.7ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 23 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:15:in 'RecipeSearchesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.1ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 23[0m
+  ↳ app/views/recipe_searches/show.html.erb:343
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 16.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.9ms | GC: 0.0ms)
+Completed 200 OK in 1768ms (Views: 37.1ms | ActiveRecord: 2.4ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:18:02 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.5ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 6.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | GC: 0.0ms)
+Completed 200 OK in 1311ms (Views: 10.6ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:18:07 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 7.2ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 11.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | GC: 0.0ms)
+Completed 200 OK in 1316ms (Views: 17.3ms | ActiveRecord: 1.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/recipe_searches" for ::1 at 2025-09-24 20:18:12 -0500
+Processing by RecipeSearchesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "recipe_search" => {"ingredients" => "", "ingredient_list_id" => "24"}, "commit" => "Search Recipes"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mRecipeSearch Create (5.0ms)[0m  [1m[32mINSERT INTO "recipe_searches" ("ingredients", "created_at", "updated_at", "ingredient_list_id") VALUES ('', '2025-09-25 01:18:14.292041', '2025-09-25 01:18:14.292041', 24) RETURNING "id" /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:35:in 'RecipeSearchesController#create'
+Redirected to http://localhost:3000/recipe_searches/97
+Completed 302 Found in 1230ms (ActiveRecord: 13.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/97" for ::1 at 2025-09-24 20:18:14 -0500
+Processing by RecipeSearchesController#show as HTML
+  Parameters: {"id" => "97"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mRecipeSearch Load (0.7ms)[0m  [1m[34mSELECT "recipe_searches".* FROM "recipe_searches" WHERE "recipe_searches"."id" = 97 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:46:in 'RecipeSearchesController#set_recipe_search'
+  [1m[36mIngredientList Load (0.5ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:14:in 'RecipeSearchesController#show'
+  [1m[36mIngredient Pluck (0.7ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/recipe_searches_controller.rb:15:in 'RecipeSearchesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.1ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/recipe_searches/show.html.erb:343
+  Rendered recipe_searches/show.html.erb within layouts/application (Duration: 23.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.2ms | GC: 0.0ms)
+Completed 200 OK in 1535ms (Views: 35.9ms | ActiveRecord: 2.4ms (5 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:18:50 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52846", "name" => "Chicken & mushroom Hotpot", "thumbnail" => "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg", "saved_recipe" => {"meal_id" => "52846", "name" => "Chicken & mushroom Hotpot", "thumbnail" => "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (5.0ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52846' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.8ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52846', 'Chicken & mushroom Hotpot', 'https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg', '2025-09-25 01:18:52.375465', '2025-09-25 01:18:52.375465') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1252ms (Views: 0.2ms | ActiveRecord: 15.0ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:18:54 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.7ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 6.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | GC: 0.0ms)
+Completed 200 OK in 1290ms (Views: 15.3ms | ActiveRecord: 2.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:19:06 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (0.6ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 6.4ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 9.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | GC: 0.0ms)
+Completed 200 OK in 1357ms (Views: 18.5ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:19:11 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg", "saved_recipe" => {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (10.2ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52796' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Create (0.6ms)[0m  [1m[32mINSERT INTO "saved_recipes" ("user_id", "meal_id", "name", "thumbnail", "created_at", "updated_at") VALUES (8, '52796', 'Chicken Alfredo Primavera', 'https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg', '2025-09-25 01:19:13.343455', '2025-09-25 01:19:13.343455') RETURNING "id" /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (9.7ms)[0m  [1m[35mCOMMIT /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 200 OK in 1363ms (Views: 0.2ms | ActiveRecord: 21.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:19:16 -0500
+Processing by SavedRecipesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 9.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 0.0ms)
+Completed 200 OK in 1234ms (Views: 13.4ms | ActiveRecord: 1.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/new" for ::1 at 2025-09-24 20:19:23 -0500
+Processing by RecipeSearchesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering recipe_searches/new.html.erb within layouts/application
+  [1m[36mIngredientList Load (1.0ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 /*action='new',application='MealMatch',controller='recipe_searches'*/[0m
+  ↳ app/views/recipe_searches/_form.html.erb:208
+  Rendered recipe_searches/_form.html.erb (Duration: 10.6ms | GC: 0.0ms)
+  Rendered recipe_searches/new.html.erb within layouts/application (Duration: 13.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | GC: 0.0ms)
+Completed 200 OK in 1293ms (Views: 17.3ms | ActiveRecord: 1.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/saved_recipes/24" for ::1 at 2025-09-24 20:19:26 -0500
+Processing by SavedRecipesController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "id" => "24"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mSavedRecipe Load (0.5ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 AND "saved_recipes"."id" = 24 LIMIT 1 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:23:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mSavedRecipe Destroy (4.1ms)[0m  [1m[31mDELETE FROM "saved_recipes" WHERE "saved_recipes"."id" = 24 /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+  [1m[36mTRANSACTION (8.9ms)[0m  [1m[35mCOMMIT /*action='destroy',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:24:in 'SavedRecipesController#destroy'
+Redirected to http://localhost:3000/saved_recipes
+Completed 302 Found in 1246ms (ActiveRecord: 14.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/saved_recipes" for ::1 at 2025-09-24 20:19:27 -0500
+Processing by SavedRecipesController#index as TURBO_STREAM
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering saved_recipes/index.html.erb within layouts/application
+  [1m[36mSavedRecipe Load (0.6ms)[0m  [1m[34mSELECT "saved_recipes".* FROM "saved_recipes" WHERE "saved_recipes"."user_id" = 8 /*action='index',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/views/saved_recipes/index.html.erb:156
+  Rendered saved_recipes/index.html.erb within layouts/application (Duration: 8.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | GC: 0.0ms)
+Completed 200 OK in 1217ms (Views: 14.7ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/recipe_searches/id/24" for ::1 at 2025-09-24 20:19:47 -0500
+Processing by IngredientListRecipesController#show as HTML
+  Parameters: {"id" => "24"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mIngredientList Load (0.8ms)[0m  [1m[34mSELECT "ingredient_lists".* FROM "ingredient_lists" WHERE "ingredient_lists"."user_id" = 8 AND "ingredient_lists"."id" = 24 LIMIT 1 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:7:in 'IngredientListRecipesController#show'
+  [1m[36mIngredient Pluck (0.5ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24 /*action='show',application='MealMatch',controller='ingredient_list_recipes'*/[0m
+  ↳ app/controllers/ingredient_list_recipes_controller.rb:8:in 'IngredientListRecipesController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering ingredient_list_recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Ingredient Pluck (0.1ms)[0m  [1m[34mSELECT "ingredients"."title" FROM "ingredients" INNER JOIN "ingredient_list_items" ON "ingredients"."id" = "ingredient_list_items"."ingredient_id" WHERE "ingredient_list_items"."ingredient_list_id" = 24[0m
+  ↳ app/views/ingredient_list_recipes/show.html.erb:343
+  Rendered ingredient_list_recipes/show.html.erb within layouts/application (Duration: 14.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.5ms | GC: 0.0ms)
+Completed 200 OK in 1588ms (Views: 26.8ms | ActiveRecord: 2.1ms (4 queries, 1 cached) | GC: 0.8ms)
+
+
+Started POST "/saved_recipes" for ::1 at 2025-09-24 20:20:09 -0500
+Processing by SavedRecipesController#create as */*
+  Parameters: {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg", "saved_recipe" => {"meal_id" => "52796", "name" => "Chicken Alfredo Primavera", "thumbnail" => "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/application_controller.rb:21:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mSavedRecipe Exists? (10.3ms)[0m  [1m[34mSELECT 1 AS one FROM "saved_recipes" WHERE "saved_recipes"."meal_id" = '52796' AND "saved_recipes"."user_id" = 8 LIMIT 1 /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK /*action='create',application='MealMatch',controller='saved_recipes'*/[0m
+  ↳ app/controllers/saved_recipes_controller.rb:15:in 'SavedRecipesController#create'
+Completed 422 Unprocessable Content in 1370ms (Views: 0.4ms | ActiveRecord: 12.1ms (2 queries, 0 cached) | GC: 0.2ms)
+
+

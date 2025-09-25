@@ -516,6 +516,9 @@ function setupSaveButton(meal) {
         hateBtn.addEventListener("click", () => {
             currentIndex++;
             renderRecipe();
+            if (currentIndex < meals.length) {
+                setupSaveButton(meals[currentIndex]);
+    }
         });
 
         likeBtn.addEventListener("click", () => {
