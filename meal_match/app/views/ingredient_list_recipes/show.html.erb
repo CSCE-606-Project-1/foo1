@@ -542,6 +542,9 @@ function setupSaveButton(meal) {
                 if (e.key === "ArrowLeft") {
                     currentIndex++;
                     renderRecipe();
+                    if (currentIndex < meals.length) {
+                        setupSaveButton(meals[currentIndex]);
+                    }
                 } else if (e.key === "ArrowRight") {
                     showModal(meals[currentIndex]);
                 }
