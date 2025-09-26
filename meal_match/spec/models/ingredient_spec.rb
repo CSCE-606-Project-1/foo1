@@ -1,6 +1,8 @@
 require 'rails_helper'
-
 RSpec.describe Ingredient, type: :model do
+  after(:each) do
+    Ingredient.destroy_all
+  end
   let(:valid_attributes) do
     {
       # Identification of the provider

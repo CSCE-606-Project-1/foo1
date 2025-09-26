@@ -1,10 +1,1299 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+.recipe-search-form {
+    :root {
+        --ios-bg: #f2f2f7;
+        --ios-card-bg: #ffffff;
+        --ios-primary: #007aff;
+        --ios-danger: #ff3b30;
+        --ios-success: #34c759;
+        --ios-text-primary: #000000;
+        --ios-text-secondary: #8e8e93;
+        --ios-border: #c6c6c8;
+        --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+        --ios-radius: 12px;
+        --ios-radius-large: 16px;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+        background-color: var(--ios-bg);
+        color: var(--ios-text-primary);
+        padding: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        min-height: 100vh;
+    }
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    
+    .form-container {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        padding: 20px;
+        box-shadow: var(--ios-shadow);
+    }
+    
+    .error-container {
+        background-color: rgba(255, 59, 48, 0.1);
+        border: 1px solid var(--ios-danger);
+        border-radius: var(--ios-radius);
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .error-container h2 {
+        color: var(--ios-danger);
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    
+    .error-container ul {
+        padding-left: 20px;
+    }
+    
+    .error-container li {
+        color: var(--ios-danger);
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+    
+    .instruction-text {
+        color: var(--ios-text-secondary);
+        font-size: 15px;
+        font-style: italic;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 12px;
+        background-color: rgba(142, 142, 147, 0.1);
+        border-radius: var(--ios-radius);
+    }
+    
+    .form-section {
+        margin-bottom: 24px;
+    }
+    
+    .form-label {
+        display: block;
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--ios-text-primary);
+    }
+    
+    .form-textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--ios-border);
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        resize: vertical;
+        min-height: 100px;
+        transition: border-color 0.2s;
+    }
+    
+    .form-textarea:focus {
+        outline: none;
+        border-color: var(--ios-primary);
+    }
+    
+    .form-select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--ios-border);
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        background-color: white;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%238e8e93' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 12px;
+        transition: border-color 0.2s;
+    }
+    
+    .form-select:focus {
+        outline: none;
+        border-color: var(--ios-primary);
+    }
+    
+    .submit-button {
+        width: 100%;
+        padding: 16px;
+        background-color: var(--ios-primary);
+        color: white;
+        border: none;
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .submit-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    
+    .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0;
+        color: var(--ios-text-secondary);
+        font-size: 15px;
+    }
+    
+    .divider::before,
+    .divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid var(--ios-border);
+    }
+    
+    .divider::before {
+        margin-right: 16px;
+    }
+    
+    .divider::after {
+        margin-left: 16px;
+    }
+}
+
+.recipe-result-form{
+    :root {
+        --ios-bg: #f2f2f7;
+        --ios-card-bg: #ffffff;
+        --ios-primary: #007aff;
+        --ios-danger: #ff3b30;
+        --ios-success: #34c759;
+        --ios-text-primary: #000000;
+        --ios-text-secondary: #8e8e93;
+        --ios-border: #c6c6c8;
+        --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+        --ios-radius: 12px;
+        --ios-radius-large: 16px;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+        background-color: var(--ios-bg);
+        color: var(--ios-text-primary);
+        padding: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+    .back-button-container {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background-color: var(--ios-card-bg);
+        color: var(--ios-primary);
+        text-decoration: none;
+        border-radius: var(--ios-radius);
+        font-size: 16px;
+        font-weight: 500;
+        box-shadow: var(--ios-shadow);
+        transition: all 0.2s ease;
+    }
+
+    .back-button:hover {
+        background-color: rgba(0, 122, 255, 0.1);
+    }
+
+    .back-button:active {
+        transform: scale(0.98);
+    }
+    
+    .ingredient-section {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius);
+        padding: 16px;
+        margin-bottom: 20px;
+        box-shadow: var(--ios-shadow);
+    }
+    
+    .ingredient-section strong {
+        color: var(--ios-text-secondary);
+        font-size: 14px;
+        display: block;
+        margin-bottom: 4px;
+    }
+    
+    .ingredient-list {
+        font-size: 16px;
+        color: var(--ios-text-primary);
+    }
+    
+    #recipe-card {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--ios-shadow);
+        text-align: center;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #recipe-card h2 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+    
+    #recipe-card img {
+        border-radius: 12px;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+    
+    #recipe-card p {
+        color: var(--ios-text-secondary);
+        font-size: 14px;
+    }
+    
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: auto;
+    }
+    
+    .ios-button {
+        flex: 1;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+    }
+    
+    .ios-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    
+    #hate-btn {
+        background-color: var(--ios-danger);
+        color: white;
+    }
+    
+    #like-btn {
+        background-color: var(--ios-success);
+        color: white;
+    }
+    
+    #recipe-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        padding: 16px;
+    }
+    
+    .modal-content {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        width: 100%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin: 5vh auto;
+    }
+    
+    .modal-header {
+        padding: 16px;
+        border-bottom: 1px solid var(--ios-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large) var(--ios-radius-large) 0 0;
+        z-index: 10;
+    }
+    
+    .modal-header h2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    #modal-close {
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--ios-text-secondary);
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    #modal-close:hover {
+        background-color: var(--ios-bg);
+    }
+    
+    .modal-body {
+        padding: 16px;
+    }
+    
+    .modal-image {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .modal-section {
+        margin-bottom: 20px;
+    }
+    
+    .modal-section h3 {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--ios-text-primary);
+    }
+    
+    .modal-section p, .modal-section ul {
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--ios-text-primary);
+    }
+    
+    .modal-section ul {
+        padding-left: 20px;
+    }
+    
+    .modal-section li {
+        margin-bottom: 4px;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--ios-text-secondary);
+    }
+    
+    .empty-state p {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    @keyframes modalAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    .modal-content {
+        animation: modalAppear 0.3s ease;
+    }
+    
+    .keyboard-hint {
+        text-align: center;
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--ios-text-secondary);
+    }
+            .modal-footer {
+        padding: 16px;
+        border-top: 1px solid var(--ios-border);
+        display: flex;
+        justify-content: center;
+        background-color: var(--ios-card-bg);
+        border-radius: 0 0 var(--ios-radius-large) var(--ios-radius-large);
+        position: sticky;
+        bottom: 0;
+    }
+
+    .ios-save-button {
+        padding: 12px 24px;
+        background-color: var(--ios-primary);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .ios-save-button:hover {
+        background-color: #0056cc;
+    }
+
+    .ios-save-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+
+    .ios-save-button:disabled {
+        background-color: var(--ios-text-secondary);
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+.recipe-result-id-form{
+    :root {
+        --ios-bg: #f2f2f7;
+        --ios-card-bg: #ffffff;
+        --ios-primary: #007aff;
+        --ios-danger: #ff3b30;
+        --ios-success: #34c759;
+        --ios-text-primary: #000000;
+        --ios-text-secondary: #8e8e93;
+        --ios-border: #c6c6c8;
+        --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+        --ios-radius: 12px;
+        --ios-radius-large: 16px;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+        background-color: var(--ios-bg);
+        color: var(--ios-text-primary);
+        padding: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+    .back-button-container {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background-color: var(--ios-card-bg);
+        color: var(--ios-primary);
+        text-decoration: none;
+        border-radius: var(--ios-radius);
+        font-size: 16px;
+        font-weight: 500;
+        box-shadow: var(--ios-shadow);
+        transition: all 0.2s ease;
+    }
+
+    .back-button:hover {
+        background-color: rgba(0, 122, 255, 0.1);
+    }
+
+    .back-button:active {
+        transform: scale(0.98);
+    }
+    
+    .ingredient-section {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius);
+        padding: 16px;
+        margin-bottom: 20px;
+        box-shadow: var(--ios-shadow);
+    }
+    
+    .ingredient-section strong {
+        color: var(--ios-text-secondary);
+        font-size: 14px;
+        display: block;
+        margin-bottom: 4px;
+    }
+    
+    .ingredient-list {
+        font-size: 16px;
+        color: var(--ios-text-primary);
+    }
+    
+    #recipe-card {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: var(--ios-shadow);
+        text-align: center;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #recipe-card h2 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+    
+    #recipe-card img {
+        border-radius: 12px;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+    
+    #recipe-card p {
+        color: var(--ios-text-secondary);
+        font-size: 14px;
+    }
+    
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: auto;
+    }
+    
+    .ios-button {
+        flex: 1;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+    }
+    
+    .ios-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    
+    #hate-btn {
+        background-color: var(--ios-danger);
+        color: white;
+    }
+    
+    #like-btn {
+        background-color: var(--ios-success);
+        color: white;
+    }
+    
+    #recipe-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        padding: 16px;
+    }
+    
+    .modal-content {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        width: 100%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin: 5vh auto;
+    }
+    
+    .modal-header {
+        padding: 16px;
+        border-bottom: 1px solid var(--ios-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large) var(--ios-radius-large) 0 0;
+        z-index: 10;
+    }
+    
+    .modal-header h2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    #modal-close {
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--ios-text-secondary);
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    #modal-close:hover {
+        background-color: var(--ios-bg);
+    }
+    
+    .modal-body {
+        padding: 16px;
+    }
+    
+    .modal-image {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .modal-section {
+        margin-bottom: 20px;
+    }
+    
+    .modal-section h3 {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--ios-text-primary);
+    }
+    
+    .modal-section p, .modal-section ul {
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--ios-text-primary);
+    }
+    
+    .modal-section ul {
+        padding-left: 20px;
+    }
+    
+    .modal-section li {
+        margin-bottom: 4px;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--ios-text-secondary);
+    }
+    
+    .empty-state p {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    @keyframes modalAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    .modal-content {
+        animation: modalAppear 0.3s ease;
+    }
+    
+    .keyboard-hint {
+        text-align: center;
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--ios-text-secondary);
+    }
+    .modal-footer {
+        padding: 16px;
+        border-top: 1px solid var(--ios-border);
+        display: flex;
+        justify-content: center;
+        background-color: var(--ios-card-bg);
+        border-radius: 0 0 var(--ios-radius-large) var(--ios-radius-large);
+        position: sticky;
+        bottom: 0;
+    }
+
+    .ios-save-button {
+        padding: 12px 24px;
+        background-color: var(--ios-primary);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .ios-save-button:hover {
+        background-color: #0056cc;
+    }
+
+    .ios-save-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+
+    .ios-save-button:disabled {
+        background-color: var(--ios-text-secondary);
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+.ingredient-recipe-form{
+    :root {
+        --ios-bg: #f2f2f7;
+        --ios-card-bg: #ffffff;
+        --ios-primary: #007aff;
+        --ios-danger: #ff3b30;
+        --ios-success: #34c759;
+        --ios-text-primary: #000000;
+        --ios-text-secondary: #8e8e93;
+        --ios-border: #c6c6c8;
+        --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+        --ios-radius: 12px;
+        --ios-radius-large: 16px;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+        background-color: var(--ios-bg);
+        color: var(--ios-text-primary);
+        padding: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        min-height: 100vh;
+    }
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    
+    .form-container {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        padding: 20px;
+        box-shadow: var(--ios-shadow);
+    }
+    
+    .error-container {
+        background-color: rgba(255, 59, 48, 0.1);
+        border: 1px solid var(--ios-danger);
+        border-radius: var(--ios-radius);
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .error-container h2 {
+        color: var(--ios-danger);
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    
+    .error-container ul {
+        padding-left: 20px;
+    }
+    
+    .error-container li {
+        color: var(--ios-danger);
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+    
+    .instruction-text {
+        color: var(--ios-text-secondary);
+        font-size: 15px;
+        font-style: italic;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 12px;
+        background-color: rgba(142, 142, 147, 0.1);
+        border-radius: var(--ios-radius);
+    }
+    
+    .form-section {
+        margin-bottom: 24px;
+    }
+    
+    .form-label {
+        display: block;
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--ios-text-primary);
+    }
+    
+    .form-textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--ios-border);
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        resize: vertical;
+        min-height: 100px;
+        transition: border-color 0.2s;
+    }
+    
+    .form-textarea:focus {
+        outline: none;
+        border-color: var(--ios-primary);
+    }
+    
+    .form-select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--ios-border);
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        background-color: white;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%238e8e93' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 12px;
+        transition: border-color 0.2s;
+    }
+    
+    .form-select:focus {
+        outline: none;
+        border-color: var(--ios-primary);
+    }
+    
+    .submit-button {
+        width: 100%;
+        padding: 16px;
+        background-color: var(--ios-primary);
+        color: white;
+        border: none;
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .submit-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    
+    .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0;
+        color: var(--ios-text-secondary);
+        font-size: 15px;
+    }
+    
+    .divider::before,
+    .divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid var(--ios-border);
+    }
+    
+    .divider::before {
+        margin-right: 16px;
+    }
+    
+    .divider::after {
+        margin-left: 16px;
+    }
+        :root {
+        --ios-bg: #f2f2f7;
+        --ios-card-bg: #ffffff;
+        --ios-primary: #007aff;
+        --ios-danger: #ff3b30;
+        --ios-success: #34c759;
+        --ios-text-primary: #000000;
+        --ios-text-secondary: #8e8e93;
+        --ios-border: #c6c6c8;
+        --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+        --ios-radius: 12px;
+        --ios-radius-large: 16px;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+        background-color: var(--ios-bg);
+        color: var(--ios-text-primary);
+        padding: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        min-height: 100vh;
+    }
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    
+    .form-container {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        padding: 20px;
+        box-shadow: var(--ios-shadow);
+    }
+    
+    .error-container {
+        background-color: rgba(255, 59, 48, 0.1);
+        border: 1px solid var(--ios-danger);
+        border-radius: var(--ios-radius);
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .error-container h2 {
+        color: var(--ios-danger);
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    
+    .error-container ul {
+        padding-left: 20px;
+    }
+    
+    .error-container li {
+        color: var(--ios-danger);
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+    
+    .instruction-text {
+        color: var(--ios-text-secondary);
+        font-size: 15px;
+        font-style: italic;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 12px;
+        background-color: rgba(142, 142, 147, 0.1);
+        border-radius: var(--ios-radius);
+    }
+    
+    .form-section {
+        margin-bottom: 24px;
+    }
+    
+    .form-label {
+        display: block;
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--ios-text-primary);
+    }
+    
+    .form-textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--ios-border);
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        resize: vertical;
+        min-height: 100px;
+        transition: border-color 0.2s;
+    }
+    
+    .form-textarea:focus {
+        outline: none;
+        border-color: var(--ios-primary);
+    }
+    
+    .form-select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--ios-border);
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        background-color: white;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%238e8e93' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 12px;
+        transition: border-color 0.2s;
+    }
+    
+    .form-select:focus {
+        outline: none;
+        border-color: var(--ios-primary);
+    }
+    
+    .submit-button {
+        width: 100%;
+        padding: 16px;
+        background-color: var(--ios-primary);
+        color: white;
+        border: none;
+        border-radius: var(--ios-radius);
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .submit-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    
+    .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 20px 0;
+        color: var(--ios-text-secondary);
+        font-size: 15px;
+    }
+    
+    .divider::before,
+    .divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid var(--ios-border);
+    }
+    
+    .divider::before {
+        margin-right: 16px;
+    }
+    
+    .divider::after {
+        margin-left: 16px;
+    }
+}
+
+.save-recipe-page{
+    :root {
+        --ios-bg: #f2f2f7;
+        --ios-card-bg: #ffffff;
+        --ios-primary: #007aff;
+        --ios-danger: #ff3b30;
+        --ios-success: #34c759;
+        --ios-text-primary: #000000;
+        --ios-text-secondary: #8e8e93;
+        --ios-border: #c6c6c8;
+        --ios-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+        --ios-radius: 12px;
+        --ios-radius-large: 16px;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+        background-color: var(--ios-bg);
+        color: var(--ios-text-primary);
+        padding: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+        min-height: 100vh;
+    }
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    
+    .recipes-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .recipe-card {
+        background-color: var(--ios-card-bg);
+        border-radius: var(--ios-radius-large);
+        padding: 20px;
+        box-shadow: var(--ios-shadow);
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+    }
+    
+    .recipe-image {
+        width: 100px;
+        height: 100px;
+        border-radius: var(--ios-radius);
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+    
+    .recipe-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .recipe-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--ios-text-primary);
+        margin: 0;
+    }
+    
+    .remove-button {
+        align-self: flex-start;
+        padding: 8px 16px;
+        background-color: var(--ios-danger);
+        color: white;
+        border: none;
+        border-radius: var(--ios-radius);
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .remove-button:hover {
+        background-color: #d70015;
+    }
+    
+    .remove-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--ios-text-secondary);
+    }
+    
+    .empty-state p {
+        font-size: 17px;
+        margin: 0;
+    }
+    
+    .back-button-container {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
+    
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background-color: var(--ios-card-bg);
+        color: var(--ios-primary);
+        text-decoration: none;
+        border-radius: var(--ios-radius);
+        font-size: 16px;
+        font-weight: 500;
+        box-shadow: var(--ios-shadow);
+        transition: all 0.2s ease;
+    }
+    
+    .back-button:hover {
+        background-color: rgba(0, 122, 255, 0.1);
+    }
+    
+    .back-button:active {
+        transform: scale(0.98);
+    }
+}
