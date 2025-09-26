@@ -36,7 +36,7 @@ RSpec.describe "Dashboard Add Ingredients modal search", type: :system do
     page.find("#ingredients-search").send_keys('s') # trigger input event
     expect(page).to have_text("Chicken Thighs", wait: 5)
 
-    # Hitting Enter shouldn't navigate or close the modal
+  # Hitting Enter shouldn't navigate or close the modal
   page.find("#ingredients-search").send_keys(:enter)
   expect(page).to have_current_path("/add-ingredients") # still on add-ingredients
     expect(page).to have_selector("#ingredients-modal:not([hidden])", visible: :all)
