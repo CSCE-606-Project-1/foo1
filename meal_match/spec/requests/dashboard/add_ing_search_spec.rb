@@ -25,6 +25,17 @@ RSpec.describe "Dashboard Add Ingredients modal search", type: :system do
     fill_in "Search ingredients", with: "chicken thighs"
     expect(page.find("#ingredients-search").value).to eq("chicken thighs")
 
+    # Stub the backend search so tests don't call external API. Allow any
+    # argument because the test triggers an extra keystroke to fire input
+    # events and we don't care about the exact query string here.
+    allow(MealDbClient).to receive(:search_ingredients).and_return([
+      { id: "1", name: "Chicken Thighs", description: "Dark meat from chicken." }
+    ])
+
+    # Typing should trigger the JS controller which fetches results — wait for the item
+    page.find("#ingredients-search").send_keys('s') # trigger input event
+    expect(page).to have_text("Chicken Thighs", wait: 5)
+
     # Hitting Enter shouldn't navigate or close the modal
   page.find("#ingredients-search").send_keys(:enter)
   expect(page).to have_current_path("/add-ingredients") # still on add-ingredients

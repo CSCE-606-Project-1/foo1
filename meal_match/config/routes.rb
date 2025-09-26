@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#show", as: :dashboard
   # Dedicated page for adding ingredients (modal moved to its own route)
   get "/add-ingredients", to: "dashboard#add_ingredients", as: :add_ingredients
+  # AJAX endpoint for ingredient search used by the add-ingredients UI
+  get "/ingredient_search", to: "dashboard#ingredient_search", as: :ingredient_search
 
   # Redirect the root path to the login page
   root "login#new"
