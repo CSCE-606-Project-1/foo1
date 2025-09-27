@@ -3,4 +3,46 @@
 
 <%= button_to "Manage Ingredient Lists", ingredient_lists_path, method: :get %>
 
+<br/>
+
+<!-- local: true set because we want a new page getting loaded on -->
+<!-- form submission and not an AJAX request -->
+<%= form_with id: 'recipe-search-form',
+              url: '#',
+              method: :get,
+              local: true do %>
+  <%= select_tag :ingredient_list_id,
+      options_from_collection_for_select(@current_user_ingredient_lists, :id, :title),
+      {
+        id: "ingredient-list-selection-dropdown",
+        prompt: "Select an Ingredient List"
+      } %>
+
+  <%= submit_tag "Search Recipe" %>
+<% end %>
+
+<script>
+  // Try to generate the action URL when the user clicks on form submission,
+  // using the ingredient list that the user has selected.
+  //
+  // In case no ingredient list is selected, prevent the submission
+  // operation and raise and alert.
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('recipe-search-form');
+    const dropdown = document.getElementById('ingredient-list-selection-dropdown');
+
+    form.addEventListener('submit', function(event) {
+      const ingredientListId = dropdown.value;
+
+      if (!ingredientListId) {
+        alert("Please select an ingredient list");
+        event.preventDefault();
+        return;
+      }
+
+      // Update the form action dynamically before submission
+      form.action = `/recipes/ingredient_lists/${ingredientListId}`;
+    });
+  });
+</script>
 
