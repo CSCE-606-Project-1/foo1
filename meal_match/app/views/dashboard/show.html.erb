@@ -1,7 +1,10 @@
 <h1>Dashboard of <%= current_user.first_name %> <%= current_user.last_name %></h1>
 <h2>(<%= current_user.email %>)</h2>
 
-<%= button_to "Manage Ingredient Lists", ingredient_lists_path, method: :get %>
+<%= button_to "Manage Ingredient Lists",
+    ingredient_lists_path,
+    method: :get,
+    id: 'manage-ingredient-lists-btn' %>
 
 <br/>
 
@@ -18,7 +21,7 @@
         prompt: "Select an Ingredient List"
       } %>
 
-  <%= submit_tag "Search Recipe" %>
+  <%= submit_tag "Search Recipe", id: "recipe-search-submit" %>
 <% end %>
 
 <script>
