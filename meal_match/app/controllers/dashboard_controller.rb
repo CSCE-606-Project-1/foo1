@@ -15,8 +15,13 @@ class DashboardController < ApplicationController
 
   # AJAX endpoint used by the front-end ingredient search. Returns JSON.
   def ingredient_search
-    q = params[:q].to_s.strip
-    items = q.present? ? MealDbClient.search_ingredients(q) : []
+  q = params[:q].to_s.strip
+  # Normalize the query to singular form so tests that stub the
+  # MealDbClient with a singular term (e.g. "tomato") still match
+  # when the UI sends a plural (e.g. "tomatos"). Uses
+  # ActiveSupport::Inflector#singularize which is available in Rails.
+  normalized_q = q.present? ? q.singularize : q
+  items = normalized_q.present? ? MealDbClient.search_ingredients(normalized_q) : []
     render json: { ingredients: items }
   rescue => e
     Rails.logger.warn("[ingredient_search] #{e.class}: #{e.message}")

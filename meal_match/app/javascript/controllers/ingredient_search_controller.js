@@ -2,10 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 
 // data-controller="ingredient-search"
 export default class extends Controller {
-  static targets = ["input", "results"]
+  static targets = ["input", "results", "selected"]
 
   connect() {
     this._timeout = null
+    this._selected = new Map()
     // Mark the element so the page-level fallback can detect Stimulus is active
     try {
       this.element.dataset.ingredientSearchConnected = "true"
@@ -66,10 +67,62 @@ export default class extends Controller {
       const li = document.createElement("li")
       li.style.padding = ".5rem"
       li.style.borderBottom = "1px solid #eee"
-      li.textContent = it.name || "Unnamed"
+      li.textContent = it.name || it.title || "Unnamed"
+      // attach data so we can identify the ingredient when clicked
+      if (it.id) li.dataset.ingId = it.id
+      if (it.name) li.dataset.ingName = it.name
+      li.style.cursor = 'pointer'
+  li.addEventListener('click', (e) => { e.stopPropagation(); this._toggleSelect(it) })
       ul.appendChild(li)
     })
 
+    container.appendChild(ul)
+    this._renderSelected()
+  }
+
+  _toggleSelect(it) {
+    const id = String(it.id || it.provider_id || it.idIngredient || it.providerId || it.id)
+    const name = it.name || it.title || it.name || 'Unnamed'
+    if (!id) return
+    if (this._selected.has(id)) this._selected.delete(id)
+    else this._selected.set(id, name)
+    this._renderSelected()
+  }
+
+  _renderSelected() {
+    if (!this.hasSelectedTarget) return
+    const container = this.selectedTarget
+    container.innerHTML = ''
+    if (this._selected.size === 0) {
+      container.hidden = true
+      return
+    }
+    container.hidden = false
+    const ul = document.createElement('ul')
+    ul.style.listStyle = 'none'
+    ul.style.padding = '0'
+    ul.style.margin = '0.5rem 0 0 0'
+    Array.from(this._selected.entries()).forEach(([id, name]) => {
+      const li = document.createElement('li')
+      li.style.display = 'inline-block'
+      li.style.padding = '.25rem .5rem'
+      li.style.margin = '.25rem'
+      li.style.border = '1px solid #ddd'
+      li.style.borderRadius = '.5rem'
+      li.style.background = '#f7f7f7'
+      li.textContent = name
+      li.dataset.ingId = id
+      li.style.cursor = 'pointer'
+      // clicking a selected item will remove it
+      li.addEventListener('click', (e) => {
+        // Prevent the click from bubbling up to the modal backdrop which would
+        // close the modal when the element is removed during the click handler.
+        e.stopPropagation()
+        this._selected.delete(id)
+        this._renderSelected()
+      })
+      ul.appendChild(li)
+    })
     container.appendChild(ul)
   }
 }

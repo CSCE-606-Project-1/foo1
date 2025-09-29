@@ -73,13 +73,8 @@
       });
     }
 
-    modal.addEventListener("click", (e) => {
-      if (modal.dataset.modalConnected === "true") return
-      if (!panel.contains(e.target)) {
-        modal.hidden = true;
-        if (search) search.value = "";
-      }
-    });
+    // Do not close modal on backdrop clicks for accessibility/usability.
+    // The Close button and Escape key are the only ways to exit the modal.
 
     if (close) close.addEventListener("click", () => {
       if (modal.dataset.modalConnected === "true") return
