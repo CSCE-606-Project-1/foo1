@@ -12,7 +12,7 @@ RSpec.describe "Ingredient selection UI", type: :system do
       { id: '10', name: 'Tomato', description: 'Red vegetable' }
     ])
 
-    visit "/add-ingredients"
+  visit "/ingredient-list"
     click_button "Add Ingredients +"
 
     # type to trigger search

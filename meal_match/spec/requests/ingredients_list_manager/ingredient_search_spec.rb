@@ -14,7 +14,7 @@ RSpec.describe "Ingredient search UI", type: :system do
       { id: '2', name: 'Chicken Stock', description: 'Broth' }
     ])
 
-    visit "/add-ingredients"
+  visit "/ingredient-list"
 
     # Open the modal
     click_button "Add Ingredients +"

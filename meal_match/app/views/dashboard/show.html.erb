@@ -1,93 +1,9 @@
 <h1>Dashboard of <%= current_user.first_name %> <%= current_user.last_name %></h1>
 <h2>(<%= current_user.email %>)</h2>
 
-<div data-controller="modal">
+<div>
   <!-- The button now navigates to a dedicated add-ingredients page where the
        modal and search bar live. This makes it easier to test the feature as
        its own route. -->
-  <%= link_to "Add Ingredients +", add_ingredients_path, id: "add-ingredients-btn" %>
+  <%= link_to "Add Ingredients +", ingredient_list_path, id: "add-ingredients-btn" %>
 </div>
-
-<style>
-  /* Browser already treats [hidden] as display:none, but belt + suspenders */
-  [hidden] { display: none !important; }
-
-  .modal-backdrop {
-    position: fixed; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,0.5);
-    padding: 1rem;
-    z-index: 50;
-  }
-  .modal-panel {
-    background: #fff;
-    width: 100%;
-    max-width: 32rem;
-    border-radius: .75rem;
-    padding: 1.25rem 1.5rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,.2);
-  }
-
-  /* Accessible, visually hidden label */
-  .visually-hidden {
-    position: absolute !important;
-    height: 1px; width: 1px;
-    overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap; border: 0; padding: 0; margin: -1px;
-  }
-</style>
-
-<script>
-  // Progressive enhancement fallback:
-  // Works if Stimulus isn't ready yet in headless/system tests.
-  (function attachWhenReady(fn) {
-    if (document.readyState !== "loading") fn();
-    else document.addEventListener("DOMContentLoaded", fn);
-    // Also run on Turbo page loads (when Turbo is present)
-    document.addEventListener("turbo:load", fn);
-  })(function () {
-    const btn     = document.getElementById("add-ingredients-btn");
-    const modal   = document.getElementById("ingredients-modal");
-    const panel   = modal && modal.querySelector(".modal-panel");
-    const close   = document.getElementById("ingredients-close-btn");
-    const search  = document.getElementById("ingredients-search");
-    const form    = search && search.closest("form");
-
-    if (!btn || !modal || !panel) return;
-
-    // If Stimulus is connected, it will also respond — this just ensures tests
-    // don't flake when Stimulus isn't ready yet.
-    btn.addEventListener("click", () => {
-      // If Stimulus modal controller attached, let it handle open/close behavior.
-      if (modal.dataset.modalConnected === "true") return
-      modal.hidden = false;
-      if (search) { search.focus(); search.select(); }
-      else { panel.focus(); }
-    });
-
-    // Prevent accidental page reloads if Enter is pressed in the search field
-    if (form) {
-      form.addEventListener("submit", (e) => {
-        if (modal.dataset.modalConnected === "true") return
-        e.preventDefault()
-      });
-    }
-
-    // Do not close modal on backdrop clicks for accessibility/usability.
-    // The Close button and Escape key are the only ways to exit the modal.
-
-    if (close) close.addEventListener("click", () => {
-      if (modal.dataset.modalConnected === "true") return
-      modal.hidden = true;
-      if (search) search.value = "";
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (modal.dataset.modalConnected === "true") return
-      if (e.key === "Escape") {
-        modal.hidden = true;
-        if (search) search.value = "";
-      }
-    });
-  });
-</script>
