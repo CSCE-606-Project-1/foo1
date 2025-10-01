@@ -21,6 +21,16 @@ class IngredientListsController < ApplicationController
     l = IngredientList.find_by(id: params[:id])
     if l.present?
       l.destroy # Leads to deletion from database
+
+  # Dedicated action for the legacy `/add-ingredients` endpoint. Kept as a
+  # separate action so the two public routes map to distinct controller
+  # methods (avoids confusion when tracing requests). Reuse the same view.
+  def add_ingredients
+    # Render the same UI as `show` when called without an :id. Intentionally
+    # do not load `current_user` collections here to keep behavior identical
+    # to the existing non-id show path used in tests.
+    render :show
+  end
       flash[:notice] = "Ingredient List removes successfully"
     else
       flash[:alert] = "Ingredient list with id #{params[:id]} not found"

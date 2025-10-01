@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # Dedicated page for adding ingredients (modal moved to its own route)
   # legacy add-ingredients path kept for backward compatibility; route to
   # the ingredient lists show page which renders the add-ingredients UI.
-  get "/add-ingredients", to: "ingredient_lists#show", as: :add_ingredients
+  get "/add-ingredients", to: "ingredient_lists#add_ingredients", as: :add_ingredients
   # Prefer the ingredient list show page which displays the add-ingredients UI
   get "/ingredient-list", to: "ingredient_lists#show", as: :ingredient_list
   # Endpoint for ingredient search used by the add-ingredients UI (AJAX)
