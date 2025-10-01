@@ -48,4 +48,32 @@ class IngredientListsController < ApplicationController
       render :show
     end
   end
+
+  # Search endpoint for ingredient lookups. Supports both JSON (AJAX) and
+  # HTML to allow a no-JS fallback for the add-ingredients UI.
+  def ingredient_search
+    q = params[:q].to_s.strip
+    normalized_q = q.present? ? q.singularize : q
+    items = normalized_q.present? ? MealDbClient.search_ingredients(normalized_q) : []
+
+    respond_to do |format|
+      format.json { render json: { ingredients: items } }
+      format.html do
+        # Server-render the full add-ingredients UI so non-JS users get a
+        # complete page. The `show` template will render the partial when
+        # `@search_items` is present.
+        @search_items = items
+        render :show
+      end
+    end
+  rescue => e
+    Rails.logger.warn("[ingredient_search] #{e.class}: #{e.message}")
+    respond_to do |format|
+      format.json { render json: { ingredients: [] }, status: :bad_gateway }
+      format.html do
+        @search_items = []
+        render :show, status: :bad_gateway
+      end
+    end
+  end
 end

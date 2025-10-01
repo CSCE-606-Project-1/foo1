@@ -19,7 +19,13 @@
       <!-- Ingredient search controller gets its own scope -->
       <div data-controller="ingredient-search">
         <!-- Search bar at the very top of the modal -->
-        <form role="search" data-action="submit->modal#preventSubmit" style="margin-bottom:.75rem;">
+        <!--
+          Non-JS fallback: the form submits to the ingredient_search endpoint
+          as HTML and the server renders the partial _ingredient_search_results
+          into the page. With JS enabled the Stimulus controller will handle
+          input events and the form's submit is prevented.
+        -->
+        <form role="search" action="<%= ingredient_search_path(format: :html) %>" method="get" data-action="submit->modal#preventSubmit" style="margin-bottom:.75rem;">
           <label for="ingredients-search" class="visually-hidden">Search ingredients</label>
           <input
             type="search"
@@ -34,7 +40,12 @@
         </form>
 
   <!-- Search results container (hidden when empty) -->
-  <div id="ingredient-results" data-ingredient-search-target="results" hidden aria-live="polite"></div>
+  <div id="ingredient-results" data-ingredient-search-target="results" hidden aria-live="polite">
+    <%# If this is a non-JS request and params[:q] is present, render results server-side %>
+    <% if params[:q].present? %>
+      <%= render partial: "ingredient_search_results", locals: { items: @search_items || [] } %>
+    <% end %>
+  </div>
   <!-- Selected ingredients will appear here -->
   <div id="ingredient-selected" data-ingredient-search-target="selected" hidden aria-live="polite" style="margin-top:.5rem;"></div>
       </div>

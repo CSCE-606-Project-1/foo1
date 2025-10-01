@@ -7,25 +7,6 @@ class DashboardController < ApplicationController
   def show
     @current_user_ingredient_lists = current_user.ingredient_lists
   end
-
   # Render a dedicated Add Ingredients page. The modal markup and
-  # progressive-enhancement JS are moved into a separate template so
-  # it can be tested and visited directly at /add-ingredients.
-  def add_ingredients
-  end
-
-  # AJAX endpoint used by the front-end ingredient search. Returns JSON.
-  def ingredient_search
-  q = params[:q].to_s.strip
-  # Normalize the query to singular form so tests that stub the
-  # MealDbClient with a singular term (e.g. "tomato") still match
-  # when the UI sends a plural (e.g. "tomatos"). Uses
-  # ActiveSupport::Inflector#singularize which is available in Rails.
-  normalized_q = q.present? ? q.singularize : q
-  items = normalized_q.present? ? MealDbClient.search_ingredients(normalized_q) : []
-    render json: { ingredients: items }
-  rescue => e
-    Rails.logger.warn("[ingredient_search] #{e.class}: #{e.message}")
-    render json: { ingredients: [] }, status: :bad_gateway
-  end
+  # progressive-enhancement JS were moved into the ingredient lists UI.
 end
