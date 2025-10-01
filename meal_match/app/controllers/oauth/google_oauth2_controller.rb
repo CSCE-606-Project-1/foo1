@@ -1,5 +1,9 @@
 module OAuth
   class GoogleOauth2Controller < ApplicationController
+    # This is the callback that would complete login, don't need
+    # a login before that
+    skip_before_action :require_login
+
     # The callback that we have set for user authentication via google,
     # this gets caled after a successful authentication with information
     # about the guy who was authenticated

@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
   before_action :require_login
 
   def show
+    @current_user_ingredient_lists = current_user.ingredient_lists
   end
 
   # Render a dedicated Add Ingredients page. The modal markup and

@@ -37,6 +37,12 @@ Rails.application.routes.draw do
   # AJAX endpoint for ingredient search used by the add-ingredients UI
   get "/ingredient_search", to: "dashboard#ingredient_search", as: :ingredient_search
 
+  resources :ingredient_lists, only: [ :index, :create, :destroy, :show ]
+
+  get "/recipes/ingredient_lists/:ingredient_list_id",
+      to: "recipes#search",
+      as: :recipes_search_path
+
   # Redirect the root path to the login page
   root "login#new"
 end
