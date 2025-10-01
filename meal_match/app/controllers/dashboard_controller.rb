@@ -7,4 +7,6 @@ class DashboardController < ApplicationController
   def show
     @current_user_ingredient_lists = current_user.ingredient_lists
   end
+  # Render a dedicated Add Ingredients page. The modal markup and
+  # progressive-enhancement JS were moved into the ingredient lists UI.
 end

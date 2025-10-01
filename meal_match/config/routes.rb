@@ -29,6 +29,15 @@ Rails.application.routes.draw do
 
   # Dashboard related (after login)
   get "/dashboard", to: "dashboard#show", as: :dashboard
+  # Dedicated page for adding ingredients (modal moved to its own route)
+  # legacy add-ingredients path kept for backward compatibility; route to
+  # the ingredient lists show page which renders the add-ingredients UI.
+  get "/add-ingredients", to: "ingredient_lists#add_ingredients", as: :add_ingredients
+  # Prefer the ingredient list show page which displays the add-ingredients UI
+  get "/ingredient-list", to: "ingredient_lists#show", as: :ingredient_list
+  # Endpoint for ingredient search used by the add-ingredients UI (AJAX)
+  # and by the no-JS fallback (HTML). Routed to IngredientListsController.
+  get "/ingredient_search", to: "ingredient_lists#ingredient_search", as: :ingredient_search
 
   resources :ingredient_lists, only: [ :index, :create, :destroy, :show ]
 
