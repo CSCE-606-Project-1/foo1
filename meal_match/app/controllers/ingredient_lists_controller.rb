@@ -31,10 +31,21 @@ class IngredientListsController < ApplicationController
 
   # GET /ingredient_lists/:id
   def show
-    @ingredient_list = IngredientList.find_by(id: params[:id])
-    if @ingredient_list.nil?
-      flash[:alert] = "Ingredient list with id #{params[:id]} not found"
-      redirect_to ingredient_lists_path
+    # Support two usages:
+    # - /ingredient-list -> render the add-ingredients UI for current_user
+    # - /ingredient_lists/:id -> show a specific list by id
+    if params[:id].present?
+      @ingredient_list = IngredientList.find_by(id: params[:id])
+      if @ingredient_list.nil?
+        flash[:alert] = "Ingredient list with id #{params[:id]} not found"
+        redirect_to ingredient_lists_path
+      end
+    else
+      # No id provided — render the shared add-ingredients UI. Do not access
+      # `current_user.ingredient_lists` here because system/request specs stub
+      # `current_user` with a lightweight double that may not implement that
+      # method; the UI doesn't require the collection to render.
+      render :show
     end
   end
 end

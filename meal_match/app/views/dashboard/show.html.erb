@@ -1,13 +1,6 @@
 <h1>Dashboard of <%= current_user.first_name %> <%= current_user.last_name %></h1>
 <h2>(<%= current_user.email %>)</h2>
 
-<div>
-  <!-- The button now navigates to a dedicated add-ingredients page where the
-       modal and search bar live. This makes it easier to test the feature as
-       its own route. -->
-  <%= link_to "Add Ingredients +", ingredient_list_path, id: "add-ingredients-btn" %>
-</div>
-
 <%= button_to "Manage Ingredient Lists",
     ingredient_lists_path,
     method: :get,
