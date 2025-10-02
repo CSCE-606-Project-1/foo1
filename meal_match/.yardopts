@@ -1,13 +1,16 @@
+--markup markdown
+--title "MealMatch API Reference"
+--readme doc/README.md
 app/**/*.rb
 lib/**/*.rb
 spec/**/*.rb
 config/initializers/**/*.rb
---exclude app/views/**
---exclude app/javascript/**
---exclude app/assets/**
---exclude public/**
+--exclude app/views/.*
+--exclude app/javascript/.*
+--exclude app/assets/.*
+--exclude public/.*
 --exclude config/*.yml
 --exclude config/credentials*
---exclude tmp/**
---exclude storage/**
---exclude vendor/**
+--exclude tmp/.*
+--exclude storage/.*
+--exclude vendor/.*

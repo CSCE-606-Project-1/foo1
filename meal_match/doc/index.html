@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; MealMatch API Reference
   
 </title>
 
@@ -58,44 +58,59 @@
       </div>
 
       <div id="content"><div id='filecontents'>
-<h1 id="label-README">README</h1>
+<h1 id="label-MealMatch+Codebase+Overview">MealMatch Codebase Overview</h1>
 
-<p>This README would normally document whatever steps are necessary to get the application up and running.</p>
+<p>This document provides a narrative companion to the generated YARD API reference. It highlights the major entry points in the application and where to look when you are extending the ingredient list experience.</p>
 
-<p>Things you may want to cover:</p>
+<h2 id="label-Key+Components">Key Components</h2>
 <ul><li>
-<p>Ruby version</p>
+<p><strong>Controllers</strong></p>
 </li><li>
-<p>System dependencies</p>
+<p><code>IngredientListsController</code> manages CRUD for ingredient lists and powers the add-ingredients UI (HTML and JSON responses).</p>
 </li><li>
-<p>Configuration</p>
+<p><code>DashboardController</code> surfaces the logged-in landing page and anchors the ingredient modal entry point.</p>
 </li><li>
-<p>Database creation</p>
+<p><code>RecipesController</code> exposes the recipe search endpoint that consumes ingredient lists.</p>
 </li><li>
-<p>Database initialization</p>
+<p><strong>Models</strong></p>
 </li><li>
-<p>How to run the test suite</p>
+<p><code>IngredientList</code>, <code>Ingredient</code>, and <code>IngredientListItem</code> define the many-to-many relationship backing saved ingredient collections.</p>
 </li><li>
-<p>Services (job queues, cache servers, search engines, etc.)</p>
+<p><code>User</code> owns ingredient lists; authentication is handled upstream (see <code>ApplicationController#current_user</code>).</p>
 </li><li>
-<p>Deployment instructions</p>
+<p><strong>Services</strong></p>
 </li><li>
-<p>...</p>
+<p><code>MealDbClient</code> is the integration point with TheMealDB API. It memoizes the ingredient catalog and exposes a lightweight search helper used by Stimulus and the no-JS fallback.</p>
 </li></ul>
 
-<h2 id="label-Generate+documentation">Generate documentation</h2>
+<h2 id="label-Front-End+Architecture">Front-End Architecture</h2>
+<ul><li>
+<p>Stimulus controllers live in <code>app/javascript/controllers/</code> and are auto-registered via the generated <code>index.js</code> manifest.</p>
+</li><li>
+<p>The ingredient modal is progressively enhanced: the markup in <code>app/views/ingredient_lists/show.html.erb</code> works without JavaScript, while <code>ModalController</code> and <code>IngredientSearchController</code> provide richer interactions when JS is enabled.</p>
+</li></ul>
 
-<p>If you have the development bundle installed you can generate YARD docs with:</p>
+<h2 id="label-Documentation+-26+Testing+Notes">Documentation &amp; Testing Notes</h2>
+<ul><li>
+<p>Specs under <code>spec/requests/ingredients_list_manager/</code> exercise both Stimulus-enhanced flows and the no-JS fallback.</p>
+</li><li>
+<p>The YARD configuration excludes rendered assets and adds these prose guides to the generated reference. Run <code>yard doc --plugin rspec</code> to refresh documentation and <code>yard server --reload</code> to browse at <a href="http://localhost:8808">localhost:8808</a>.</p>
+</li></ul>
 
-<pre class="code ruby"><code class="ruby">bundle install --with development
-bundle exec rake docs:yard
-</code></pre>
+<h2 id="label-Adding+Documentation">Adding Documentation</h2>
+<ul><li>
+<p>Prefer YARD-style docstrings (<code>##</code> with <code>@param</code>, <code>@return</code>, etc.) directly above methods and classes.</p>
+</li><li>
+<p>Group related helpers with <code>@!group</code> directives if a class exposes multiple public entry points.</p>
+</li><li>
+<p>Keep external integration details (API requirements, caching semantics) at the class level—see <code>MealDbClient</code> for an example.</p>
+</li></ul>
 
-<p>This will write generated documentation to <code>doc/yard</code>.</p>
+<p>For broader onboarding material (environment setup, deployment), continue to rely on the project README.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Oct  2 17:50:57 2025 by
+  Generated on Thu Oct  2 18:11:09 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
