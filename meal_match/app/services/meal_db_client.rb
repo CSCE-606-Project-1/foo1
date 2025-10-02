@@ -4,8 +4,20 @@ require "net/http"
 require "uri"
 require "json"
 
+# Lightweight client for fetching ingredient metadata from TheMealDB service.
+#
+# This class intentionally exposes only two high-level helpers used by the
+# application: searching a cached list of ingredients and fetching the full
+# list from the upstream API. Results are returned as an Array of Hashes with
+# the keys :id, :name and :description.
 class MealDbClient
-  # Returns [{ id:, name:, description: }, ...] filtered by substring match.
+  # Search cached ingredient metadata for a substring match on the ingredient
+  # name (case-insensitive).
+  #
+  # @param query [String, #to_s] substring to search for. Blank or nil values
+  #   return an empty array.
+  # @return [Array<Hash{Symbol=>String}>] up to 25 ingredient hashes matching
+  #   the query. Each hash contains :id, :name, and :description keys.
   def self.search_ingredients(query)
     q = query.to_s.strip
     return [] if q.empty?
@@ -15,6 +27,14 @@ class MealDbClient
     all.select { |ing| (ing[:name] || "").downcase.include?(qd) }[0, 25]
   end
 
+  # Fetch and memoize the authoritative ingredient list from TheMealDB's
+  # API. This method memoizes the result for the process lifetime so calls are
+  # cheap after the first successful fetch.
+  #
+  # @return [Array<Hash{Symbol=>String}>] list of ingredient hashes with the
+  #   keys :id, :name and :description. Returns an empty array if the HTTP
+  #   request fails or the upstream response is malformed.
+  # @raise [KeyError] if the environment variable THEMEALDB_API_KEY is not set
   def self.fetch_all_ingredients
     # memoize once per process
     @ingredients_cache ||= begin

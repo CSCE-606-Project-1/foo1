@@ -1,8 +1,19 @@
+
+# !/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Simple controller for recipe-specific endpoints (placeholder).
 class RecipesController < ApplicationController
+  # Controller responsible for recipe-related endpoints. Currently only a
+  # placeholder search action is implemented — recipe matching logic is
+  # intended to be added later.
+  #
   # GET /recipes/ingredients/:ingredient_id
   #
   # Given an ingredient list id, search for the recipes that the user
   # can cook using those ingredients.
+  #
+  # @return [void]
   def search
     list_id = params[:ingredient_list_id]
     if list_id.nil?

@@ -1,4 +1,6 @@
 class CreateUserAccounts < ActiveRecord::Migration[8.0]
+  # Migration that creates the user_accounts table which stores external
+  # authentication provider information for users.
   def change
     create_table :user_accounts do |t|
       t.timestamps

@@ -1,11 +1,19 @@
+# Controller for managing user-created ingredient lists. Supports CRUD
+# actions and AJAX-backed ingredient searching used by the UI.
 class IngredientListsController < ApplicationController
   before_action :load_ingredient_list, only: %i[show update destroy]
   before_action :ensure_ingredient_list, only: %i[show update destroy], if: -> { params[:id].present? }
 
+  # List all ingredient lists for the current user.
+  #
+  # @return [void]
   def index
     @ingredient_lists = current_user.ingredient_lists
   end
 
+  # Create a new, untitled ingredient list for the current user.
+  #
+  # @return [void]
   def create
     list = current_user.ingredient_lists.build(title: "Untitled list")
     if list.save
@@ -17,6 +25,9 @@ class IngredientListsController < ApplicationController
     redirect_to ingredient_lists_path
   end
 
+  # Destroy an existing ingredient list belonging to the current user.
+  #
+  # @return [void]
   def destroy
     if @ingredient_list.present?
       @ingredient_list.destroy
@@ -29,6 +40,8 @@ class IngredientListsController < ApplicationController
   end
 
   # Dedicated action for the legacy `/add-ingredients` endpoint. Reuse show UI.
+  #
+  # @return [void]
   def add_ingredients
     @ingredient_list = nil
     @selected_ingredients = []
@@ -36,6 +49,8 @@ class IngredientListsController < ApplicationController
   end
 
   # GET /ingredient_lists/:id
+  #
+  # @return [void]
   def show
     if params[:id].blank?
       @selected_ingredients = []
@@ -46,6 +61,8 @@ class IngredientListsController < ApplicationController
   end
 
   # PATCH /ingredient_lists/:id
+  #
+  # @return [void]
   def update
     list_params = permitted_list_params
     selected_ids = Array(list_params.delete(:selected_ingredient_ids)).map(&:to_s).reject(&:blank?).uniq
@@ -69,6 +86,8 @@ class IngredientListsController < ApplicationController
   end
 
   # Search endpoint for ingredient lookups. Supports JSON (AJAX) and HTML.
+  #
+  # @return [void]
   def ingredient_search
     q = params[:q].to_s.strip
     normalized_q = q.present? ? q.singularize : q
@@ -109,6 +128,10 @@ class IngredientListsController < ApplicationController
     @ingredient_list = find_ingredient_list(params[:id])
   end
 
+  # Ensure the ingredient list exists for the given id, redirecting to the
+  # index with an alert if not found.
+  #
+  # @return [void]
   def ensure_ingredient_list
     return if @ingredient_list.present?
 
@@ -116,10 +139,20 @@ class IngredientListsController < ApplicationController
     redirect_to ingredient_lists_path
   end
 
+  # Permit list parameters from the request.
+  #
+  # @return [ActionController::Parameters]
   def permitted_list_params
     params.fetch(:ingredient_list, {}).permit(:title, selected_ingredient_ids: [])
   end
 
+  # Sync the selected ingredient provider IDs into the given list. This will
+  # create Ingredient records for any missing provider ids using data from
+  # MealDbClient.
+  #
+  # @param list [IngredientList]
+  # @param provider_ids [Array<String>]
+  # @return [void]
   def sync_selected_ingredients(list, provider_ids)
     if provider_ids.empty?
       list.ingredients = []
@@ -148,6 +181,12 @@ class IngredientListsController < ApplicationController
     list.ingredients = provider_ids.map { |provider_id| existing[provider_id] }.compact
   end
 
+
+  # Find an ingredient list for id. Returns nil when id is blank or record
+  # cannot be found.
+  #
+  # @param id [String,Integer]
+  # @return [IngredientList, nil]
   def find_ingredient_list(id)
     return if id.blank?
 
@@ -158,6 +197,14 @@ class IngredientListsController < ApplicationController
     end
   end
 
+  # Build a normalized array of selected ingredients for the given list and
+  # requested ids. Result items are hashes with :id and :name keys.
+  #
+  # @param list [IngredientList, nil]
+  # @param selected_ids [Array<String>]
+  # @param override [Boolean] whether the provided selected_ids should replace
+  #   the list contents
+  # @return [Array<Hash{Symbol=>String}>]
   def build_selected_ingredients(list:, selected_ids: [], override: false)
     selected_ids = Array(selected_ids).map(&:to_s).reject(&:blank?)
 

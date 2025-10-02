@@ -22,3 +22,13 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Generate documentation
+----------------------
+
+If you have the development bundle installed you can generate YARD docs with:
+
+	bundle install --with development
+	bundle exec rake docs:yard
+
+This will write generated documentation to `doc/yard`.

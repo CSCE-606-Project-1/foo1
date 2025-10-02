@@ -1,4 +1,7 @@
+## Base class for background jobs in the application.
 class ApplicationJob < ActiveJob::Base
+  # Base class for background jobs in the application. Configure global
+  # retry/discard behaviors here.
   # Automatically retry jobs that encountered a deadlock
   # retry_on ActiveRecord::Deadlocked
 

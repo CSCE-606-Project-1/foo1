@@ -1,6 +1,11 @@
+# Join model that connects IngredientList and Ingredient.
 class IngredientListItem < ApplicationRecord
-  # Maps the many to many association between ingredient list
-  # and ingredient
+  # Maps the many to many association between ingredient list and ingredient.
+  #
+  # @!attribute ingredient_list
+  #   @return [IngredientList]
+  # @!attribute ingredient
+  #   @return [Ingredient]
   belongs_to :ingredient_list
   belongs_to :ingredient
 

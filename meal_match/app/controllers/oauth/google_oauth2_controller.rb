@@ -1,4 +1,7 @@
+## Namespace containing OAuth provider callback controllers.
 module OAuth
+  # OAuth provider callbacks namespace. Controllers under this namespace
+  # implement provider-specific authentication callbacks used during login.
   class GoogleOauth2Controller < ApplicationController
     # This is the callback that would complete login, don't need
     # a login before that
@@ -7,6 +10,8 @@ module OAuth
     # The callback that we have set for user authentication via google,
     # this gets caled after a successful authentication with information
     # about the guy who was authenticated
+    #
+    # @return [void]
     def callback
       # authentication payload
       auth = request.env["omniauth.auth"]
