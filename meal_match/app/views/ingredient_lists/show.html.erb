@@ -2,12 +2,15 @@
 <% form_url     = @ingredient_list ? ingredient_list_path(@ingredient_list) : ingredient_lists_path %>
 <% form_method  = @ingredient_list ? :patch : :post %>
 <% preselected  = (@selected_ingredients || []).map { |item| { id: item[:id].to_s, name: item[:name].to_s } } %>
+<% title_param  = params.dig(:ingredient_list, :title) %>
+<% form_title   = title_param.nil? ? form_model.title.to_s : title_param.to_s %>
 
 <div data-controller="modal">
   <button
     type="button"
     id="add-ingredients-btn"
     data-action="click->modal#open"
+    class="js-only"
   >
     Add Ingredients +
   </button>
@@ -31,7 +34,7 @@
             id="ingredient-list-name"
             name="ingredient_list[title]"
             form="ingredient-list-form"
-            value="<%= form_model.title %>"
+            value="<%= form_title %>"
             placeholder="List name…"
             autocomplete="off"
             style="width:100%; box-sizing:border-box; padding:.5rem .75rem; border:1px solid #ccc; border-radius:.5rem;"
@@ -135,6 +138,31 @@
     background: #f7f7f7;
     cursor: pointer;
   }
+
+  .no-js-editor {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: .75rem;
+    max-width: 32rem;
+  }
+
+  .no-js-editor fieldset {
+    border: 1px solid #ddd;
+    padding: .75rem;
+    margin: 1rem 0;
+  }
+
+  .no-js-option {
+    display: block;
+    margin-bottom: .5rem;
+  }
+
+  .no-js-actions {
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+  }
 </style>
 
 <script>
@@ -181,6 +209,83 @@
     });
   });
 </script>
+
+<noscript>
+  <style>
+    .js-only { display: none !important; }
+  </style>
+  <section class="no-js-editor">
+    <h2>Manage Ingredient List</h2>
+    <%= form_with(model: form_model, url: form_url, method: form_method, local: true) do |form| %>
+      <div style="margin-bottom:1rem;">
+        <%= form.label :title, "Ingredient list name" %><br>
+        <%= form.text_field :title,
+                            value: form_title,
+                            style: "width:100%; padding:.5rem; border:1px solid #ccc; border-radius:.5rem;" %>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label for="no-js-search-input">Search ingredients</label><br>
+        <input
+          type="search"
+          id="no-js-search-input"
+          name="q"
+          value="<%= params[:q].to_s %>"
+          style="width:100%; padding:.5rem; border:1px solid #ccc; border-radius:.5rem;"
+        >
+        <%= hidden_field_tag :ingredient_list_id, @ingredient_list&.id %>
+        <div style="margin-top:.5rem;">
+          <button type="submit"
+                  formmethod="get"
+                  formaction="<%= ingredient_search_path(format: :html) %>"
+                  style="padding:.5rem 1rem;">Search</button>
+        </div>
+      </div>
+
+      <% results_items = (@search_items || []) %>
+      <% if results_items.present? %>
+        <fieldset class="no-js-results">
+          <legend>Search results</legend>
+          <% existing_ids = Array(@selected_ingredients).map { |item| item[:id] } %>
+          <% results_items.each do |raw| %>
+            <% provider_id = (raw[:id] || raw['id'] || raw[:provider_id] || raw['provider_id']).to_s %>
+            <% name = raw[:name] || raw['name'] || raw[:title] || raw['title'] || "Unnamed ingredient" %>
+            <label class="no-js-option">
+              <input type="checkbox"
+                     name="ingredient_list[selected_ingredient_ids][]"
+                     value="<%= provider_id %>"
+                     <%= 'checked' if existing_ids.include?(provider_id) %>>
+              <span><%= name %></span>
+            </label>
+          <% end %>
+        </fieldset>
+      <% end %>
+
+      <% selected_only = Array(@selected_ingredients) %>
+      <% if selected_only.present? %>
+        <% results_ids = results_items.map { |raw| (raw[:id] || raw['id'] || raw[:provider_id] || raw['provider_id']).to_s } %>
+        <fieldset class="no-js-selected">
+          <legend>Currently selected</legend>
+          <% selected_only.each do |item| %>
+            <% next if results_ids.include?(item[:id]) %>
+            <label class="no-js-option">
+              <input type="checkbox"
+                     name="ingredient_list[selected_ingredient_ids][]"
+                     value="<%= item[:id] %>"
+                     checked>
+              <span><%= item[:name] %></span>
+            </label>
+          <% end %>
+        </fieldset>
+      <% end %>
+
+      <div class="no-js-actions">
+        <%= form.submit "Save" %>
+        <%= link_to "Cancel", ingredient_lists_path %>
+      </div>
+    <% end %>
+  </section>
+</noscript>
 
 <script>
   (function attachFallback() {
