@@ -23,6 +23,16 @@
   </head>
 
   <body>
+    <!-- If there are flash alerts or notice messages, display them -->
+    <!-- irrespective of the page view (i.e. display for all pages)  -->
+    <% if flash[:notice] %>
+      <p class="flash-notice-text-style"><%= flash[:notice] %></p>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <p class="flash-alert-text-style"><%= flash[:alert] %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
