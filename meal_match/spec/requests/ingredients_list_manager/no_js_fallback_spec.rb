@@ -41,7 +41,7 @@ RSpec.describe "Ingredient list no-JS fallback", type: :request do
       q: "tomato",
       ingredient_list_id: ingredient_list.id,
       ingredient_list: {
-        selected_ingredient_ids: ["10"]
+        selected_ingredient_ids: [ "10" ]
       }
     }
 

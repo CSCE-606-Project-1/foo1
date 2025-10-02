@@ -79,8 +79,8 @@ class IngredientListsController < ApplicationController
       format.html do
         @ingredient_list = find_ingredient_list(params[:ingredient_list_id])
         ingredient_params = params[:ingredient_list]
-        selected_ids = ingredient_params&.[](:selected_ingredient_ids) || ingredient_params&.[]('selected_ingredient_ids')
-        override = ingredient_params&.key?(:selected_ingredient_ids) || ingredient_params&.key?('selected_ingredient_ids')
+        selected_ids = ingredient_params&.[](:selected_ingredient_ids) || ingredient_params&.[]("selected_ingredient_ids")
+        override = ingredient_params&.key?(:selected_ingredient_ids) || ingredient_params&.key?("selected_ingredient_ids")
         @selected_ingredients = build_selected_ingredients(
           list: @ingredient_list,
           selected_ids: selected_ids,
@@ -173,10 +173,10 @@ class IngredientListsController < ApplicationController
     end
 
     combined_ids = if override
-                      selected_ids
-                    else
-                      (base.map { |item| item[:id] } + selected_ids)
-                    end
+      selected_ids
+    else
+      (base.map { |item| item[:id] } + selected_ids)
+    end
 
     combined_ids = combined_ids.map(&:to_s).reject(&:blank?).uniq
     return base if combined_ids.empty? && !override
