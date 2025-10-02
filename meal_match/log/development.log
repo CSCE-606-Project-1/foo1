@@ -14168,3 +14168,20 @@ Started GET "/assets/controllers/modal_controller" for ::1 at 2025-10-02 15:51:4
 Started GET "/assets/controllers/application" for ::1 at 2025-10-02 15:51:43 -0500
 Started GET "/assets/controllers/hello_controller" for ::1 at 2025-10-02 15:51:43 -0500
 Started GET "/assets/controllers/modal_controller" for ::1 at 2025-10-02 15:51:44 -0500
+[dotenv] Set [36mMEALDB_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (6.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+[dotenv] Set [36mMEALDB_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+[dotenv] Set [36mMEALDB_API_KEY[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='MealMatch'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(3821861955196197675) /*application='MealMatch'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MealMatch'*/[0m

@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_20_151012) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
+  # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "ingredient_list_items", force: :cascade do |t|
@@ -60,6 +61,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_20_151012) do
     t.string "meal_id"
     t.string "name"
     t.string "thumbnail"
+    t.string "category"
+    t.string "area"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_saved_recipes_on_user_id"
