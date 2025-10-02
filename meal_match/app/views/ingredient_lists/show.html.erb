@@ -19,6 +19,18 @@
       <!-- Ingredient search controller gets its own scope -->
       <div data-controller="ingredient-search">
         <!-- Search bar at the very top of the modal -->
+        <!-- Name bar: allow the user to give this ingredient list a name -->
+        <div style="margin-bottom:.5rem;">
+          <label for="ingredient-list-name" class="visually-hidden">Ingredient list name</label>
+          <input
+            type="text"
+            id="ingredient-list-name"
+            name="ingredient_list[name]"
+            placeholder="List name…"
+            autocomplete="off"
+            style="width:100%; box-sizing:border-box; padding:.5rem .75rem; border:1px solid #ccc; border-radius:.5rem;"
+          >
+        </div>
         <!--
           Non-JS fallback: the form submits to the ingredient_search endpoint
           as HTML and the server renders the partial _ingredient_search_results
