@@ -1,3 +1,8 @@
+<% form_model   = @ingredient_list || IngredientList.new %>
+<% form_url     = @ingredient_list ? ingredient_list_path(@ingredient_list) : ingredient_lists_path %>
+<% form_method  = @ingredient_list ? :patch : :post %>
+<% preselected  = (@selected_ingredients || []).map { |item| { id: item[:id].to_s, name: item[:name].to_s } } %>
+
 <div data-controller="modal">
   <button
     type="button"
@@ -7,7 +12,6 @@
     Add Ingredients +
   </button>
 
-  <!-- Backdrop + modal panel (use native `hidden` so it truly doesn't intercept clicks) -->
   <div
     id="ingredients-modal"
     class="modal-backdrop"
@@ -16,28 +20,31 @@
     data-action="keydown@window->modal#escClose"
   >
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="ingredients-title" tabindex="-1">
-      <!-- Ingredient search controller gets its own scope -->
-      <div data-controller="ingredient-search">
-        <!-- Search bar at the very top of the modal -->
-        <!-- Name bar: allow the user to give this ingredient list a name -->
+      <div
+        data-controller="ingredient-search"
+        data-ingredient-search-preselected-value="<%= preselected.to_json %>"
+      >
         <div style="margin-bottom:.5rem;">
           <label for="ingredient-list-name" class="visually-hidden">Ingredient list name</label>
           <input
             type="text"
             id="ingredient-list-name"
-            name="ingredient_list[name]"
+            name="ingredient_list[title]"
+            form="ingredient-list-form"
+            value="<%= form_model.title %>"
             placeholder="List name…"
             autocomplete="off"
             style="width:100%; box-sizing:border-box; padding:.5rem .75rem; border:1px solid #ccc; border-radius:.5rem;"
           >
         </div>
-        <!--
-          Non-JS fallback: the form submits to the ingredient_search endpoint
-          as HTML and the server renders the partial _ingredient_search_results
-          into the page. With JS enabled the Stimulus controller will handle
-          input events and the form's submit is prevented.
-        -->
-        <form role="search" action="<%= ingredient_search_path(format: :html) %>" method="get" data-action="submit->modal#preventSubmit" style="margin-bottom:.75rem;">
+
+        <form
+          role="search"
+          action="<%= ingredient_search_path(format: :html) %>"
+          method="get"
+          data-action="submit->modal#preventSubmit"
+          style="margin-bottom:.75rem;"
+        >
           <label for="ingredients-search" class="visually-hidden">Search ingredients</label>
           <input
             type="search"
@@ -45,33 +52,55 @@
             name="q"
             placeholder="Search ingredients…"
             data-ingredient-search-target="input"
+            data-modal-target="search"
             data-action="input->ingredient-search#search"
             autocomplete="off"
             style="width:100%; padding:.5rem .75rem; border:1px solid #ccc; border-radius:.5rem;"
           >
         </form>
 
-  <!-- Search results container (hidden when empty) -->
-  <div id="ingredient-results" data-ingredient-search-target="results" hidden aria-live="polite">
-    <%# If this is a non-JS request and params[:q] is present, render results server-side %>
-    <% if params[:q].present? %>
-      <%= render partial: "ingredient_search_results", locals: { items: @search_items || [] } %>
-    <% end %>
-  </div>
-  <!-- Selected ingredients will appear here -->
-  <div id="ingredient-selected" data-ingredient-search-target="selected" hidden aria-live="polite" style="margin-top:.5rem;"></div>
-      </div>
+        <div id="ingredient-results" data-ingredient-search-target="results" hidden aria-live="polite">
+          <% if params[:q].present? %>
+            <%= render partial: "ingredient_search_results", locals: { items: @search_items || [] } %>
+          <% end %>
+        </div>
 
+        <% hidden_container_hidden = preselected.empty? %>
+        <div
+          id="ingredient-selected"
+          data-ingredient-search-target="selected"
+          aria-live="polite"
+          style="margin-top:.5rem;"
+          <%= "hidden" if hidden_container_hidden %>
+        >
+          <% preselected.each do |item| %>
+            <span class="selected-pill" data-ing-id="<%= item[:id] %>"><%= item[:name] %></span>
+          <% end %>
+        </div>
 
-      <div style="margin-top:1rem; display:flex; gap:.5rem; justify-content:flex-end;">
-        <button type="button" data-action="modal#close" id="ingredients-close-btn">Close</button>
+        <form id="ingredient-list-form" action="<%= form_url %>" method="post" style="margin-top:1rem;">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <% if form_method != :post %>
+            <input type="hidden" name="_method" value="<%= form_method %>">
+          <% end %>
+
+          <div id="ingredient-selected-hidden-inputs" data-ingredient-search-target="hiddenInputs">
+            <% preselected.each do |item| %>
+              <input type="hidden" name="ingredient_list[selected_ingredient_ids][]" value="<%= item[:id] %>">
+            <% end %>
+          </div>
+
+          <div style="margin-top:1rem; display:flex; gap:.5rem; justify-content:flex-end;">
+            <button type="button" data-action="modal#close" id="ingredients-close-btn">Close</button>
+            <button type="submit" id="ingredient-save-btn">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  /* Browser already treats [hidden] as display:none, but belt + suspenders */
   [hidden] { display: none !important; }
 
   .modal-backdrop {
@@ -90,22 +119,28 @@
     box-shadow: 0 10px 25px rgba(0,0,0,.2);
   }
 
-  /* Accessible, visually hidden label */
   .visually-hidden {
     position: absolute !important;
     height: 1px; width: 1px;
     overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap; border: 0; padding: 0; margin: -1px;
   }
+
+  .selected-pill {
+    display: inline-block;
+    padding: .25rem .5rem;
+    margin: .25rem;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    background: #f7f7f7;
+    cursor: pointer;
+  }
 </style>
 
 <script>
-  // Progressive enhancement fallback:
-  // Works if Stimulus isn't ready yet in headless/system tests.
   (function attachWhenReady(fn) {
     if (document.readyState !== "loading") fn();
     else document.addEventListener("DOMContentLoaded", fn);
-    // Also run on Turbo page loads (when Turbo is present)
     document.addEventListener("turbo:load", fn);
   })(function () {
     const btn     = document.getElementById("add-ingredients-btn");
@@ -117,36 +152,28 @@
 
     if (!btn || !modal || !panel) return;
 
-    // If Stimulus is connected, it will also respond — this just ensures tests
-    // don't flake when Stimulus isn't ready yet.
     btn.addEventListener("click", () => {
-      // If Stimulus modal controller attached, let it handle open/close behavior.
-      if (modal.dataset.modalConnected === "true") return
+      if (modal.dataset.modalConnected === "true") return;
       modal.hidden = false;
       if (search) { search.focus(); search.select(); }
       else { panel.focus(); }
     });
 
-    // Prevent accidental page reloads if Enter is pressed in the search field
     if (form) {
       form.addEventListener("submit", (e) => {
-        if (modal.dataset.modalConnected === "true") return
-        e.preventDefault()
+        if (modal.dataset.modalConnected === "true") return;
+        e.preventDefault();
       });
     }
 
-    // Do not close modal on backdrop clicks for accessibility/usability.
-    // The Close button and Escape key are the only ways to exit the modal.
-    // Keep the fallback open button behavior above.
-
     if (close) close.addEventListener("click", () => {
-      if (modal.dataset.modalConnected === "true") return
+      if (modal.dataset.modalConnected === "true") return;
       modal.hidden = true;
       if (search) search.value = "";
     });
 
     document.addEventListener("keydown", (e) => {
-      if (modal.dataset.modalConnected === "true") return
+      if (modal.dataset.modalConnected === "true") return;
       if (e.key === "Escape") {
         modal.hidden = true;
         if (search) search.value = "";
@@ -156,99 +183,126 @@
 </script>
 
 <script>
-  // Fallback search wiring: in case Stimulus hasn't attached, wire the input
-  // to call /ingredient_search and render results into #ingredient-results.
   (function attachFallback() {
-    function renderResults(container, items) {
-      if (!container) return
-      container.innerHTML = ''
-      if (!items || items.length === 0) { container.hidden = true; return }
-      container.hidden = false
-      const ul = document.createElement('ul')
-      ul.style.listStyle = 'none'
-      ul.style.padding = '0'
-      ul.style.margin = '0.5rem 0 0 0'
-      items.forEach(it => {
-        const li = document.createElement('li')
-        li.style.padding = '.5rem'
-        li.style.borderBottom = '1px solid #eee'
-        li.style.cursor = 'pointer'
-        li.textContent = it.name || it.title || 'Unnamed'
-        if (it.id) li.dataset.ingId = it.id
-        if (it.name) li.dataset.ingName = it.name
-        ul.appendChild(li)
-      })
-      container.appendChild(ul)
+    function renderSelectedFallback(selectedSet, container) {
+      if (!container) return;
+      container.innerHTML = '';
+      if (!selectedSet || selectedSet.size === 0) { container.hidden = true; return; }
+      container.hidden = false;
+      const ul = document.createElement('ul');
+      ul.style.listStyle = 'none';
+      ul.style.padding = '0';
+      ul.style.margin = '0.5rem 0 0 0';
+      Array.from(selectedSet.entries()).forEach(([id, name]) => {
+        const li = document.createElement('li');
+        li.style.display = 'inline-block';
+        li.style.padding = '.25rem .5rem';
+        li.style.margin = '.25rem';
+        li.style.border = '1px solid #ddd';
+        li.style.borderRadius = '.5rem';
+        li.style.background = '#f7f7f7';
+        li.textContent = name;
+        li.dataset.ingId = id;
+        li.style.cursor = 'pointer';
+        li.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectedSet.delete(id);
+          renderSelectedFallback(selectedSet, container);
+          syncHiddenFallback(selectedSet);
+        });
+        ul.appendChild(li);
+      });
+      container.appendChild(ul);
     }
 
-    function doSearch(q, container) {
-      if (!q) { renderResults(container, []); return }
+    function syncHiddenFallback(selectedSet) {
+      const hiddenContainer = document.getElementById('ingredient-selected-hidden-inputs');
+      if (!hiddenContainer) return;
+      hiddenContainer.innerHTML = '';
+      selectedSet.forEach((_, id) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'ingredient_list[selected_ingredient_ids][]';
+        input.value = id;
+        hiddenContainer.appendChild(input);
+      });
+    }
+
+    function renderResults(container, items, selectedSet) {
+      if (!container) return;
+      container.innerHTML = '';
+      if (!items || items.length === 0) { container.hidden = true; return; }
+      container.hidden = false;
+      const ul = document.createElement('ul');
+      ul.style.listStyle = 'none';
+      ul.style.padding = '0';
+      ul.style.margin = '0.5rem 0 0 0';
+      items.forEach(it => {
+        const li = document.createElement('li');
+        li.style.padding = '.5rem';
+        li.style.borderBottom = '1px solid #eee';
+        li.style.cursor = 'pointer';
+        const name = it.name || it.title || 'Unnamed';
+        li.textContent = name;
+        if (it.id) li.dataset.ingId = it.id;
+        li.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = li.dataset.ingId;
+          if (!id) return;
+          if (selectedSet.has(id)) selectedSet.delete(id);
+          else selectedSet.set(id, name);
+          renderSelectedFallback(selectedSet, document.getElementById('ingredient-selected'));
+          syncHiddenFallback(selectedSet);
+        });
+        ul.appendChild(li);
+      });
+      container.appendChild(ul);
+    }
+
+    function doSearch(q, container, selectedSet) {
+      if (!q) { renderResults(container, [], selectedSet); return; }
       fetch(`/ingredient_search?q=${encodeURIComponent(q)}`, { headers: { Accept: 'application/json' } })
-        .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.json() })
-        .then(body => renderResults(container, body.ingredients || []))
-        .catch(e => { console.warn('ingredient search failed', e); renderResults(container, []) })
+        .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.json(); })
+        .then(body => renderResults(container, body.ingredients || [], selectedSet))
+        .catch(e => { console.warn('ingredient search failed', e); renderResults(container, [], selectedSet); });
     }
 
     function wire() {
-      const input = document.getElementById('ingredients-search')
-      const container = document.getElementById('ingredient-results')
-      if (!input || !container) return
+      const root = document.querySelector('[data-controller="ingredient-search"]');
+      if (!root || root.dataset.ingredientSearchConnected === 'true') return;
 
-      // If Stimulus controller attached, skip fallback
-      if (input.closest('[data-ingredient-search-connected="true"]')) return
+      const input = document.getElementById('ingredients-search');
+      const container = document.getElementById('ingredient-results');
+      const selectedContainer = document.getElementById('ingredient-selected');
+      const preselected = JSON.parse(root.dataset.ingredientSearchPreselectedValue || '[]');
+      const selectedSet = new Map(preselected.map(item => [item.id, item.name]));
+      syncHiddenFallback(selectedSet);
+      renderSelectedFallback(selectedSet, selectedContainer);
 
-      let timeout = null
-      const selectedContainer = document.getElementById('ingredient-selected')
-      // simple selected set for fallback
-      const selectedSet = new Map()
+      if (!input || !container) return;
 
-      function renderSelectedFallback() {
-        if (!selectedContainer) return
-        selectedContainer.innerHTML = ''
-        if (selectedSet.size === 0) { selectedContainer.hidden = true; return }
-        selectedContainer.hidden = false
-        const ul = document.createElement('ul')
-        ul.style.listStyle = 'none'
-        ul.style.padding = '0'
-        ul.style.margin = '0.5rem 0 0 0'
-        Array.from(selectedSet.entries()).forEach(([id, name]) => {
-          const li = document.createElement('li')
-          li.style.display = 'inline-block'
-          li.style.padding = '.25rem .5rem'
-          li.style.margin = '.25rem'
-          li.style.border = '1px solid #ddd'
-          li.style.borderRadius = '.5rem'
-          li.style.background = '#f7f7f7'
-          li.textContent = name
-          li.dataset.ingId = id
-          li.style.cursor = 'pointer'
-          li.addEventListener('click', (e) => { e.stopPropagation(); selectedSet.delete(id); renderSelectedFallback() })
-          ul.appendChild(li)
-        })
-        selectedContainer.appendChild(ul)
-      }
-
+      let timeout = null;
       input.addEventListener('input', () => {
-        if (timeout) clearTimeout(timeout)
-        const q = (input.value || '').trim()
-        timeout = setTimeout(() => doSearch(q, container), 250)
-      })
+        if (timeout) clearTimeout(timeout);
+        const q = (input.value || '').trim();
+        timeout = setTimeout(() => doSearch(q, container, selectedSet), 250);
+      });
 
-      // click handler on results to select
       container.addEventListener('click', (e) => {
-        const li = e.target.closest('li')
-        if (!li) return
-        const id = li.dataset.ingId || li.dataset.ingId
-        const name = li.dataset.ingName || li.textContent
-        if (!id) return
-        if (selectedSet.has(id)) selectedSet.delete(id)
-        else selectedSet.set(id, name)
-        renderSelectedFallback()
-      })
+        const li = e.target.closest('li');
+        if (!li) return;
+        const id = li.dataset.ingId;
+        const name = li.textContent;
+        if (!id) return;
+        if (selectedSet.has(id)) selectedSet.delete(id);
+        else selectedSet.set(id, name);
+        renderSelectedFallback(selectedSet, selectedContainer);
+        syncHiddenFallback(selectedSet);
+      });
     }
 
-    if (document.readyState !== 'loading') wire()
-    else document.addEventListener('DOMContentLoaded', wire)
-    document.addEventListener('turbo:load', wire)
-  })()
+    if (document.readyState !== 'loading') wire();
+    else document.addEventListener('DOMContentLoaded', wire);
+    document.addEventListener('turbo:load', wire);
+  })();
 </script>

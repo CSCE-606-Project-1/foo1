@@ -1,37 +1,26 @@
 class IngredientListsController < ApplicationController
+  before_action :load_ingredient_list, only: %i[show update destroy]
+  before_action :ensure_ingredient_list, only: %i[show update destroy], if: -> { params[:id].present? }
+
   def index
     @ingredient_lists = current_user.ingredient_lists
   end
 
   def create
-    l = IngredientList.new(user: current_user, title: "Untitled list")
-    if l.save
-      # List created successfully
+    list = current_user.ingredient_lists.build(title: "Untitled list")
+    if list.save
       flash[:notice] = "New ingredient list created successfully"
     else
-      # Ingredient List creation failed
-      flash[:alert] = l.errors.full_messages.join(", ")
+      flash[:alert] = list.errors.full_messages.join(", ")
     end
 
     redirect_to ingredient_lists_path
   end
 
-  # DELETE /ingredient_lists/:id
   def destroy
-    l = IngredientList.find_by(id: params[:id])
-    if l.present?
-      l.destroy # Leads to deletion from database
-
-  # Dedicated action for the legacy `/add-ingredients` endpoint. Kept as a
-  # separate action so the two public routes map to distinct controller
-  # methods (avoids confusion when tracing requests). Reuse the same view.
-  def add_ingredients
-    # Render the same UI as `show` when called without an :id. Intentionally
-    # do not load `current_user` collections here to keep behavior identical
-    # to the existing non-id show path used in tests.
-    render :show
-  end
-      flash[:notice] = "Ingredient List removes successfully"
+    if @ingredient_list.present?
+      @ingredient_list.destroy
+      flash[:notice] = "Ingredient list removed successfully"
     else
       flash[:alert] = "Ingredient list with id #{params[:id]} not found"
     end
@@ -39,28 +28,52 @@ class IngredientListsController < ApplicationController
     redirect_to ingredient_lists_path
   end
 
+  # Dedicated action for the legacy `/add-ingredients` endpoint. Reuse show UI.
+  def add_ingredients
+    @ingredient_list = nil
+    @selected_ingredients = []
+    render :show
+  end
+
   # GET /ingredient_lists/:id
   def show
-    # Support two usages:
-    # - /ingredient-list -> render the add-ingredients UI for current_user
-    # - /ingredient_lists/:id -> show a specific list by id
-    if params[:id].present?
-      @ingredient_list = IngredientList.find_by(id: params[:id])
-      if @ingredient_list.nil?
-        flash[:alert] = "Ingredient list with id #{params[:id]} not found"
-        redirect_to ingredient_lists_path
-      end
-    else
-      # No id provided — render the shared add-ingredients UI. Do not access
-      # `current_user.ingredient_lists` here because system/request specs stub
-      # `current_user` with a lightweight double that may not implement that
-      # method; the UI doesn't require the collection to render.
-      render :show
+    if params[:id].blank?
+      @selected_ingredients = []
+      return
+    end
+
+    @selected_ingredients = @ingredient_list.ingredients.map do |ingredient|
+      {
+        id: ingredient.provider_id,
+        name: ingredient.title
+      }
     end
   end
 
-  # Search endpoint for ingredient lookups. Supports both JSON (AJAX) and
-  # HTML to allow a no-JS fallback for the add-ingredients UI.
+  # PATCH /ingredient_lists/:id
+  def update
+    list_params = permitted_list_params
+    selected_ids = Array(list_params.delete(:selected_ingredient_ids)).map(&:to_s).reject(&:blank?).uniq
+    title = list_params.delete(:title).to_s.strip
+    title = "Untitled list" if title.blank?
+
+    ActiveRecord::Base.transaction do
+      @ingredient_list.update!(title: title)
+      sync_selected_ingredients(@ingredient_list, selected_ids)
+    end
+
+    flash[:notice] = "Ingredient list saved successfully"
+    redirect_to ingredient_lists_path
+  rescue ActiveRecord::RecordInvalid => e
+    flash[:alert] = e.record.errors.full_messages.join(", ")
+    redirect_to ingredient_list_path(@ingredient_list)
+  rescue StandardError => e
+    Rails.logger.warn("[ingredient_lists#update] #{e.class}: #{e.message}")
+    flash[:alert] = "We couldn't save your ingredient list. Please try again."
+    redirect_to ingredient_list_path(@ingredient_list)
+  end
+
+  # Search endpoint for ingredient lookups. Supports JSON (AJAX) and HTML.
   def ingredient_search
     q = params[:q].to_s.strip
     normalized_q = q.present? ? q.singularize : q
@@ -69,9 +82,6 @@ class IngredientListsController < ApplicationController
     respond_to do |format|
       format.json { render json: { ingredients: items } }
       format.html do
-        # Server-render the full add-ingredients UI so non-JS users get a
-        # complete page. The `show` template will render the partial when
-        # `@search_items` is present.
         @search_items = items
         render :show
       end
@@ -85,5 +95,57 @@ class IngredientListsController < ApplicationController
         render :show, status: :bad_gateway
       end
     end
+  end
+
+  private
+
+  def load_ingredient_list
+    return if params[:id].blank?
+
+    if current_user.respond_to?(:ingredient_lists)
+      @ingredient_list = current_user.ingredient_lists.includes(:ingredients).find_by(id: params[:id])
+    else
+      # Fallback for specs that stub `current_user` with a simple double.
+      @ingredient_list = IngredientList.includes(:ingredients).find_by(id: params[:id])
+    end
+  end
+
+  def ensure_ingredient_list
+    return if @ingredient_list.present?
+
+    flash[:alert] = "Ingredient list with id #{params[:id]} not found"
+    redirect_to ingredient_lists_path
+  end
+
+  def permitted_list_params
+    params.fetch(:ingredient_list, {}).permit(:title, selected_ingredient_ids: [])
+  end
+
+  def sync_selected_ingredients(list, provider_ids)
+    if provider_ids.empty?
+      list.ingredients = []
+      return
+    end
+
+    provider_ids = provider_ids.uniq
+    existing = Ingredient.where(provider_name: Ingredient::THEMEALDB_PROVIDER, provider_id: provider_ids).index_by(&:provider_id)
+    missing_ids = provider_ids - existing.keys
+
+    if missing_ids.any?
+      lookup = MealDbClient.fetch_all_ingredients.index_by { |ing| ing[:id].to_s }
+
+      missing_ids.each do |provider_id|
+        data = lookup[provider_id]
+        next unless data
+
+        ingredient = Ingredient.find_or_initialize_by(provider_name: Ingredient::THEMEALDB_PROVIDER, provider_id: provider_id)
+        ingredient.title = data[:name].presence || ingredient.title || "Unnamed ingredient"
+        ingredient.description = data[:description] if data[:description].present?
+        ingredient.save! if ingredient.changed?
+        existing[provider_id] = ingredient
+      end
+    end
+
+    list.ingredients = provider_ids.map { |provider_id| existing[provider_id] }.compact
   end
 end

@@ -1,6 +1,8 @@
 class Ingredient < ApplicationRecord
+  THEMEALDB_PROVIDER = "themealdb".freeze
+
   has_many :ingredient_list_items, dependent: :destroy
-  has_many :ingredient_lists, through: :ingredient_list_item
+  has_many :ingredient_lists, through: :ingredient_list_items
 
   validates :provider_name, presence: true
   validates :provider_id, presence: true

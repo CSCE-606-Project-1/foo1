@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   # and by the no-JS fallback (HTML). Routed to IngredientListsController.
   get "/ingredient_search", to: "ingredient_lists#ingredient_search", as: :ingredient_search
 
-  resources :ingredient_lists, only: [ :index, :create, :destroy, :show ]
+  resources :ingredient_lists, only: [ :index, :create, :destroy, :show, :update ]
 
   get "/recipes/ingredient_lists/:ingredient_list_id",
       to: "recipes#search",
