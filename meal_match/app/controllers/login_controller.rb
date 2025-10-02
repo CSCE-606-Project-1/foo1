@@ -1,7 +1,4 @@
 class LoginController < ApplicationController
-  # Don't need login to login !
-  skip_before_action :require_login
-
   # Corresponds to GET /login, i.e the view
   # rendered after this call completes should show the login
   # page
