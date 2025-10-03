@@ -6,21 +6,24 @@
 
 <br/>
 <br/>
-<table border = '1'>
-  <thead>
-    <th>Title</th>
-  </thead>
-  <tbody>
-    <% @ingredient_lists.each do |l| %>
-      <tr>
-        <td> <%= l.title %> </td>
-        <td>
-          <%= button_to "View/Edit", ingredient_list_path(l), method: :get %>
-        </td>
-        <td>
-          <%= button_to "Delete", ingredient_list_path(l), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!-- Render table only if there is a list -->
+<% if @ingredient_lists.any? %>
+  <table border = '1'>
+    <thead>
+      <th>Title</th>
+    </thead>
+    <tbody>
+      <% @ingredient_lists.each do |l| %>
+        <tr>
+          <td> <%= l.title %> </td>
+          <td>
+            <%= button_to "View/Edit", ingredient_list_path(l), method: :get %>
+          </td>
+          <td>
+            <%= button_to "Delete", ingredient_list_path(l), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
