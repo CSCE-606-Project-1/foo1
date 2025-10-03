@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recipe Results</title>
+  <%= csrf_meta_tags %>
+
+  <style>
+    body.recipe-results .rr-recipe { display: none; }
+    body.recipe-results .rr-recipe:target { display: block; }
+    body.recipe-results:not(:has(:target)) #rr-recipe-0 { display: block; }
+    body.recipe-results .rr-modal { opacity:0; pointer-events:none; }
+    body.recipe-results .rr-modal:target { opacity:1; pointer-events:auto; }
+  </style>
+</head>
+<body class="recipe-results">
+  <h1>Recipe Results</h1>
+
+  <div>
+    <strong>Searched Ingredients:</strong>
+    <div>
+      <% if @ingredient_list.present? %>
+        <%= @ingredient_list.ingredients.pluck(:title).join(", ") %>
+      <% else %>
+        <%= @recipe_search.ingredients %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @meals.present? %>
+    <% @meals.each_with_index do |meal, i| %>
+      <% m = meal.respond_to?(:to_h) ? meal.to_h.with_indifferent_access : meal %>
+      <% title     = m["strMeal"] || "" %>
+      <% thumb     = m["strMealThumb"] || "" %>
+      <% meal_id   = m["idMeal"] || "" %>
+      <% category  = m["strCategory"] || "" %>
+      <% area      = m["strArea"] || "" %>
+      <% instr     = m["strInstructions"] || "" %>
+
+      <div id="rr-modal-<%= i %>" class="rr-modal"
+           style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);
+                  display:flex;align-items:center;justify-content:center;">
+        <div style="background:white;padding:1rem;max-width:600px;max-height:90vh;overflow:auto;position:relative;"
+             role="dialog" aria-modal="true">
+          <a href="#rr-recipe-<%= i %>" data-turbo="false"
+             style="position:absolute;top:0.5rem;right:0.5rem;text-decoration:none;font-size:1.25rem;line-height:1;">&times;</a>
+
+          <h2><%= h(title) %></h2>
+          <% if thumb.present? %>
+            <img src="<%= h(thumb) %>" alt="<%= h(title) %>" style="max-width:100%;height:auto;margin-bottom:12px;">
+          <% end %>
+          <p><strong>Category:</strong> <%= h(category.presence || "-") %></p>
+          <p><strong>Area:</strong> <%= h(area.presence || "-") %></p>
+          <h3>Instructions</h3>
+          <p style="white-space:pre-wrap;"><%= h(instr.presence || "-") %></p>
+
+          <form action="/saved_recipes#rr-recipe-<%= i %>" method="post" data-turbo="false">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="meal_id" value="<%= h(meal_id) %>">
+            <input type="hidden" name="name" value="<%= h(title) %>">
+            <input type="hidden" name="thumbnail" value="<%= h(thumb) %>">
+            <input type="hidden" name="category" value="<%= h(category) %>">
+            <input type="hidden" name="area" value="<%= h(area) %>">
+            <input type="hidden" name="description" value="<%= h(instr) %>">
+            <button type="submit">💾 Save Recipe</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="rr-recipe-<%= i %>" class="rr-recipe">
+        <h2><%= h(title) %></h2>
+        <% if thumb.present? %>
+          <img src="<%= h(thumb) %>" alt="<%= h(title) %>" style="max-width:100%;height:auto;margin-bottom:12px;">
+        <% end %>
+
+        <div>
+          <% if i + 1 < @meals.size %>
+            <a href="#rr-recipe-<%= i+1 %>" data-turbo="false">❌ Hate</a>
+          <% else %>
+            <span>No more recipes</span>
+          <% end %>
+          <a href="#rr-modal-<%= i %>" data-turbo="false">💚 Like</a>
+        </div>
+
+        <div>
+          <form action="/saved_recipes#rr-recipe-<%= i %>" method="post" data-turbo="false">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="meal_id" value="<%= h(meal_id) %>">
+            <input type="hidden" name="name" value="<%= h(title) %>">
+            <input type="hidden" name="thumbnail" value="<%= h(thumb) %>">
+            <input type="hidden" name="category" value="<%= h(category) %>">
+            <input type="hidden" name="area" value="<%= h(area) %>">
+            <input type="hidden" name="description" value="<%= h(instr) %>">
+            <button type="submit">💾 Save Recipe</button>
+          </form>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No recipes found.</p>
+  <% end %>
+</body>
+</html>
