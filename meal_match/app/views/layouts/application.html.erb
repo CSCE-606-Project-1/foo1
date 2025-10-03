@@ -46,6 +46,18 @@
       <br/>
     <% end %>
 
+    <!-- Display Logout button for all pages except Login -->
+    <% unless current_page?(login_path) %>
+      <!-- By default a button corresponds to post, but we want DELETE -->
+      <!-- so be explicit -->
+      <%= button_to "Log out", logout_path,
+          {
+            id: "logout-btn",
+            method: :delete
+          }%>
+      <br/>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
