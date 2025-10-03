@@ -4,7 +4,6 @@ class DashboardController < ApplicationController
   # defined in base class ApplicationController)
   before_action :require_login
 
-
   def show
     @current_user_ingredient_lists = current_user.ingredient_lists
   end
