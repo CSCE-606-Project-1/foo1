@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "saved_recipes/index"
+  get "saved_recipes/create"
+  get "saved_recipes/destroy"
+  resources :recipe_searches
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -44,6 +48,12 @@ Rails.application.routes.draw do
   get "/recipes/ingredient_lists/:ingredient_list_id",
       to: "recipes#search",
       as: :recipes_search_path
+
+  # Redirect to show recipes if function called by ingredient list ID
+  get "/recipe_searches/id/:id", to: "ingredient_list_recipes#show", as: :ingredient_list_recipes
+
+  # Routes for saved recipes
+  resources :saved_recipes, only: [ :index, :create, :destroy ]
 
   # Redirect the root path to the login page
   root "login#new"

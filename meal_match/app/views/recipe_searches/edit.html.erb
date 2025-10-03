@@ -1,0 +1,12 @@
+<% content_for :title, "Editing recipe search" %>
+
+<h1>Editing recipe search</h1>
+
+<%= render "form", recipe_search: @recipe_search %>
+
+<br>
+
+<div>
+  <%= link_to "Show this recipe search", @recipe_search %> |
+  <%= link_to "Back to recipe searches", recipe_search_path %>
+</div>
