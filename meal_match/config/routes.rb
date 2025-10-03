@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get "saved_recipes/index"
   get "saved_recipes/create"
   get "saved_recipes/destroy"
-  resources :recipe_searches
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

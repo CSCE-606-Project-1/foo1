@@ -58,5 +58,6 @@ class RecipesController < ApplicationController
       flash[:alert] = "Please select an ingredient list !"
       redirect_to dashboard_path
     end
+    redirect_to ingredient_list_recipes_path(@ingredient_list)
   end
 end
