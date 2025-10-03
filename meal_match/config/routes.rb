@@ -48,6 +48,8 @@ Rails.application.routes.draw do
       to: "recipes#search",
       as: :recipes_search
 
-  # Redirect the root path to the login page
-  root "login#new"
+  # Redirect the root path to the dashboard, this will show
+  # the user dashboard if already logged in, or redirect to the logout
+  # if user is not logged in
+  root to: redirect("/dashboard")
 end
