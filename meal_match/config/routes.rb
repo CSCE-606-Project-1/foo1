@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "saved_recipes/index"
+  get "saved_recipes/create"
+  get "saved_recipes/destroy"
+  resources :recipe_searches
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -55,6 +59,9 @@ Rails.application.routes.draw do
       to: "recipes#search",
       as: :recipes_search
 
+  # Routes for saved recipes
+  resources :saved_recipes, only: [ :index, :create, :destroy ]
+  
   # Redirect the root path to the dashboard, this will show
   # the user dashboard if already logged in, or redirect to the logout
   # if user is not logged in

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Search</title>
+<%= csrf_meta_tags %>
+</head>
+<body>
+
+<h1>Recipe Search</h1>
+
+<div>
+  <%= form_with(model: @recipe_search, local: true, data: { turbo: false }) do |form| %>
+    <% if @recipe_search.errors.any? %>
+      <div>
+        <h2><%= pluralize(@recipe_search.errors.count, "error") %> prohibited this recipe search from being saved:</h2>
+        <ul>
+          <% @recipe_search.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      Enter ingredients manually <strong>or</strong> choose a saved list (leave the other blank).
+    </p>
+
+    <div>
+      <%= form.label :ingredients, "Enter ingredients (comma separated)" %>
+      <%= form.text_area :ingredients, rows: 3, placeholder: "e.g., chicken, rice, tomatoes" %>
+    </div>
+
+    <div>OR</div>
+
+    <div>
+      <%= form.label :ingredient_list_id, "Choose an Ingredient List" %>
+      <%= form.collection_select :ingredient_list_id,
+                                 @ingredient_lists,
+                                 :id,
+                                 :title,
+                                 { include_blank: "Select a saved list..." } %>
+    </div>
+
+    <div>
+      <%= form.submit "Search Recipes" %>
+    </div>
+  <% end %>
+</div>
+
+</body>
+</html>
