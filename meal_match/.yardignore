@@ -1,0 +1,23 @@
+# Ignore Rails view templates, javascript, stylesheets and other non-Ruby files
+app/views/**/*
+app/javascript/**/*
+app/assets/**/*
+public/**/*
+
+# Ignore configuration and credentials files
+config/**/*.yml
+config/master.key
+config/credentials/**/*
+config/*.key
+
+# Ignore tmp, storage and vendor files
+tmp/**/*
+storage/**/*
+vendor/**/*
+
+# Ignore binary/encoded files
+**/*.png
+**/*.jpg
+**/*.svg
+**/*.ico
+**/*.pdf

@@ -1,9 +1,15 @@
+# Central application controller: global filters and controller-level helpers
+# shared by all controllers in the application.
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
   before_action :require_login
 
+  # Ensure a user is logged in. If there is no `current_user` this method
+  # redirects to the login page and sets a flash alert.
+  #
+  # @return [void]
   def require_login
     unless current_user
       # alert: "..." is equivalent to setting the flash
@@ -13,11 +19,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Helper method makes the controller method available to the views,
-  # and since this is in ApplicationController the base class for all
-  # the controllers, all of them can directly use current_user when they
-  # want to (of courses after a call to require_login() if login is needed
-  # for the controller to act)
+  # Expose the currently authenticated user to controllers and views.
+  #
+  # @return [User, nil]
   helper_method :current_user
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
