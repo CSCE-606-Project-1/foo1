@@ -18,8 +18,6 @@ class RecipesController < ApplicationController
       return # redirect_to doesn't exit this method !
     end
 
-    # TODO: Quan's code to search recipes given an ingredient list should
-    # come here
-    Rails.logger.debug "PLACEHOLDER for Quan's recipe search code !"
+    redirect_to ingredient_list_recipes_path(@ingredient_list)
   end
 end
