@@ -3,3 +3,6 @@
 meal_match/tmp/
 meal_match/log/development.log
 meal_match/tmp/cache/bootsnap/load-path-cache
+meal_match/log/test.log
+meal_match/coverage/
+*.deb

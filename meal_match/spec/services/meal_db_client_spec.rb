@@ -1,56 +1,133 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe MealDbClient, type: :model do
-  describe '.filter_by_ingredients' do
-    let(:base) { 'https://www.themealdb.com/api/json/v2' }
-    let(:key) { 'testkey' }
+RSpec.describe MealDbClient do
+  let(:api_base) { "https://example.test/api" }
+  let(:api_key) { "abc123" }
+  let(:http) { instance_double(Net::HTTP) }
 
+  before do
+    @original_base = ENV["THEMEALDB_API_BASE"]
+    @original_key = ENV["THEMEALDB_API_KEY"]
+    ENV["THEMEALDB_API_BASE"] = api_base
+    ENV["THEMEALDB_API_KEY"] = api_key
+    MealDbClient.instance_variable_set(:@ingredients_cache, nil)
+    allow(Net::HTTP).to receive(:new).and_return(http)
+    allow(http).to receive(:use_ssl=)
+    allow(http).to receive(:open_timeout=)
+    allow(http).to receive(:read_timeout=)
+  end
+
+  after do
+    MealDbClient.instance_variable_set(:@ingredients_cache, nil)
+    if @original_base.nil?
+      ENV.delete("THEMEALDB_API_BASE")
+    else
+      ENV["THEMEALDB_API_BASE"] = @original_base
+    end
+
+    if @original_key.nil?
+      ENV.delete("THEMEALDB_API_KEY")
+    else
+      ENV["THEMEALDB_API_KEY"] = @original_key
+    end
+  end
+
+  describe ".fetch_all_ingredients" do
+    it "returns parsed ingredient hashes and memoizes the result" do
+      body = {
+        "meals" => [
+          { "idIngredient" => "1", "strIngredient" => "Chicken", "strDescription" => "Protein" },
+          { "id" => "2", "name" => "Beef", "description" => "Red meat" }
+        ]
+      }.to_json
+      response = instance_double("Net::HTTPResponse", body: body)
+      allow(response).to receive(:is_a?) { |klass| klass == Net::HTTPSuccess }
+      allow(http).to receive(:request).and_return(response)
+
+      first_call = MealDbClient.fetch_all_ingredients
+      second_call = MealDbClient.fetch_all_ingredients
+
+      expect(first_call).to eq([
+        { id: "1", name: "Chicken", description: "Protein" },
+        { id: "2", name: "Beef", description: "Red meat" }
+      ])
+      expect(second_call).to be(first_call)
+      expect(http).to have_received(:request).once
+    end
+
+    it "returns an empty array when the response is not successful" do
+      response = instance_double("Net::HTTPResponse", body: "{}")
+      allow(response).to receive(:is_a?) { |_klass| false }
+      allow(http).to receive(:request).and_return(response)
+
+      expect(MealDbClient.fetch_all_ingredients).to eq([])
+    end
+
+    it "swallows JSON parsing errors and returns an empty array" do
+      response = instance_double("Net::HTTPResponse", body: "not json")
+      allow(response).to receive(:is_a?) { |klass| klass == Net::HTTPSuccess }
+      allow(http).to receive(:request).and_return(response)
+
+      expect(MealDbClient.fetch_all_ingredients).to eq([])
+    end
+  end
+
+  describe ".search_ingredients" do
     before do
-      allow(ENV).to receive(:fetch).with('THEMEALDB_API_BASE', anything).and_return(base)
-      allow(ENV).to receive(:fetch).with('THEMEALDB_API_KEY').and_return(key)
+      allow(MealDbClient).to receive(:fetch_all_ingredients).and_return([
+        { id: "1", name: "Chicken", description: "Protein" },
+        { id: "2", name: "Beef", description: "Red meat" },
+        { id: "3", name: "Carrot", description: "Vegetable" }
+      ])
     end
 
-    it 'returns empty array when given empty ingredient list' do
-      expect(described_class.filter_by_ingredients([])).to eq([])
+    it "returns an empty array when the query is blank" do
+      expect(MealDbClient.search_ingredients(" ")).to eq([])
     end
 
-    it 'parses a successful filter response into simplified meal hashes' do
-      json = { "meals" => [
-        { "idMeal" => "1234", "strMeal" => "Test Meal", "strMealThumb" => "https://example.com/thumb.jpg" }
-      ] }.to_json
+    it "performs a case-insensitive substring search" do
+      expect(MealDbClient.search_ingredients("ch")).to eq([
+        { id: "1", name: "Chicken", description: "Protein" }
+      ])
+    end
+  end
 
-      # create a response-like double
-      fake_response = double('response', body: json)
-      allow(fake_response).to receive(:is_a?).with(Net::HTTPSuccess).and_return(true)
-
-      http_instance = instance_double(Net::HTTP)
-      allow(Net::HTTP).to receive(:new).and_return(http_instance)
-      allow(http_instance).to receive(:use_ssl=)
-      allow(http_instance).to receive(:open_timeout=)
-      allow(http_instance).to receive(:read_timeout=)
-      allow(http_instance).to receive(:request).and_return(fake_response)
-
-  result = described_class.filter_by_ingredients([ 'Chicken', 'Onion' ])
-
-      expect(result).to be_an(Array)
-      expect(result.size).to eq(1)
-      expect(result.first[:id]).to eq('1234')
-      expect(result.first[:name]).to eq('Test Meal')
-      expect(result.first[:thumb]).to eq('https://example.com/thumb.jpg')
+  describe ".filter_by_ingredients" do
+    it "returns an empty array when provided names are blank" do
+      expect(MealDbClient.filter_by_ingredients(["", nil])).to eq([])
     end
 
-    it 'returns empty array on non-successful HTTP response' do
-      fake_response = double('error_response')
-      allow(fake_response).to receive(:is_a?).with(Net::HTTPSuccess).and_return(false)
+    it "returns parsed meals when the API call succeeds" do
+      body = {
+        "meals" => [
+          { "idMeal" => "9", "strMeal" => "Chicken Curry", "strMealThumb" => "thumb.jpg" },
+          { "id" => "10", "name" => "Beef Stew", "thumbnail" => "thumb2.jpg" }
+        ]
+      }.to_json
+      response = instance_double("Net::HTTPResponse", body: body)
+      allow(response).to receive(:is_a?) { |klass| klass == Net::HTTPSuccess }
+      allow(http).to receive(:request).and_return(response)
 
-      http_instance = instance_double(Net::HTTP)
-      allow(Net::HTTP).to receive(:new).and_return(http_instance)
-      allow(http_instance).to receive(:use_ssl=)
-      allow(http_instance).to receive(:open_timeout=)
-      allow(http_instance).to receive(:read_timeout=)
-      allow(http_instance).to receive(:request).and_return(fake_response)
+      meals = MealDbClient.filter_by_ingredients(["Chicken", "Onion"])
 
-  expect(described_class.filter_by_ingredients([ 'Salt' ])).to eq([])
+      expect(meals).to eq([
+        { id: "9", name: "Chicken Curry", thumb: "thumb.jpg" },
+        { id: "10", name: "Beef Stew", thumb: "thumb2.jpg" }
+      ])
+    end
+
+    it "returns an empty array when the API call fails" do
+      response = instance_double("Net::HTTPResponse", body: "{}")
+      allow(response).to receive(:is_a?) { |_klass| false }
+      allow(http).to receive(:request).and_return(response)
+
+      expect(MealDbClient.filter_by_ingredients(["Chicken"])).to eq([])
+    end
+
+    it "returns an empty array when an error occurs" do
+      allow(http).to receive(:request).and_raise(StandardError.new("boom"))
+
+      expect(MealDbClient.filter_by_ingredients(["Chicken"])).to eq([])
     end
   end
 end
