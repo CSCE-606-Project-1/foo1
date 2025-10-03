@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   get "/recipes/ingredient_lists/:ingredient_list_id",
       to: "recipes#search",
-      as: :recipes_search_path
+      as: :recipes_search
 
   # Redirect the root path to the login page
   root "login#new"

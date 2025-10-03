@@ -33,6 +33,19 @@
       <p class="flash-alert-text-style"><%= flash[:alert] %></p>
     <% end %>
 
+    <!-- Display Go back to dashboard for all pages except some (such -->
+    <!-- login and dashboard itself) -->
+    <% unless [dashboard_path, login_path].any? { |p| current_page?(p) } %>
+      <!-- By default a button corresponds to post, but we want get -->
+      <!-- so be explicit -->
+      <%= button_to "Back to Dashboard", dashboard_path,
+          {
+            id: "back-to-dashboard-btn",
+            method: :get
+          }%>
+      <br/>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
