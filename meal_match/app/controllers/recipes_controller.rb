@@ -42,4 +42,21 @@ class RecipesController < ApplicationController
       format.json { render json: { recipes: @recipes } }
     end
   end
+
+  # GET /recipes/ingredient_lists/intermediate
+  #
+  # (So that we are not dependent on client side javascript use
+  # for dynamic URI generation based on dropdown selection) A helper
+  # that takes ingredient list id as the query parameter and redirects
+  # to the actual end point for the ingredient search which takes in
+  # the ingredient list id as URI parameter.
+  def search_intermediate
+    ingredient_list_id = params[:ingredient_list_id]
+    if ingredient_list_id.present?
+      redirect_to recipes_search_path(ingredient_list_id)
+    else
+      flash[:alert] = "Please select an ingredient list !"
+      redirect_to dashboard_path
+    end
+  end
 end
