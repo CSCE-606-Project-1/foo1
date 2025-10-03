@@ -8,11 +8,13 @@ class RecipesController < ApplicationController
   # placeholder search action is implemented — recipe matching logic is
   # intended to be added later.
   #
-  # GET /recipes/ingredients/:ingredient_id
+  # GET /recipes/ingredient_lists/:ingredient_list_id
   #
-  # Given an ingredient list id, search for the recipes that the user
-  # can cook using those ingredients.
+  # Search for recipes that can be cooked using the ingredients in the
+  # specified IngredientList. The action supports HTML (renders
+  # `recipes/search`) and JSON (returns `{ recipes: [...] }`).
   #
+  # @param ingredient_list_id [Integer, String] the id of the IngredientList
   # @return [void]
   def search
     list_id = params[:ingredient_list_id]
@@ -29,8 +31,15 @@ class RecipesController < ApplicationController
       return # redirect_to doesn't exit this method !
     end
 
-    # TODO: Quan's code to search recipes given an ingredient list should
-    # come here
-    Rails.logger.debug "PLACEHOLDER for Quan's recipe search code !"
+    # Build an array of ingredient names from the ingredient_list's ingredients
+    ingredient_names = @ingredient_list.ingredients.map(&:title).map(&:to_s).reject(&:blank?)
+
+    # Query TheMealDB filter endpoint using the user's selected ingredient list
+    @recipes = MealDbClient.filter_by_ingredients(ingredient_names)
+
+    respond_to do |format|
+      format.html { render :search }
+      format.json { render json: { recipes: @recipes } }
+    end
   end
 end

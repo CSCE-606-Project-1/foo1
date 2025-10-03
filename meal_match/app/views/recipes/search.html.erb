@@ -1,3 +1,22 @@
-<h3>TODO: Result shown by Quan's end point should come here</h3>
-<h3>That should show recipes that can be cooked using </h3>
-<h3><%= @ingredient_list.title %></h3>
+<h1>Recipes for "<%= @ingredient_list.try(:title) || 'your ingredients' %>"</h1>
+
+<% if @recipes.blank? %>
+	<p>No recipes found for the selected ingredients.</p>
+<% else %>
+	<div class="recipes-list" style="display:flex;flex-wrap:wrap;gap:1rem;">
+		<% @recipes.each do |r| %>
+			<div class="recipe-item" style="width:240px;border:1px solid #eee;padding:0.5rem;border-radius:6px;">
+				<h3 style="margin:0.25rem 0;"><%= r[:name] %></h3>
+				<% if r[:thumb].present? %>
+					<div style="text-align:center;">
+						<img src="<%= r[:thumb] %>" alt="<%= r[:name] %>" width="220" style="border-radius:4px;"/>
+					</div>
+				<% end %>
+				<%# optional link to TheMealDB detail page %>
+				<% if r[:id].present? %>
+					<p style="margin-top:0.5rem;"><a href="https://www.themealdb.com/meal.php?c=<%= r[:id] %>" target="_blank" rel="noopener">View on TheMealDB</a></p>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+<% end %>

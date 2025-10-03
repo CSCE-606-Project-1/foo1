@@ -6,10 +6,10 @@ require "json"
 
 # Lightweight client for fetching ingredient metadata from TheMealDB service.
 #
-# This class intentionally exposes only two high-level helpers used by the
-# application: searching a cached list of ingredients and fetching the full
-# list from the upstream API. Results are returned as an Array of Hashes with
-# the keys :id, :name and :description.
+# This class intentionally exposes helpers used by the application: searching
+# a cached list of ingredients, fetching the full list from the upstream API,
+# and filtering meals by ingredient list. Results are returned as Arrays of
+# Hashes with symbol keys.
 class MealDbClient
   # Search cached ingredient metadata for a substring match on the ingredient
   # name (case-insensitive).
@@ -70,4 +70,52 @@ class MealDbClient
       end
     end
   end
+
+    # Query TheMealDB's filter endpoint for meals matching a comma-separated
+    # Query TheMealDB's filter endpoint for meals matching a list of
+    # ingredient names.
+    #
+    # The API expects a comma-separated list of ingredient names (e.g. "Chicken,Onion").
+    # This method calls TheMealDB's `filter.php` endpoint and returns a simplified
+    # array of meal hashes suitable for rendering in the UI.
+    #
+    # @param ingredient_names [Array<String>] an array of ingredient names (strings)
+    # @return [Array<Hash{Symbol=>String}>] array of meal hashes with keys :id, :name and :thumb
+    # @raise [RuntimeError] if the THEMEALDB_API_KEY environment variable is not set
+    def self.filter_by_ingredients(ingredient_names)
+      names = Array(ingredient_names).map(&:to_s).map(&:strip).reject(&:empty?)
+      return [] if names.empty?
+
+      base = ENV.fetch("THEMEALDB_API_BASE", "https://www.themealdb.com/api/json/v2").to_s.sub(%r{/\z}, "")
+      key  = ENV.fetch("THEMEALDB_API_KEY")
+      raise "THEMEALDB_API_KEY must be set" if key.nil? || key.empty?
+
+      # The API expects a comma-separated list of ingredient names
+      query = URI.encode_www_form_component(names.join(","))
+      uri = URI.parse("#{base}/#{key}/filter.php?i=#{query}")
+
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = (uri.scheme == "https")
+      http.open_timeout = 5
+      http.read_timeout = 5
+
+      req = Net::HTTP::Get.new(uri.request_uri)
+      req["User-Agent"] = "MealMatch/1.0 (+Rails)"
+
+      res = http.request(req)
+      return [] unless res.is_a?(Net::HTTPSuccess)
+
+      body = JSON.parse(res.body) rescue {}
+      items = body["meals"] || []
+
+      items.map do |m|
+        {
+          id:    (m["idMeal"] || m["id"] || "").to_s,
+          name:  m["strMeal"] || m["name"] || "",
+          thumb: m["strMealThumb"] || m["thumbnail"] || ""
+        }
+      end
+    rescue StandardError => _e
+      []
+    end
 end
