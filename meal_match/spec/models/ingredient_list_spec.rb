@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe IngredientList, type: :model do
-  after(:each) do
-    Ingredient.destroy_all
-  end
   let(:user) do
     User.create!(email: "test@gmail.com",
                  first_name: "Solid",
