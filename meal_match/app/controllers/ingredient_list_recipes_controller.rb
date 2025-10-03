@@ -35,5 +35,7 @@ class IngredientListRecipesController < ApplicationController
 
   def set_ingredient_list
     @ingredient_list = current_user.ingredient_lists.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to dashboard_path
   end
 end

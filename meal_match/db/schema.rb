@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_03_225224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -19,17 +19,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
     t.datetime "updated_at", null: false
     t.bigint "ingredient_list_id", null: false
     t.bigint "ingredient_id", null: false
-    t.index [ "ingredient_id" ], name: "index_ingredient_list_items_on_ingredient_id"
-    t.index [ "ingredient_list_id", "ingredient_id" ], name: "idx_on_ingredient_list_id_ingredient_id_6f8aea7fb4", unique: true
-    t.index [ "ingredient_list_id" ], name: "index_ingredient_list_items_on_ingredient_list_id"
+    t.index ["ingredient_id"], name: "index_ingredient_list_items_on_ingredient_id"
+    t.index ["ingredient_list_id", "ingredient_id"], name: "idx_on_ingredient_list_id_ingredient_id_6f8aea7fb4", unique: true
+    t.index ["ingredient_list_id"], name: "index_ingredient_list_items_on_ingredient_list_id"
   end
 
   create_table "ingredient_lists", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index [ "user_id" ], name: "index_ingredient_lists_on_user_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_ingredient_lists_on_user_id"
   end
 
   create_table "ingredient_searches", force: :cascade do |t|
@@ -45,7 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index [ "provider_name", "provider_id" ], name: "index_ingredients_on_provider_name_and_provider_id", unique: true
+    t.index ["provider_name", "provider_id"], name: "index_ingredients_on_provider_name_and_provider_id", unique: true
   end
 
   create_table "recipe_searches", force: :cascade do |t|
@@ -53,7 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "ingredient_list_id"
-    t.index [ "ingredient_list_id" ], name: "index_recipe_searches_on_ingredient_list_id"
+    t.index ["ingredient_list_id"], name: "index_recipe_searches_on_ingredient_list_id"
   end
 
   create_table "saved_recipes", force: :cascade do |t|
@@ -61,12 +61,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
     t.string "meal_id"
     t.string "name"
     t.string "thumbnail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "category"
     t.string "area"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index [ "user_id" ], name: "index_saved_recipes_on_user_id"
+    t.index ["user_id"], name: "index_saved_recipes_on_user_id"
   end
 
   create_table "user_accounts", force: :cascade do |t|
@@ -82,7 +82,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_24_013741) do
     t.string "scope"
     t.string "refresh_token"
     t.datetime "expires_at"
-    t.index [ "user_id" ], name: "index_user_accounts_on_user_id"
+    t.index ["user_id"], name: "index_user_accounts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
