@@ -55,7 +55,7 @@ RSpec.describe "Dashboard", type: :system do
     # We only care about URI, the URI should contain the correct
     # ingredient list id, ignore the query params
     expect(page).to have_current_path(
-        "/recipes/ingredient_lists/#{lst.id}",
+        "/ingredient_list_recipes/#{lst.id}",
         ignore_query: true)
   end
 end
