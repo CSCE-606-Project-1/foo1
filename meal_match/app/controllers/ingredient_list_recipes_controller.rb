@@ -1,13 +1,27 @@
 require "httparty"
 
+# Controller for handling ingredient list recipe matching via TheMealDB API.
+#
+# @see https://www.themealdb.com/api.php TheMealDB API documentation
 class IngredientListRecipesController < ApplicationController
+  # Ensures user is logged in before accessing certain actions.
+  #
+  # @return [void]
   before_action :require_login, only: %i[show]
+
+  # Sets the ingredient list for the current user.
+  #
+  # @return [void]
   before_action :set_ingredient_list, only: %i[show]
 
+  # Shows recipes that match the user's ingredient list by querying TheMealDB API.
+  #
+  # @return [void]
   def show
     ingredients = @ingredient_list.ingredients.pluck(:title)
 
     if ingredients.any?
+      # Prepare query string for API
       query = ingredients.map { |i| i.strip.gsub(/\s+/, "_") }.join(",")
       api_key = ENV["MEALDB_API_KEY"]
       url = "https://www.themealdb.com/api/json/v2/#{api_key}/filter.php?i=#{URI.encode_www_form_component(query)}"
@@ -33,6 +47,10 @@ class IngredientListRecipesController < ApplicationController
 
   private
 
+  # Finds the ingredient list for the current user.
+  #
+  # @return [void]
+  # @raise [ActiveRecord::RecordNotFound] if the ingredient list is not found
   def set_ingredient_list
     @ingredient_list = current_user.ingredient_lists.find(params[:id])
   rescue ActiveRecord::RecordNotFound

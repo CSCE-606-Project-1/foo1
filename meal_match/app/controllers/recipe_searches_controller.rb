@@ -1,14 +1,30 @@
 require "httparty"
 
+# Controller for searching recipes using ingredients or ingredient lists via TheMealDB API.
+#
+# @see https://www.themealdb.com/api.php TheMealDB API documentation
 class RecipeSearchesController < ApplicationController
+  # Ensures user is logged in before accessing certain actions.
+  #
+  # @return [void]
   before_action :require_login, only: %i[new create show]
+
+  # Sets the recipe search instance for show action.
+  #
+  # @return [void]
   before_action :set_recipe_search, only: %i[show]
 
+  # Renders the new recipe search form.
+  #
+  # @return [void]
   def new
     @recipe_search = RecipeSearch.new
     @ingredient_lists = current_user.ingredient_lists
   end
 
+  # Shows recipes matching the search criteria by querying TheMealDB API.
+  #
+  # @return [void]
   def show
     if @recipe_search.ingredient_list_id.present?
       @ingredient_list = @recipe_search.ingredient_list
@@ -42,6 +58,9 @@ class RecipeSearchesController < ApplicationController
     end
   end
 
+  # Creates a new recipe search.
+  #
+  # @return [void]
   def create
     @recipe_search = RecipeSearch.new(recipe_search_params)
 
@@ -55,10 +74,16 @@ class RecipeSearchesController < ApplicationController
 
   private
 
+  # Finds the recipe search by id.
+  #
+  # @return [void]
   def set_recipe_search
     @recipe_search = RecipeSearch.find(params[:id])
   end
 
+  # Strong parameters for recipe search.
+  #
+  # @return [ActionController::Parameters]
   def recipe_search_params
     params.require(:recipe_search).permit(:ingredients, :ingredient_list_id)
   end
