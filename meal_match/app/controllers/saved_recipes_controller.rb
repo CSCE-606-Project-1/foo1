@@ -1,10 +1,22 @@
+# Controller for managing user's saved recipes.
+#
+# @see SavedRecipe
 class SavedRecipesController < ApplicationController
+  # Ensures user is logged in before accessing any actions.
+  #
+  # @return [void]
   before_action :require_login
 
+  # Lists all saved recipes for the current user.
+  #
+  # @return [void]
   def index
     @saved_recipes = current_user.saved_recipes
   end
 
+  # Creates a new saved recipe for the current user.
+  #
+  # @return [void]
   def create
     recipe = current_user.saved_recipes.new(
       meal_id: params[:meal_id],
@@ -28,7 +40,9 @@ class SavedRecipesController < ApplicationController
     end
   end
 
-
+  # Deletes a saved recipe for the current user.
+  #
+  # @return [void]
   def destroy
     recipe = current_user.saved_recipes.find(params[:id])
     recipe.destroy
