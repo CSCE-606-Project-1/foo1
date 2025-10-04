@@ -9,9 +9,14 @@
   <style>
     body.recipe-results .rr-recipe { display: none; }
     body.recipe-results .rr-recipe:target { display: block; }
-    body.recipe-results:not(:has(:target)) #rr-recipe-0 { display: block; }
     body.recipe-results .rr-modal { opacity:0; pointer-events:none; }
     body.recipe-results .rr-modal:target { opacity:1; pointer-events:auto; }
+    body.recipe-results .rr-recipe.filtered-out { display: none !important; }
+
+    /* Default first visible recipe (set dynamically below) */
+    body.recipe-results:not(:has(:target)) .rr-recipe.default-visible {
+      display: block;
+    }
   </style>
 </head>
 <body class="recipe-results">
@@ -33,35 +38,167 @@
   </div>
 
   <% if @meals.present? %>
-    <% @meals.each_with_index do |meal, i| %>
-      <% m = meal.respond_to?(:to_h) ? meal.to_h.with_indifferent_access : meal %>
-      <% title     = m["strMeal"] || "" %>
-      <% thumb     = m["strMealThumb"] || "" %>
-      <% meal_id   = m["idMeal"] || "" %>
-      <% category  = m["strCategory"] || "" %>
-      <% area      = m["strArea"] || "" %>
-      <% instr     = m["strInstructions"] || "" %>
+    <% 
+      # --- Setup user ingredients ---
+      user_ingredients = []
+      if @ingredient_list.present?
+        user_ingredients = @ingredient_list.ingredients.pluck(:title).map { |t| t.to_s.downcase.strip }
+      elsif @recipe_search.present? && @recipe_search.ingredients.present?
+        user_ingredients = @recipe_search.ingredients.to_s.split(',').map { |i| i.strip.downcase }
+      end
 
+      # --- Preprocess all recipes first ---
+      recipes_data = @meals.map.with_index do |meal, i|
+        m = meal.respond_to?(:to_h) ? meal.to_h.with_indifferent_access : meal
+        title = m["strMeal"] || ""
+        thumb = m["strMealThumb"] || ""
+        meal_id = m["idMeal"] || ""
+        category = m["strCategory"] || ""
+        area = m["strArea"] || ""
+        instr = m["strInstructions"] || ""
+
+        recipe_ingredients = []
+        have_ingredients = []
+        missing_ingredients = []
+
+        (1..20).each do |n|
+          ingredient = m["strIngredient#{n}"].to_s.strip
+          measure = m["strMeasure#{n}"].to_s.strip
+          next if ingredient.blank?
+
+          ingredient_text = measure.present? ? "#{measure} #{ingredient}" : ingredient
+          recipe_ingredients << ingredient_text
+
+          ingredient_lower = ingredient.downcase
+          has_ingredient = user_ingredients.any? do |ui|
+            ingredient_lower.include?(ui) || ui.include?(ingredient_lower)
+          end
+
+          if has_ingredient
+            have_ingredients << ingredient_text
+          else
+            missing_ingredients << ingredient_text
+          end
+        end
+
+        missing_count = missing_ingredients.size
+
+        {
+          i: i,
+          m: m,
+          title: title,
+          thumb: thumb,
+          meal_id: meal_id,
+          category: category,
+          area: area,
+          instr: instr,
+          recipe_ingredients: recipe_ingredients,
+          have_ingredients: have_ingredients,
+          missing_ingredients: missing_ingredients,
+          missing_count: missing_count
+        }
+      end
+
+      # --- Server-side filter (since no JS allowed) ---
+      max_missing_allowed = (params[:max_missing].presence || 20).to_i
+
+      # Find first visible recipe
+      first_visible_recipe = recipes_data.find { |r| r[:missing_count] <= max_missing_allowed }
+      first_visible_index = first_visible_recipe ? first_visible_recipe[:i] : 0
+    %>
+
+    <div style="background:#f5f5f5;padding:15px;margin:20px 0;border-radius:8px;border:1px solid #e0e0e0;">
+      <form method="get" action="" style="margin:0;">
+        <label for="missing-filter" style="display:block;margin-bottom:10px;font-weight:600;color:#333;">
+          Filter by Missing Ingredients: Show recipes with max
+          <input type="number" id="missing-filter" name="max_missing" value="<%= max_missing_allowed %>"
+                 min="0" max="20" step="1"
+                 style="width:60px;text-align:center;margin:0 5px;">
+          missing ingredients
+        </label>
+        <button type="submit" style="padding:5px 10px;">Apply Filter</button>
+      </form>
+      <div style="margin-top:10px;font-size:0.9em;color:#666;">
+        Showing <%= recipes_data.count { |r| r[:missing_count] <= max_missing_allowed } %> of <%= @meals.size %> recipes
+      </div>
+    </div>
+
+    <% recipes_data.each do |r| %>
+      <% i = r[:i] %>
+      <% title = r[:title] %>
+      <% thumb = r[:thumb] %>
+      <% meal_id = r[:meal_id] %>
+      <% category = r[:category] %>
+      <% area = r[:area] %>
+      <% instr = r[:instr] %>
+      <% recipe_ingredients = r[:recipe_ingredients] %>
+      <% have_ingredients = r[:have_ingredients] %>
+      <% missing_ingredients = r[:missing_ingredients] %>
+      <% missing_count = r[:missing_count] %>
+      <% have_count = have_ingredients.size %>
+
+      <% visible = missing_count <= max_missing_allowed %>
+
+      <%# --- Find next/previous visible recipes --- %>
+      <% next_visible = recipes_data.find { |r2| r2[:i] > i && r2[:missing_count] <= max_missing_allowed } %>
+      <% prev_visible = recipes_data.reverse.find { |r2| r2[:i] < i && r2[:missing_count] <= max_missing_allowed } %>
+
+      <%# --- Modal --- %>
       <div id="rr-modal-<%= i %>" class="rr-modal"
-           style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);
-                  display:flex;align-items:center;justify-content:center;">
-        <div style="background:white;padding:1rem;max-width:600px;max-height:90vh;overflow:auto;position:relative;"
+           style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);
+                  display:flex;align-items:center;justify-content:center;z-index:1000;">
+        <div style="background:white;padding:1.5rem;max-width:700px;max-height:90vh;overflow:auto;position:relative;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3);"
              role="dialog" aria-modal="true">
           <a href="#rr-recipe-<%= i %>" data-turbo="false"
-             style="position:absolute;top:0.5rem;right:0.5rem;text-decoration:none;font-size:1.25rem;line-height:1;">&times;</a>
+             style="position:absolute;top:0.5rem;right:0.5rem;text-decoration:none;font-size:1.5rem;line-height:1;color:#666;cursor:pointer;">&times;</a>
 
-          <h2><%= h(title) %></h2>
+          <h2 style="margin-top:0;padding-right:30px;"><%= h(title) %></h2>
           <% if thumb.present? %>
             <div style="max-width:300px;margin:0 auto;">
-              <img src="<%= h(thumb) %>" alt="<%= h(title) %>" style="width:100%;height:auto;margin-bottom:12px;">
+              <img src="<%= h(thumb) %>" alt="<%= h(title) %>" style="width:100%;height:auto;margin-bottom:12px;border-radius:8px;">
             </div>
           <% end %>
           <p><strong>Category:</strong> <%= h(category.presence || "-") %></p>
           <p><strong>Area:</strong> <%= h(area.presence || "-") %></p>
-          <h3>Instructions</h3>
-          <p style="white-space:pre-wrap;"><%= h(instr.presence || "-") %></p>
 
-          <form action="/saved_recipes#rr-recipe-<%= i %>" method="post" data-turbo="false">
+          <div style="margin:15px 0;">
+            <% if recipe_ingredients.any? %>
+              <% if have_ingredients.any? %>
+                <h3 style="color:#2e7d32;margin-bottom:8px;font-size:1.1em;">
+                  ✓ Ingredients You Have 
+                  <span style="display:inline-block;background:#e8f5e9;color:#2e7d32;padding:3px 10px;border-radius:12px;font-size:0.85em;margin-left:10px;font-weight:600;"><%= have_count %></span>
+                </h3>
+                <ul style="list-style:none;padding-left:0;margin:5px 0;">
+                  <% have_ingredients.each do |ing| %>
+                    <li style="padding:5px 0;color:#2e7d32;font-weight:500;">✓ <%= h(ing) %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+
+              <% if missing_ingredients.any? %>
+                <h3 style="color:#c62828;margin-bottom:8px;font-size:1.1em;">
+                  ✗ Missing Ingredients 
+                  <span style="display:inline-block;background:#ffebee;color:#c62828;padding:3px 10px;border-radius:12px;font-size:0.85em;margin-left:10px;font-weight:600;"><%= missing_count %></span>
+                </h3>
+                <ul style="list-style:none;padding-left:0;margin:5px 0;">
+                  <% missing_ingredients.each do |ing| %>
+                    <li style="padding:5px 0;color:#c62828;font-weight:500;">✗ <%= h(ing) %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+
+              <% if missing_ingredients.empty? && have_ingredients.any? %>
+                <p style="color:#2e7d32;font-weight:600;margin-top:10px;">🎉 You have all the ingredients!</p>
+              <% end %>
+            <% else %>
+              <p><em>No ingredient information available</em></p>
+            <% end %>
+          </div>
+
+          <h3>Instructions</h3>
+          <p style="white-space:pre-wrap;line-height:1.6;"><%= h(instr.presence || "-") %></p>
+
+          <form action="/saved_recipes#rr-recipe-<%= i %>" method="post" data-turbo="false" style="margin-top:20px;">
             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
             <input type="hidden" name="meal_id" value="<%= h(meal_id) %>">
             <input type="hidden" name="name" value="<%= h(title) %>">
@@ -74,25 +211,40 @@
         </div>
       </div>
 
-      <div id="rr-recipe-<%= i %>" class="rr-recipe">
-        <h2><%= h(title) %></h2>
+      <%# --- Main recipe card --- %>
+      <div id="rr-recipe-<%= i %>"
+           class="rr-recipe <%= 'filtered-out' unless visible %> <%= 'default-visible' if i == first_visible_index %>"
+           data-missing-count="<%= missing_count %>">
+        <h2>
+          <%= h(title) %>
+          <% if missing_count > 0 %>
+            <span style="display:inline-block;background:#ffebee;color:#c62828;padding:3px 10px;border-radius:12px;font-size:0.85em;margin-left:10px;font-weight:600;"><%= missing_count %> missing</span>
+          <% else %>
+            <span style="display:inline-block;background:#e8f5e9;color:#2e7d32;padding:3px 10px;border-radius:12px;font-size:0.85em;margin-left:10px;font-weight:600;">All ingredients available!</span>
+          <% end %>
+        </h2>
+
         <% if thumb.present? %>
-          <div style="max-width:300px; text-align:center;">
-            <img src="<%= h(thumb) %>" alt="<%= h(title) %>" style="width:100%;height:auto;margin-bottom:12px;">
-            
-            <div>
-              <% if i + 1 < @meals.size %>
-                <a href="#rr-recipe-<%= i+1 %>" data-turbo="false">❌ Hate</a>&nbsp;&nbsp;
+          <div style="max-width:300px;text-align:center;">
+            <img src="<%= h(thumb) %>" alt="<%= h(title) %>" style="width:100%;height:auto;margin-bottom:12px;border-radius:8px;">
+
+            <div style="margin:15px 0;">
+              <% if prev_visible %>
+                <a href="#rr-recipe-<%= prev_visible[:i] %>" data-turbo="false" style="text-decoration:none;padding:8px 12px;margin:0 4px;display:inline-block;">⬅️ Back</a>
               <% else %>
-                <span>No more recipes</span>&nbsp;&nbsp;
+                <span style="color:#999;padding:8px 12px;">⬅️ Start</span>
               <% end %>
-              <a href="#rr-modal-<%= i %>" data-turbo="false">💚 Like</a>
-              <% if i + 1 < @meals.size %>
-                &nbsp;&nbsp;<a href="#rr-recipe-<%= i+1 %>" data-turbo="false">👉 Next Anyway</a>
+
+              <% if next_visible %>
+                <a href="#rr-recipe-<%= next_visible[:i] %>" data-turbo="false" style="text-decoration:none;padding:8px 12px;margin:0 4px;display:inline-block;">❌ Hate</a>
+              <% else %>
+                <span style="color:#999;padding:8px 12px;">No more recipes</span>
               <% end %>
+
+              <a href="#rr-modal-<%= i %>" data-turbo="false" style="text-decoration:none;padding:8px 12px;margin:0 4px;display:inline-block;">💚 Like</a>
             </div>
-            <br>
-            <div>
+
+            <div style="margin-top:15px;">
               <form action="/saved_recipes#rr-recipe-<%= i %>" method="post" data-turbo="false" style="display:inline;">
                 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                 <input type="hidden" name="meal_id" value="<%= h(meal_id) %>">
