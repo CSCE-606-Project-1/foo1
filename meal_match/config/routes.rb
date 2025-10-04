@@ -44,10 +44,19 @@ Rails.application.routes.draw do
 
   resources :ingredient_lists, only: [ :index, :create, :destroy, :show, :update ]
 
+  # This is an intermediate path that takes in ingredient list id as
+  # query parameter and genrates the URL which includes the ingredient list
+  # id as the URI parameter and redirects to recipes_search path
+  get "/recipes/ingredient_lists/intermediate",
+      to: "recipes#search_intermediate",
+      as: :recipes_search_intermediate
+
   get "/recipes/ingredient_lists/:ingredient_list_id",
       to: "recipes#search",
-      as: :recipes_search_path
+      as: :recipes_search
 
-  # Redirect the root path to the login page
-  root "login#new"
+  # Redirect the root path to the dashboard, this will show
+  # the user dashboard if already logged in, or redirect to the logout
+  # if user is not logged in
+  root to: redirect("/dashboard")
 end

@@ -23,6 +23,41 @@
   </head>
 
   <body>
+    <!-- If there are flash alerts or notice messages, display them -->
+    <!-- irrespective of the page view (i.e. display for all pages)  -->
+    <% if flash[:notice] %>
+      <p class="flash-notice-text-style"><%= flash[:notice] %></p>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <p class="flash-alert-text-style"><%= flash[:alert] %></p>
+    <% end %>
+
+    <!-- Display Go back to dashboard for all pages except some (such -->
+    <!-- login and dashboard itself) -->
+    <% unless [dashboard_path, login_path].any? { |p| current_page?(p) } %>
+      <!-- By default a button corresponds to post, but we want get -->
+      <!-- so be explicit -->
+      <%= button_to "Back to Dashboard", dashboard_path,
+          {
+            id: "back-to-dashboard-btn",
+            method: :get
+          }%>
+      <br/>
+    <% end %>
+
+    <!-- Display Logout button for all pages except Login -->
+    <% unless current_page?(login_path) %>
+      <!-- By default a button corresponds to post, but we want DELETE -->
+      <!-- so be explicit -->
+      <%= button_to "Log out", logout_path,
+          {
+            id: "logout-btn",
+            method: :delete
+          }%>
+      <br/>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

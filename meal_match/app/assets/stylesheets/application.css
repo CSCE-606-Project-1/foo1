@@ -8,3 +8,13 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.flash-alert-text-style {
+  color: red;
+  font-weight: bold; /* equivalent to <strong>Bla</strong> */
+}
+
+.flash-notice-text-style {
+  color: green;
+  font-weight: bold; /* equivalent to <strong>Bla</strong> */
+}
