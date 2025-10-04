@@ -72,7 +72,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "rack_session_access"
   gem "capybara"
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", ">= 4.8.0"
   gem "shoulda-matchers", "~> 5.0"
 end
 

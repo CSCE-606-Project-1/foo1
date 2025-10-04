@@ -52,12 +52,20 @@ class RecipesController < ApplicationController
   # the ingredient list id as URI parameter.
   def search_intermediate
     ingredient_list_id = params[:ingredient_list_id]
-    if ingredient_list_id.present?
-      redirect_to recipes_search_path(ingredient_list_id)
-    else
+
+    if ingredient_list_id.blank?
       flash[:alert] = "Please select an ingredient list !"
       redirect_to dashboard_path
+      return
     end
-    redirect_to ingredient_list_recipes_path(@ingredient_list)
+
+    @ingredient_list = IngredientList.find_by(id: ingredient_list_id)
+
+    if @ingredient_list.nil?
+      flash[:alert] = "Ingredient list not found!"
+      redirect_to dashboard_path
+      return
+    end
+    redirect_to ingredient_list_recipe_path(id: ingredient_list_id)
   end
 end
