@@ -53,4 +53,26 @@ RSpec.describe MealDbClient, type: :model do
   expect(described_class.filter_by_ingredients([ 'Salt' ])).to eq([])
     end
   end
+
+  describe ".filter_by_ingredients" do
+    it "returns [] for blank input" do
+      expect(described_class.filter_by_ingredients(nil)).to eq([])
+    end
+
+    it "returns array of hashes for valid ingredients" do
+      stub_request(:get, /filter.php/).to_return(
+        body: { meals: [ { "idMeal" => "1", "strMeal" => "Soup", "strMealThumb" => "img.png" } ] }.to_json,
+        headers: { "Content-Type" => "application/json" }
+      )
+
+      result = described_class.filter_by_ingredients([ "Onion" ])
+      expect(result.first[:id]).to eq("1")
+      expect(result.first[:name]).to eq("Soup")
+    end
+
+    it "handles API error gracefully" do
+      stub_request(:get, /filter.php/).to_return(status: 500)
+      expect(described_class.filter_by_ingredients([ "Onion" ])).to eq([])
+    end
+  end
 end

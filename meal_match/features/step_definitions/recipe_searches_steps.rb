@@ -29,11 +29,11 @@ When('the user creates a recipe search with ingredients {string}') do |ingredien
     @ingredient_list.ingredients << ingredient
   end
 
-  visit ingredient_list_recipes_path(id: @ingredient_list.id)
+  visit ingredient_list_recipe_path(@ingredient_list.id)
 end
 
 When('the user creates a recipe search using that ingredient list') do
-  visit ingredient_list_recipes_path(id: @ingredient_list.id)
+  visit ingredient_list_recipe_path(@ingredient_list.id)
 end
 
 When('the user creates a recipe search with no ingredients') do
@@ -41,7 +41,7 @@ When('the user creates a recipe search with no ingredients') do
     user: @user,
     title: 'Empty Search'
   )
-  visit ingredient_list_recipes_path(id: @ingredient_list.id)
+  visit ingredient_list_recipe_path(@ingredient_list.id)
 end
 
 Then('they should see a list of meals matching those ingredients') do

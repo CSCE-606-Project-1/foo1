@@ -74,6 +74,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver", ">= 4.8.0"
   gem "shoulda-matchers", "~> 5.0"
+  gem "rails-controller-testing"
 end
 
 # https://github.com/omniauth/omniauth

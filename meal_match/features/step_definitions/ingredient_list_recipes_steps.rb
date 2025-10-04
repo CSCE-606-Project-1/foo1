@@ -28,11 +28,11 @@ Given('another user exists with an ingredient list') do
 end
 
 When('the user visits the ingredient list recipes page for their list') do
-  visit ingredient_list_recipes_path(id: @ingredient_list.id)
+  visit ingredient_list_recipe_path(@ingredient_list.id)
 end
 
 When('the user tries to visit the ingredient list recipes page for the other user\'s list') do
-  visit ingredient_list_recipes_path(id: @other_ingredient_list.id)
+  visit ingredient_list_recipe_path(@other_ingredient_list.id)
 end
 
 Then('they should see a list of meals matching their ingredients') do
@@ -44,6 +44,5 @@ Then('they should see no meals listed') do
 end
 
 Then('they should be redirected to the dashboard') do
-  # Check for redirect or that we're not on the recipes page
-  expect(current_path).not_to eq(ingredient_list_recipes_path(id: @other_ingredient_list.id))
+  expect(current_path).not_to eq(ingredient_list_recipe_path(@other_ingredient_list.id))
 end
