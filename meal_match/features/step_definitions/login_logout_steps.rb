@@ -1,3 +1,6 @@
+LOGIN_BTN_LABEL = "Sign in with Google"
+LOGOUT_BTN_LABEL = "Log out"
+
 Given("I am a non logged in user") do
   # logout request is DELETE /logout not GET /logout
   # so the normal visit logout_path won't work since
@@ -15,7 +18,7 @@ Given("I am on the home page") do
 end
 
 When("I click to sign in with google") do
-  click_button "Sign in with Google"
+  click_button LOGIN_BTN_LABEL
 end
 
 Then("I should see the user dashboard") do
@@ -31,10 +34,18 @@ Given("I am a logged in user") do
 end
 
 When("I click to log out") do
-  click_button "Log out"
+  click_button LOGOUT_BTN_LABEL
 end
 
 Then("I should see the login page") do
   expect(page).to have_current_path(login_path)
   expect(page).to have_content("Login")
+end
+
+Then("I should not be asked to sign in with google") do
+  expect(page).not_to have_button(LOGIN_BTN_LABEL)
+end
+
+Then("I should not be asked to logout") do
+  expect(page).not_to have_button(LOGOUT_BTN_LABEL)
 end
