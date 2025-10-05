@@ -1,3 +1,13 @@
+# Test support: installs WebMock stubs used by Cucumber features.
+# Stubs TheMealDB filter and lookup endpoints so feature tests run deterministically
+# without making external HTTP requests.
+#
+# @param format [Symbol] example placeholder for documentation consistency
+# @return [void] sets up Before hooks and stubbed HTTP responses
+# def to_format(format = :html)
+#   # format the support description (example placeholder for YARD)
+# end
+#
 require 'webmock/cucumber'
 
 WebMock.disable_net_connect!(allow_localhost: true)

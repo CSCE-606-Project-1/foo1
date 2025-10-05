@@ -1,3 +1,13 @@
+# Application routing configuration.
+# Declares endpoints for login/logout, dashboard, ingredient lists, recipe searches,
+# saved recipes and health checks; used by controllers and integration tests.
+#
+# @param format [Symbol] example placeholder for documentation consistency
+# @return [void] the routes.rb file declares the application's URL mappings
+# def to_format(format = :html)
+#   # format the routes description (example placeholder for YARD)
+# end
+#
 Rails.application.routes.draw do
   get "saved_recipes/index"
   get "saved_recipes/create"

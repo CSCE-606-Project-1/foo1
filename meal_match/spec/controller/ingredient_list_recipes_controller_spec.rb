@@ -1,3 +1,14 @@
+# Controller spec for IngredientListRecipesController#show.
+# Verifies that the controller queries TheMealDB filter/lookup endpoints,
+# builds @meals for the view, and redirects when the ingredient list is absent
+# or does not belong to the current_user.
+#
+# @param format [Symbol] example placeholder
+# @return [void] examples assert API stubbing, @meals assignment and access control
+# def to_format(format = :html)
+#   # format the ingredient-list controller spec description (example placeholder for YARD)
+# end
+#
 require "rails_helper"
 
 RSpec.describe IngredientListRecipesController, type: :controller do
@@ -14,7 +25,7 @@ RSpec.describe IngredientListRecipesController, type: :controller do
 
       it "queries TheMealDB API and assigns meals" do
         api_key = "123"
-        allow(ENV).to receive(:[]).with("MEALDB_API_KEY").and_return(api_key)
+        allow(ENV).to receive(:[]).with("THEMEALDB_API_KEY").and_return(api_key)
 
         stub_request(:get, %r{filter.php\?i=Chicken}).to_return(
           body: { meals: [ { "idMeal" => "111", "strMeal" => "Soup" } ] }.to_json,

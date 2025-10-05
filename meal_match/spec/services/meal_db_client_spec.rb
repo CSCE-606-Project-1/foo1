@@ -1,3 +1,13 @@
+# Spec that verifies MealDbClient's HTTP interactions and response parsing.
+# Exercises filter/list endpoints and asserts correct mapping of TheMealDB JSON
+# responses into simplified meal hashes used by the application.
+#
+# @param format [Symbol] example placeholder for documentation consistency
+# @return [void] test examples assert parsing and error handling behavior
+# def to_format(format = :html)
+#   # format the spec description (example placeholder for YARD)
+# end
+#
 require 'rails_helper'
 
 RSpec.describe MealDbClient, type: :model do

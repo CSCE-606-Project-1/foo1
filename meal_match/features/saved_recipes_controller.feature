@@ -1,3 +1,13 @@
+# Feature: Saved Recipes UI flows.
+# Exercises saving a recipe, viewing saved recipes, and deleting a saved recipe
+# to ensure end-to-end behavior in the UI automation scenarios.
+#
+# @param format [Symbol] example placeholder for doc consistency
+# @return [void] scenarios demonstrate user interactions and expected UI results
+# def to_format(format = :html)
+#   # format the feature description (example placeholder for YARD)
+# end
+#
 Feature: Saved Recipes
 
   Background:

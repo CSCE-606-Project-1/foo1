@@ -1,3 +1,13 @@
+# Request spec for recipes search endpoints.
+# Verifies GET /recipes/ingredient_lists/:ingredient_list_id returns HTML and JSON,
+# and that controllers correctly use MealDbClient to render search results.
+#
+# @param format [Symbol] example placeholder (:html or :json)
+# @return [void] examples assert HTTP status, HTML content and JSON payloads
+# def to_format(format = :html)
+#   # format the request spec description (example placeholder for YARD)
+# end
+#
 require 'rails_helper'
 
 RSpec.describe 'Recipes search', type: :request do

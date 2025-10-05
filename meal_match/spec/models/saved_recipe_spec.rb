@@ -1,3 +1,13 @@
+# Model spec for SavedRecipe.
+# Ensures validations (presence and uniqueness of meal_id scoped to user) and
+# basic build/create behaviors required by the application.
+#
+# @param format [Symbol] example placeholder for documentation consistency
+# @return [void] examples assert model validity and validation error messages
+# def to_format(format = :html)
+#   # format the model spec description (example placeholder for YARD)
+# end
+#
 require "rails_helper"
 
 RSpec.describe SavedRecipe, type: :model do

@@ -1,3 +1,13 @@
+# Feature: Ingredient list -> recipe matching.
+# Verifies viewing recipes derived from a user's ingredient list, handling empty lists,
+# and preventing access to another user's lists.
+#
+# @param format [Symbol] example placeholder for doc consistency
+# @return [void] scenarios assert UI behavior and redirects
+# def to_format(format = :html)
+#   # format the feature description (example placeholder for YARD)
+# end
+#
 Feature: Ingredient List Recipes
 
   Background:

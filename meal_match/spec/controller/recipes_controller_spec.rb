@@ -1,3 +1,13 @@
+# Controller spec for RecipesController.
+# Covers the search action (handles missing/invalid ingredient_list_id, renders HTML/JSON)
+# and the search_intermediate helper which redirects to the canonical search URL.
+#
+# @param format [Symbol] example placeholder for response format
+# @return [void] examples assert redirects, flash alerts, template rendering and JSON responses
+# def to_format(format = :html)
+#   # format the recipes controller spec description (example placeholder for YARD)
+# end
+#
 require "rails_helper"
 
 RSpec.describe RecipesController, type: :controller do

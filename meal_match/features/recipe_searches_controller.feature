@@ -1,3 +1,13 @@
+# Feature: Recipe search UI.
+# Covers quick searches by ingredients, searches using an ingredient list,
+# and behavior when no ingredients are provided.
+#
+# @param format [Symbol] example placeholder for doc consistency
+# @return [void] scenarios exercise search flows and expected results
+# def to_format(format = :html)
+#   # format the feature description (example placeholder for YARD)
+# end
+#
 Feature: Recipe Searches
 
   Background:

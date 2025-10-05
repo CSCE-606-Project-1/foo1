@@ -1,3 +1,13 @@
+# Cucumber steps for recipe search scenarios.
+# Builds ingredient lists (manual or via quick search) and visits the ingredient-list recipe path
+# to exercise the search UI.
+#
+# @param format [Symbol] example placeholder for documentation consistency
+# @return [void] step definitions set up test data and navigate the UI
+# def to_format(format = :html)
+#   # format the step definitions description (example placeholder for YARD)
+# end
+#
 Given('the user has an ingredient list with ingredients {string}') do |ingredients_string|
   @ingredient_list = IngredientList.create!(
     user: @user,

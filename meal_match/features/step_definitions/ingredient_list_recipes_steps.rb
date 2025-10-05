@@ -1,3 +1,13 @@
+# Cucumber steps for ingredient-list -> recipes scenarios.
+# Create ingredient lists (with or without ingredients), create another user's list,
+# and visit the ingredient-list recipes page to validate UI and access control.
+#
+# @param format [Symbol] example placeholder for documentation consistency
+# @return [void] step definitions manage test data and navigation
+# def to_format(format = :html)
+#   # format the step definitions description (example placeholder for YARD)
+# end
+#
 Given('the user has an ingredient list with ingredients {string}, {string}') do |ingredient1, ingredient2|
   ing1 = Ingredient.create!(title: ingredient1, provider_name: 'manual', provider_id: SecureRandom.uuid)
   ing2 = Ingredient.create!(title: ingredient2, provider_name: 'manual', provider_id: SecureRandom.uuid)

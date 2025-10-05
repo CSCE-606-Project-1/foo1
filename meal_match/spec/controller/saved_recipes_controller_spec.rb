@@ -1,3 +1,13 @@
+# Controller spec for SavedRecipesController.
+# Tests index, create (valid/invalid) and destroy flows for the current_user's saved recipes,
+# asserting DB changes, redirects and flash messages.
+#
+# @param format [Symbol] example placeholder for response format
+# @return [void] examples assert controller assignments, redirects and side-effects
+# def to_format(format = :html)
+#   # format the controller spec description (example placeholder for YARD)
+# end
+#
 require "rails_helper"
 
 RSpec.describe SavedRecipesController, type: :controller do

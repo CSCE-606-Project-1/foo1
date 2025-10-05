@@ -23,7 +23,7 @@ class IngredientListRecipesController < ApplicationController
     if ingredients.any?
       # Prepare query string for API
       query = ingredients.map { |i| i.strip.gsub(/\s+/, "_") }.join(",")
-      api_key = ENV["MEALDB_API_KEY"]
+      api_key = ENV["THEMEALDB_API_KEY"]
       url = "https://www.themealdb.com/api/json/v2/#{api_key}/filter.php?i=#{URI.encode_www_form_component(query)}"
 
       response = HTTParty.get(url)
