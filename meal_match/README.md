@@ -40,7 +40,7 @@ bin/rails db:create db:schema:load db:seed
 Set required environment variables (see "Environment variables" below):
 
 ```bash
-export THEMEALDB_API_KEY=your_api_key_here
+export THEMEALDB_API_KEY=your_api_key_here_premium
 export THEMEALDB_API_BASE="https://www.themealdb.com/api/json/v2"
 ```
 
@@ -58,6 +58,11 @@ Environment variables
 - THEMEALDB_API_KEY (required) — API key for TheMealDB used by `MealDbClient`.
 - THEMEALDB_API_BASE (optional) — Base URL for TheMealDB API; default
 	`https://www.themealdb.com/api/json/v2`.
+
+Postgresql Account Username and Password
+
+- MEAL_MATCH_DATABASE_USERNAME=<username>
+- MEAL_MATCH_DATABASE_PASSWORD=<password>
 
 Main user flows
 ---------------
@@ -289,11 +294,3 @@ YARD notes:
 
 - For documentation changes, update YARD docstrings and run the docs task.
 
----
-
-If you want, I can also:
-- Run `yard doc` and fix any YARD warnings.
-- Add a `CONTRIBUTING.md` or `DEVELOPER.md` with step-by-step local setup
-	tailored to onboard new contributors.
-
-*** End of README
