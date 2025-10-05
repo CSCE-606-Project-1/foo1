@@ -30,7 +30,7 @@ RSpec.describe MealDbClient, type: :model do
           headers: { 'Content-Type' => 'application/json' }
         )
 
-      result = described_class.filter_by_ingredients(['Chicken', 'Onion'])
+      result = described_class.filter_by_ingredients([ 'Chicken', 'Onion' ])
       expect(result).to be_an(Array)
       expect(result.size).to eq(1)
       expect(result.first[:id]).to eq('1234')
@@ -42,7 +42,7 @@ RSpec.describe MealDbClient, type: :model do
       stub_request(:get, %r{#{base_url}/#{api_key}/filter\.php.*})
         .to_return(status: 500)
 
-      expect(described_class.filter_by_ingredients(['Salt'])).to eq([])
+      expect(described_class.filter_by_ingredients([ 'Salt' ])).to eq([])
     end
 
     it 'returns empty array when API returns no meals' do
@@ -52,7 +52,7 @@ RSpec.describe MealDbClient, type: :model do
           headers: { 'Content-Type' => 'application/json' }
         )
 
-      expect(described_class.filter_by_ingredients(['Pepper'])).to eq([])
+      expect(described_class.filter_by_ingredients([ 'Pepper' ])).to eq([])
     end
   end
 end
