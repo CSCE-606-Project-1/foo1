@@ -75,6 +75,7 @@ group :test do
   gem "selenium-webdriver", ">= 4.8.0"
   gem "shoulda-matchers", "~> 5.0"
   gem "rails-controller-testing"
+  gem "simplecov", require: false
 end
 
 # https://github.com/omniauth/omniauth

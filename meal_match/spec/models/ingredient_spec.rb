@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Ingredient, type: :model do
+  it "returns its title via to_s" do
+    ing = described_class.new(title: "Garlic", provider_id: "1", provider_name: "themealdb")
+    expect(ing.to_s).to eq("Garlic")
+  end
+
   let(:valid_attributes) do
     {
       # Identification of the provider

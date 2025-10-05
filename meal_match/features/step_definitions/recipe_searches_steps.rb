@@ -57,3 +57,7 @@ end
 Then('they should see a list of meals matching those ingredients') do
   expect(page.status_code).to eq(200)
 end
+
+Given("the API returns an error for recipe search") do
+  allow(MealDbClient).to receive(:filter_by_ingredients).and_raise(StandardError)
+end

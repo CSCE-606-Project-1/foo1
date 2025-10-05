@@ -25,3 +25,14 @@ Feature: Recipe Searches
   Scenario: User creates a recipe search with no ingredients
     When the user creates a recipe search with no ingredients
     Then they should see no meals listed
+
+  Scenario: User searches with an empty ingredient list
+    Given the user has an ingredient list with no ingredients
+    When the user creates a recipe search using that ingredient list
+    Then they should see no meals listed
+
+  Scenario: MealDbClient returns an error
+    Given a user exists and is logged in
+    And the API returns an error for recipe search
+    When the user creates a recipe search with ingredients "apple"
+    Then they should see no meals listed

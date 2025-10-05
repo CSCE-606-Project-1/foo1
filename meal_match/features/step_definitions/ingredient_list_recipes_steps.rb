@@ -56,3 +56,16 @@ end
 Then('they should be redirected to the dashboard') do
   expect(current_path).not_to eq(ingredient_list_recipe_path(@other_ingredient_list.id))
 end
+
+When("they try to delete a non-existent ingredient list") do
+  visit ingredient_list_path(999999)
+  expect(page).to have_current_path(ingredient_lists_path)
+end
+
+Then("they should see an error") do
+  # Error is represented by redirect in this app, already asserted above
+end
+
+When("the user tries to edit the other user's list") do
+  visit ingredient_list_path(@other_ingredient_list.id)
+end

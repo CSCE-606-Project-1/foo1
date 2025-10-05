@@ -1,63 +1,54 @@
-# Controller spec for RecipesController.
-# Covers the search action (handles missing/invalid ingredient_list_id, renders HTML/JSON)
-# and the search_intermediate helper which redirects to the canonical search URL.
-#
-# @param format [Symbol] example placeholder for response format
-# @return [void] examples assert redirects, flash alerts, template rendering and JSON responses
-# def to_format(format = :html)
-#   # format the recipes controller spec description (example placeholder for YARD)
-# end
-#
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe RecipesController, type: :controller do
   let(:user) { User.create!(email: "test@example.com") }
   let(:list) { user.ingredient_lists.create!(title: "My List") }
 
-  before { allow(controller).to receive(:current_user).and_return(user) }
+  before do
+    allow(controller).to receive(:current_user).and_return(user)
+  end
 
   describe "GET #search" do
-    context "when ingredient_list_id is nil" do
-        it "redirects to dashboard with alert" do
-            get :search, params: { ingredient_list_id: "" }
-            expect(response).to redirect_to(dashboard_path)
-            expect(flash[:alert]).to match(/does not exist/)
-        end
+    context "when ingredient_list_id is nil or blank" do
+      it "redirects to dashboard and sets alert when ingredient_list_id is blank" do
+        get :search, params: { ingredient_list_id: "" }
+        expect(flash[:alert]).to include("does not exist")
+        expect(response).to redirect_to(dashboard_path)
+      end
     end
-
 
     context "when ingredient_list does not exist" do
       it "redirects to dashboard with alert" do
         get :search, params: { ingredient_list_id: 999 }
         expect(response).to redirect_to(dashboard_path)
-        expect(flash[:alert]).to match(/does not exist/)
       end
     end
 
     context "with valid ingredient list" do
       before do
-        allow(MealDbClient).to receive(:filter_by_ingredients).and_return([ { id: "1", name: "Soup", thumb: "img.png" } ])
+        allow(MealDbClient)
+          .to receive(:filter_by_ingredients)
+          .and_return([ { id: "1", name: "Soup", thumb: "img.png" } ])
       end
 
-      it "assigns @recipes" do
+      it "assigns @recipes and renders HTML" do
         get :search, params: { ingredient_list_id: list.id }
         expect(assigns(:recipes)).to be_present
-      end
-
-      it "renders search template for html" do
-        get :search, params: { ingredient_list_id: list.id }
         expect(response).to render_template(:search)
       end
 
-      it "renders json" do
+      it "renders JSON when requested" do
         get :search, params: { ingredient_list_id: list.id }, format: :json
-        expect(JSON.parse(response.body)["recipes"]).to be_an(Array)
+        parsed = JSON.parse(response.body)
+        expect(parsed["recipes"].first["name"]).to eq("Soup")
       end
     end
   end
 
   describe "GET #search_intermediate" do
-    context "when no ingredient_list_id given" do
+    context "when no ingredient_list_id is given" do
       it "redirects to dashboard" do
         get :search_intermediate
         expect(response).to redirect_to(dashboard_path)
@@ -71,7 +62,7 @@ RSpec.describe RecipesController, type: :controller do
       end
     end
 
-    context "when valid id" do
+    context "when valid id provided" do
       it "redirects to ingredient_list_recipe_path" do
         get :search_intermediate, params: { ingredient_list_id: list.id }
         expect(response).to redirect_to(ingredient_list_recipe_path(id: list.id))

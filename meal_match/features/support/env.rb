@@ -3,7 +3,9 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
-
+require 'simplecov'
+SimpleCov.command_name 'features' + (ENV['TEST_ENV_NUMBER'] || '')
+SimpleCov.start 'rails'
 require 'cucumber/rails'
 require 'capybara/rspec'
 require 'webmock/cucumber'
@@ -61,3 +63,13 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 # Make Rails route helpers (like recipes_path) available in steps
 World(Rails.application.routes.url_helpers)
+World(RSpec::Mocks::ExampleMethods)
+
+Before do
+  RSpec::Mocks.setup
+end
+
+After do
+  RSpec::Mocks.verify
+  RSpec::Mocks.teardown
+end

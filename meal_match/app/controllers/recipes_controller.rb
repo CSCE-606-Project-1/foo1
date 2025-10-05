@@ -35,7 +35,12 @@ class RecipesController < ApplicationController
     ingredient_names = @ingredient_list.ingredients.map(&:title).map(&:to_s).reject(&:blank?)
 
     # Query TheMealDB filter endpoint using the user's selected ingredient list
-    @recipes = MealDbClient.filter_by_ingredients(ingredient_names)
+    begin
+      @recipes = MealDbClient.filter_by_ingredients(ingredient_names)
+    rescue StandardError
+      flash.now[:alert] = "Error fetching recipes"
+      @recipes = []
+    end
 
     respond_to do |format|
       format.html { render :search }

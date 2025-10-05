@@ -27,3 +27,13 @@ Feature: Ingredient List Recipes
     Given another user exists with an ingredient list
     When the user tries to visit the ingredient list recipes page for the other user's list
     Then they should be redirected to the dashboard
+
+  Scenario: User tries to delete a non-existent ingredient list
+    Given a user exists and is logged in
+    When they try to delete a non-existent ingredient list
+    Then they should see an error
+
+  Scenario: User tries to edit another user's ingredient list
+    Given another user exists with an ingredient list
+    When the user tries to edit the other user's list
+    Then they should be redirected to the dashboard
