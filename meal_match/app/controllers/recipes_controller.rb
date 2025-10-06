@@ -35,7 +35,12 @@ class RecipesController < ApplicationController
     ingredient_names = @ingredient_list.ingredients.map(&:title).map(&:to_s).reject(&:blank?)
 
     # Query TheMealDB filter endpoint using the user's selected ingredient list
-    @recipes = MealDbClient.filter_by_ingredients(ingredient_names)
+    begin
+      @recipes = MealDbClient.filter_by_ingredients(ingredient_names)
+    rescue StandardError
+      flash.now[:alert] = "Error fetching recipes"
+      @recipes = []
+    end
 
     respond_to do |format|
       format.html { render :search }
@@ -52,11 +57,20 @@ class RecipesController < ApplicationController
   # the ingredient list id as URI parameter.
   def search_intermediate
     ingredient_list_id = params[:ingredient_list_id]
-    if ingredient_list_id.present?
-      redirect_to recipes_search_path(ingredient_list_id)
-    else
+
+    if ingredient_list_id.blank?
       flash[:alert] = "Please select an ingredient list !"
       redirect_to dashboard_path
+      return
     end
+
+    @ingredient_list = IngredientList.find_by(id: ingredient_list_id)
+
+    if @ingredient_list.nil?
+      flash[:alert] = "Ingredient list not found!"
+      redirect_to dashboard_path
+      return
+    end
+    redirect_to ingredient_list_recipe_path(id: ingredient_list_id)
   end
 end

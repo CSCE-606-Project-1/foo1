@@ -8,6 +8,13 @@
 
 <br/>
 
+<%= button_to "Manage Saved Recipes",
+    saved_recipes_path, 
+    method: :get, 
+    id: 'saved-recipes-btn' %>
+
+<br/>
+
 <!-- local: true set because we want a new page getting loaded on -->
 <!-- form submission and not an AJAX request -->
 <%= form_with id: 'recipe-search-form',
@@ -23,5 +30,3 @@
 
   <%= submit_tag "Search Recipe", id: "recipe-search-submit" %>
 <% end %>
-
-

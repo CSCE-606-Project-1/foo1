@@ -1,0 +1,40 @@
+# Model spec for SavedRecipe.
+# Ensures validations (presence and uniqueness of meal_id scoped to user) and
+# basic build/create behaviors required by the application.
+#
+# @param format [Symbol] example placeholder for documentation consistency
+# @return [void] examples assert model validity and validation error messages
+# def to_format(format = :html)
+#   # format the model spec description (example placeholder for YARD)
+# end
+#
+require "rails_helper"
+
+RSpec.describe SavedRecipe, type: :model do
+  let(:user) { User.create!(email: "test@example.com") }
+
+  it "is valid with required attributes" do
+    recipe = user.saved_recipes.build(meal_id: "123", name: "Pasta")
+    expect(recipe).to be_valid
+  end
+
+  it "is invalid without a meal_id" do
+    recipe = user.saved_recipes.build(meal_id: nil, name: "Pasta")
+    expect(recipe).not_to be_valid
+    expect(recipe.errors[:meal_id]).to include("can't be blank")
+  end
+
+  it "enforces uniqueness of meal_id scoped to user" do
+    user.saved_recipes.create!(meal_id: "123", name: "Pasta")
+    dup = user.saved_recipes.build(meal_id: "123", name: "Duplicate Pasta")
+    expect(dup).not_to be_valid
+    expect(dup.errors[:meal_id]).to include("has already been taken")
+  end
+
+  it "allows same meal_id for different users" do
+    user2 = User.create!(email: "other@example.com")
+    user.saved_recipes.create!(meal_id: "123", name: "Pasta")
+    recipe2 = user2.saved_recipes.build(meal_id: "123", name: "Pasta")
+    expect(recipe2).to be_valid
+  end
+end

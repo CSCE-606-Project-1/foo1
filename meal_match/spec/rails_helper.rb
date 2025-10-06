@@ -1,4 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+SimpleCov.command_name 'specs' + (ENV['TEST_ENV_NUMBER'] || '')
+SimpleCov.start 'rails'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -9,7 +12,10 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # return unless Rails.env.test?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-
+require "webmock/rspec"
+WebMock.disable_net_connect!(allow_localhost: true)
+require "rails-controller-testing"
+Rails::Controller::Testing.install
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -71,5 +77,12 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless_safe
+  end
+  # Load the application's full routes for all controller specs
+  RSpec.configure do |config|
+    config.before(:each, type: :controller) do
+      # Ensures Rails uses the app's real config/routes.rb
+      @routes = Rails.application.routes
+    end
   end
 end

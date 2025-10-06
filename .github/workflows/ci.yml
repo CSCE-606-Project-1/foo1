@@ -110,3 +110,71 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/meal_match/tmp/screenshots
           if-no-files-found: ignore
+
+  # NEW CUCUMBER TESTS JOB
+  cucumber:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d postgres"
+          --health-interval=10s --health-timeout=5s --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          working-directory: meal_match
+          
+      # Headless Chrome for Cucumber tests
+      - uses: browser-actions/setup-chrome@v1
+      
+      - name: Verify Cucumber is available
+        run: |
+          if bundle show cucumber > /dev/null 2>&1; then
+            echo "Cucumber gem found"
+          else
+            echo "Cucumber gem not found - skipping Cucumber tests"
+            exit 0
+          fi
+          
+      - name: Setup test database for Cucumber
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/meal_match_test
+        run: |
+          bin/rails db:create db:schema:load
+          
+      - name: Run Cucumber tests
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/meal_match_test
+        run: |
+          # Run with pretty format for logs, and also generate HTML report
+          bundle exec cucumber --format pretty --format html -o tmp/cucumber-report.html
+          
+      - name: Upload Cucumber HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: ${{ github.workspace }}/meal_match/tmp/cucumber-report.html
+          if-no-files-found: ignore
+          
+      - name: Keep screenshots from failed Cucumber tests
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-screenshots
+          path: ${{ github.workspace }}/meal_match/tmp/capybara
+          if-no-files-found: ignore
