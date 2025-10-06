@@ -17,6 +17,9 @@
     body.recipe-results:not(:has(:target)) .rr-recipe.default-visible {
       display: block;
     }
+    body.recipe-results:has(.rr-recipe:target.filtered-out) .rr-recipe.default-visible {
+      display: block;
+    }
   </style>
 </head>
 <body class="recipe-results">
@@ -108,7 +111,7 @@
     %>
 
     <div style="background:#f5f5f5;padding:15px;margin:20px 0;border-radius:8px;border:1px solid #e0e0e0;">
-      <form method="get" action="" style="margin:0;">
+      <form method="get" action="<%= request.path %>" style="margin:0;">
         <label for="missing-filter" style="display:block;margin-bottom:10px;font-weight:600;color:#333;">
           Filter by Missing Ingredients: Show recipes with max
           <input type="number" id="missing-filter" name="max_missing" value="<%= max_missing_allowed %>"

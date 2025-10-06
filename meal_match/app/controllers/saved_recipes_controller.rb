@@ -30,12 +30,24 @@ class SavedRecipesController < ApplicationController
     if recipe.save
       respond_to do |format|
         format.json { render json: { success: true, message: "Recipe saved!" } }
-        format.html { redirect_back fallback_location: request.referrer || root_path }
+        format.html do
+          clean_referrer = remove_fragment_from_url(request.referrer)
+          redirect_to clean_referrer || root_path, notice: "Recipe saved!"
+        end
       end
     else
       respond_to do |format|
-        format.json { render json: { success: false, message: recipe.errors.full_messages.join(", ") }, status: :unprocessable_entity }
-        format.html { redirect_back fallback_location: request.referrer || root_path, alert: recipe.errors.full_messages.join(", ") }
+        format.json do
+          render json: {
+            success: false,
+            message: recipe.errors.full_messages.join(", ")
+          }, status: :unprocessable_entity
+        end
+        format.html do
+          clean_referrer = remove_fragment_from_url(request.referrer)
+          redirect_to clean_referrer || root_path,
+                      alert: recipe.errors.full_messages.join(", ")
+        end
       end
     end
   end
@@ -47,5 +59,21 @@ class SavedRecipesController < ApplicationController
     recipe = current_user.saved_recipes.find(params[:id])
     recipe.destroy
     redirect_to saved_recipes_path, notice: "Recipe removed."
+  end
+
+  private
+
+  # Removes any URL fragment (e.g., "#rr-recipe-5") from a URL.
+  #
+  # @param url [String, nil] The URL to sanitize.
+  # @return [String, nil] The cleaned URL without a fragment.
+  def remove_fragment_from_url(url)
+    return nil if url.blank?
+
+    uri = URI.parse(url)
+    uri.fragment = nil
+    uri.to_s
+  rescue URI::InvalidURIError
+    nil
   end
 end
