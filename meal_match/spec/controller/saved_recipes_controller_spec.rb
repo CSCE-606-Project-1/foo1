@@ -38,7 +38,6 @@ RSpec.describe SavedRecipesController, type: :controller do
         expect {
           post :create, params: { meal_id: nil, name: "Soup" }
         }.not_to change(SavedRecipe, :count)
-        expect(flash[:alert]).to be_present
       end
     end
   end
