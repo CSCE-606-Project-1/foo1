@@ -93,3 +93,7 @@ Then('I should not see a table of ingredient lists') do
   save_and_open_page
   expect(page).not_to have_css("[data-testid='#{INGREDIENT_LISTS_TABLE_ID}']")
 end
+
+Then("I should see the ingredient list titled {string}") do |title|
+  expect(ingredient_lists_table_row_with_title(title)).not_to be_nil
+end
