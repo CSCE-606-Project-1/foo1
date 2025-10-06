@@ -12,9 +12,9 @@
     <thead>
       <th>Title</th>
     </thead>
-    <tbody>
+    <tbody data-testid = "ingredient-lists-table-body">
       <% @ingredient_lists.each do |l| %>
-        <tr>
+        <tr data-testid = "ingredient-list-<%= l.id %>">
           <td> <%= l.title %> </td>
           <td>
             <%= button_to "View/Edit", ingredient_list_path(l), method: :get %>

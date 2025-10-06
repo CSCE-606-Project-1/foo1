@@ -3,14 +3,18 @@
 # those tests will authenticate via the set mock
 # credentials
 
+TEST_USER_UID = '4204201234'
+TEST_USER_NAME = 'Solid Snake'
+TEST_USER_EMAIL = 'solidsnake@liquid.com'
+
 OmniAuth.config.test_mode = true
 
 OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
   provider: 'google_oauth2',
-  uid: '4204201234',
+  uid: TEST_USER_UID,
   info: {
-    name: 'Solid Snake',
-    email: 'solidsnake@liquid.com'
+    name: TEST_USER_NAME,
+    email: TEST_USER_EMAIL
   },
   credentials: {
     token: 'mock_token',

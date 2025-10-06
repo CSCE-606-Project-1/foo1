@@ -19,6 +19,11 @@ end
 
 When("I click to sign in with google") do
   click_button LOGIN_BTN_LABEL
+
+  @logged_in_user = User.find_by(email: TEST_USER_EMAIL)
+  if @logged_in_user.nil?
+    raise "Expected logged in user #{TEST_USER_EMAIL} to exist !"
+  end
 end
 
 Then("I should see the user dashboard") do
