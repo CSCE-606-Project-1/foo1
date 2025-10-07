@@ -2,15 +2,8 @@ LOGIN_BTN_LABEL = "Sign in with Google"
 LOGOUT_BTN_LABEL = "Log out"
 
 Given("I am a non logged in user") do
-  # logout request is DELETE /logout not GET /logout
-  # so the normal visit logout_path won't work since
-  # it tries to send a GET request.
-  page.driver.submit :delete, '/logout', {}
-  begin
-    page.driver.browser.clear_cookies
-  rescue StandardError => e
-    puts "Could not clear cookies: #{e.message}"
-  end
+  Capybara.reset_sessions!
+  @logged_in_user = nil
 end
 
 Given("I am on the home page") do
