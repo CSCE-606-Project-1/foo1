@@ -1,4 +1,7 @@
 Feature: Created Ingredient list remains saved across user logins
+  As a logged in user
+  I want to save ingredient lists against my account
+  So that they persist between logins for reuse.
 
   Scenario: Saved Ingredient List persists between logins
     Given I am a logged in user

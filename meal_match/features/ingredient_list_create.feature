@@ -1,4 +1,7 @@
 Feature: Create Ingredient List
+  As a logged in user
+  I want to create multiple ingredient lists
+  So I can organize ingredients by meal plans
 
   Scenario: Successful creation of Ingredient List
     Given I am a logged in user

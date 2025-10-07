@@ -1,4 +1,7 @@
 Feature: Select Ingredient List for recipe search
+  As a logged in user
+  I want to select a saved ingredient list
+  So that I can search for recipes that can be cooked using those ingredients
 
   Scenario: Can select previously created ingredient list for recipe search
     Given I am a logged in user

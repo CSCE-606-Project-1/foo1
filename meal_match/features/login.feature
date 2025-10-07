@@ -1,4 +1,7 @@
 Feature: Google Login
+  As a user
+  I want to sign in with my Google account
+  So that I can reuse my google account credentials to access the app
 
   Scenario: Successful login with Google Account
     Given I am a non logged in user

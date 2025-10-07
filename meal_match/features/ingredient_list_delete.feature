@@ -1,4 +1,7 @@
 Feature: Delete Ingredient List
+  As a logged in user
+  I should be able to delete my created ingredient list
+  So that I can keep my ingredient lists organized
 
   Scenario: Successful deletion of ingredient list
     Given I am a logged in user

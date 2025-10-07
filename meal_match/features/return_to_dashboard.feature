@@ -1,4 +1,7 @@
 Feature: Return To Dashboard
+  As a logged in user
+  I want to go back to my user dashboard from any other page within the app
+  So that I can quickly navigate back to my dashboard
 
   Scenario: Directs the user to the dashboard
     Given I am a logged in user
